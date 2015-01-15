@@ -1,0 +1,53 @@
+object Form1: TForm1
+  Left = 367
+  Height = 155
+  Top = 289
+  Width = 218
+  ActiveControl = Memo1
+  Caption = 'Usage Code Example'
+  ClientHeight = 155
+  ClientWidth = 218
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object Label1: TLabel
+    Left = 56
+    Height = 14
+    Top = 72
+    Width = 84
+    Caption = 'Available Runs: 0'
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 59
+    Top = 8
+    Width = 197
+    Lines.Strings = (
+      'If you can edit this, your program '
+      'was '
+      'allowed to run'
+    )
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object CloseBtn: TBitBtn
+    Left = 56
+    Height = 33
+    Top = 89
+    Width = 89
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object OgUsageCode1: TOgUsageCode
+    OnChecked = OgUsageCode1Checked
+    OnGetKey = OgUsageCode1GetKey
+    OnGetCode = OgUsageCode1GetCode
+    OnChangeCode = OgUsageCode1ChangeCode
+    left = 88
+    top = 160
+  end
+end

@@ -1,0 +1,219 @@
+object NafFrm: TNafFrm
+  Left = 307
+  Height = 232
+  Top = 291
+  Width = 334
+  HorzScrollBar.Page = 333
+  HorzScrollBar.Range = 325
+  VertScrollBar.Page = 231
+  VertScrollBar.Range = 177
+  ActiveControl = AccessCodeEd
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Network Access File Manager'
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  ShowHint = True
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 97
+    Top = 8
+    Width = 317
+    Caption = 'File Settings'
+    TabOrder = 0
+    object GenerateCodeSb: TSpeedButton
+      Left = 288
+      Height = 23
+      Hint = 'Generate code'
+      Top = 19
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888880000088888800000008888
+        0088808008888000000088808088888800888000000088088880008888088000
+        0000880088000008880880000000808880098900808080000000808880089800
+        8880800000008008800898008800800000008088800989008880800000008808
+        8800000888088000000088080880008808088000000088808808888880888000
+        0000888800888080088880000000888888000008888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = GenerateCodeSbClick
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 18
+      Top = 24
+      Width = 38
+      Caption = 'C&ode:'
+      Color = clNone
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 18
+      Top = 52
+      Width = 54
+      Caption = '&Filename:'
+      Color = clNone
+      ParentColor = False
+    end
+    object FileNameEd: TEdit
+      Left = 64
+      Height = 22
+      Top = 48
+      Width = 185
+      OnChange = FileNameEdChange
+      TabOrder = 1
+    end
+    object BrowseBt: TButton
+      Left = 253
+      Height = 25
+      Hint = 'Browse for network access file'
+      Top = 46
+      Width = 59
+      BorderSpacing.InnerBorder = 4
+      Caption = '&Browse...'
+      OnClick = BrowseBtClick
+      TabOrder = 2
+    end
+    object AccessCodeEd: TEdit
+      Left = 64
+      Height = 22
+      Top = 20
+      Width = 221
+      OnChange = AccessCodeEdChange
+      TabOrder = 0
+    end
+  end
+  object UpdateBt: TButton
+    Left = 10
+    Height = 25
+    Hint = 'Update the selected NAF using the specified code'
+    Top = 200
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = '&Update'
+    Enabled = False
+    OnClick = UpdateBtClick
+    TabOrder = 2
+  end
+  object CreateBt: TButton
+    Left = 90
+    Height = 25
+    Hint = 'Create teh NAF using the specified code'
+    Top = 200
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = '&Create'
+    Enabled = False
+    OnClick = CreateBtClick
+    TabOrder = 3
+  end
+  object ResetBt: TButton
+    Left = 170
+    Height = 25
+    Hint = 'Reset the specified NAF, removing invalid slots'
+    Top = 200
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = '&Reset'
+    Enabled = False
+    OnClick = ResetBtClick
+    TabOrder = 4
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Height = 72
+    Top = 112
+    Width = 320
+    Caption = 'Access Slots'
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 8
+      Height = 18
+      Top = 20
+      Width = 33
+      Caption = 'Total:'
+      Color = clNone
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 96
+      Height = 18
+      Top = 20
+      Width = 46
+      Caption = 'Locked:'
+      Color = clNone
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 196
+      Height = 18
+      Top = 20
+      Width = 42
+      Caption = 'Invalid:'
+      Color = clNone
+      ParentColor = False
+    end
+    object TotalSlotsLb: TLabel
+      Left = 44
+      Height = 18
+      Top = 20
+      Width = 6
+      Caption = '0'
+      Color = clNone
+      ParentColor = False
+    end
+    object LockedSlotsLb: TLabel
+      Left = 148
+      Height = 18
+      Top = 20
+      Width = 6
+      Caption = '0'
+      Color = clNone
+      ParentColor = False
+    end
+    object InvalidSlotsLb: TLabel
+      Left = 240
+      Height = 18
+      Top = 20
+      Width = 6
+      Caption = '0'
+      Color = clNone
+      ParentColor = False
+    end
+  end
+  object DeleteBt: TButton
+    Left = 250
+    Height = 25
+    Hint = 'Delete teh selected NAF'
+    Top = 200
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = '&Delete'
+    Enabled = False
+    OnClick = DeleteBtClick
+    TabOrder = 5
+  end
+  object OpenDg: TOpenDialog
+    Title = 'Otwórz istniej¹cy plik'
+    DefaultExt = '.naf'
+    Filter = 'Network Access Files (*.naf)|*.naf|All Files (*.*)|*.*'
+    FilterIndex = 0
+    Options = []
+    left = 160
+    top = 72
+  end
+  object OgMakeCodes1: TOgMakeCodes
+    left = 136
+    top = 288
+  end
+end

@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="$(TestDir)\publishedproject\"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="tponguard"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="3">
+      <Unit0>
+        <Filename Value="exdtp21.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="44" Y="9"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="837"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="exdtp21u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Exdtp21u"/>
+        <CursorPos X="63" Y="113"/>
+        <TopLine Value="72"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="836"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\source\onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="41" Y="1207"/>
+        <TopLine Value="1199"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="418"/>
+        <Loaded Value="True"/>
+      </Unit2>
+    </Units>
+    <JumpHistory Count="13" HistoryIndex="12">
+      <Position1>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="83" Column="17" TopLine="69"/>
+      </Position1>
+      <Position2>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="55" Column="22" TopLine="35"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\source\onguard.pas"/>
+        <Caret Line="1447" Column="18" TopLine="1429"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\source\onguard.pas"/>
+        <Caret Line="366" Column="3" TopLine="355"/>
+      </Position4>
+      <Position5>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="30" Column="46" TopLine="28"/>
+      </Position5>
+      <Position6>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="81" Column="48" TopLine="43"/>
+      </Position6>
+      <Position7>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="29" Column="30" TopLine="29"/>
+      </Position7>
+      <Position8>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="28" Column="20" TopLine="28"/>
+      </Position8>
+      <Position9>
+        <Filename Value="exdtp21.lpr"/>
+        <Caret Line="13" Column="40" TopLine="1"/>
+      </Position9>
+      <Position10>
+        <Filename Value="exdtp21.lpr"/>
+        <Caret Line="9" Column="44" TopLine="1"/>
+      </Position10>
+      <Position11>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="75" Column="1" TopLine="75"/>
+      </Position11>
+      <Position12>
+        <Filename Value="exdtp21u.pas"/>
+        <Caret Line="106" Column="1" TopLine="91"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\source\onguard.pas"/>
+        <Caret Line="1344" Column="8" TopLine="1323"/>
+      </Position13>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <PathDelim Value="\"/>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <BreakPoints Count="9">
+      <Item1>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="135"/>
+      </Item1>
+      <Item2>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="143"/>
+      </Item2>
+      <Item3>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="159"/>
+      </Item3>
+      <Item4>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="186"/>
+      </Item4>
+      <Item5>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="212"/>
+      </Item5>
+      <Item6>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="235"/>
+      </Item6>
+      <Item7>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="130"/>
+      </Item7>
+      <Item8>
+        <Source Value="exdtp21u.pas"/>
+        <Line Value="75"/>
+      </Item8>
+      <Item9>
+        <Source Value="exdtp21u.pas"/>
+        <Line Value="106"/>
+      </Item9>
+    </BreakPoints>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

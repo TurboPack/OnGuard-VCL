@@ -1,0 +1,44 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TMainFrm','FORMDATA',[
+  'TPF0'#8'TMainFrm'#7'MainFrm'#4'Left'#3'u'#1#6'Height'#3#216#0#3'Top'#3#235#0
+  +#5'Width'#3'V'#1#18'HorzScrollBar.Page'#3'U'#1#19'HorzScrollBar.Range'#3'E'#1
+  +#18'VertScrollBar.Page'#3#215#0#19'VertScrollBar.Range'#3#169#0#13'ActiveCon'
+  +'trol'#7#12'AccessCodeEd'#11'BorderIcons'#11#12'biSystemMenu'#10'biMinimize'
+  +#0#7'Caption'#6#23'Fix Network Access File'#10'Font.Color'#7#6'clText'#11'Fo'
+  +'nt.Height'#2#11#9'Font.Name'#6#13'MS Sans Serif'#10'Font.Pitch'#7#10'fpVari'
+  +'able'#8'OnCreate'#7#10'FormCreate'#8'Position'#7#14'poScreenCenter'#0#9'TGr'
+  +'oupBox'#9'GroupBox1'#4'Left'#2#8#6'Height'#2'`'#3'Top'#2#8#5'Width'#3';'#1#7
+  +'Caption'#6#13'File Settings'#8'TabOrder'#2#0#0#6'TLabel'#6'Label4'#4'Left'#2
+  +#8#6'Height'#2#18#3'Top'#2'0'#5'Width'#2'&'#7'Caption'#6#6'C&ode:'#5'Color'#7
+  +#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#6#6'Height'#2
+  +#18#3'Top'#2#17#5'Width'#2'4'#7'Caption'#6#10'&Filename:'#5'Color'#7#6'clNon'
+  +'e'#11'ParentColor'#8#0#0#5'TEdit'#12'AccessCodeEd'#4'Left'#2'@'#6'Height'#2
+  +#21#3'Top'#2','#5'Width'#3#245#0#8'OnChange'#7#18'AccessCodeEdChange'#8'TabO'
+  +'rder'#2#1#0#0#6'TPanel'#10'FileNamePn'#4'Left'#2'@'#6'Height'#2#21#3'Top'#2
+  +#16#5'Width'#3#245#0#9'Alignment'#7#13'taLeftJustify'#10'BevelOuter'#7#9'bvL'
+  +'owered'#11'BorderWidth'#2#2#8'TabOrder'#2#0#0#0#0#7'TButton'#8'UpdateBt'#4
+  +'Left'#2#8#6'Height'#2#25#3'Top'#3#176#0#5'Width'#2'K'#25'BorderSpacing.Inne'
+  +'rBorder'#2#4#7'Caption'#6#7'&Update'#7'OnClick'#7#13'UpdateBtClick'#8'TabOr'
+  +'der'#2#2#0#0#7'TButton'#8'CreateBt'#4'Left'#2'X'#6'Height'#2#25#3'Top'#3#176
+  +#0#5'Width'#2'K'#25'BorderSpacing.InnerBorder'#2#4#7'Caption'#6#7'&Create'#7
+  +'Enabled'#8#7'OnClick'#7#13'CreateBtClick'#8'TabOrder'#2#3#0#0#7'TButton'#7
+  +'ResetBt'#4'Left'#3#168#0#6'Height'#2#25#3'Top'#3#176#0#5'Width'#2'K'#25'Bor'
+  +'derSpacing.InnerBorder'#2#4#7'Caption'#6#6'&Reset'#7'OnClick'#7#12'ResetBtC'
+  +'lick'#8'TabOrder'#2#4#0#0#9'TGroupBox'#9'GroupBox2'#4'Left'#2#8#6'Height'#2
+  +'A'#3'Top'#2'h'#5'Width'#3'?'#1#7'Caption'#6#12'Access Slots'#8'TabOrder'#2#1
+  +#0#6'TLabel'#6'Label1'#4'Left'#2#8#6'Height'#2#18#3'Top'#2#20#5'Width'#2'&'#7
+  +'Caption'#6#6'Total:'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6
+  +'Label2'#4'Left'#2'^'#6'Height'#2#18#3'Top'#2#20#5'Width'#2'.'#7'Caption'#6#7
+  +'Locked:'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'L'
+  +'eft'#3#182#0#6'Height'#2#18#3'Top'#2#20#5'Width'#2'1'#7'Caption'#6#8'Invali'
+  +'d:'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#12'TotalSlotsLb'#4
+  +'Left'#2'6'#6'Height'#2#18#3'Top'#2#20#5'Width'#2#6#7'Caption'#6#1'0'#5'Colo'
+  +'r'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#13'LockedSlotsLb'#4'Left'#3
+  +#156#0#6'Height'#2#18#3'Top'#2#20#5'Width'#2#6#7'Caption'#6#1'0'#5'Color'#7#6
+  +'clNone'#11'ParentColor'#8#0#0#6'TLabel'#14'InvalidSlotsLb'#4'Left'#3#248#0#6
+  +'Height'#2#18#3'Top'#2#20#5'Width'#2#6#7'Caption'#6#1'0'#5'Color'#7#6'clNone'
+  +#11'ParentColor'#8#0#0#0#7'TButton'#8'DeleteBt'#4'Left'#3#248#0#6'Height'#2
+  +#25#3'Top'#3#176#0#5'Width'#2'K'#25'BorderSpacing.InnerBorder'#2#4#7'Caption'
+  +#6#7'&Delete'#7'OnClick'#7#13'DeleteBtClick'#8'TabOrder'#2#5#0#0#0
+]);

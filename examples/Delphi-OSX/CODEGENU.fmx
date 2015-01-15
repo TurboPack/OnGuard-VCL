@@ -1,0 +1,71 @@
+object CodeGenFrm: TCodeGenFrm
+  Left = 256
+  Top = 146
+  Caption = 'Example Code Generator'
+  ClientHeight = 85
+  ClientWidth = 273
+  Position = poScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop, dkiPhone, dkiPad]
+  Left = 256
+  Top = 146
+  DesignerMobile = False
+  DesignerWidth = 0
+  DesignerHeight = 0
+  DesignerDeviceName = ''
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object Label2: TLabel
+    AutoSize = True
+    Height = 19.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 3.000000000000000000
+    Text = 'Code'
+    Width = 29.000000000000000000
+    WordWrap = False
+  end
+  object CopySb: TSpeedButton
+    Height = 22.000000000000000000
+    Position.X = 244.000000000000000000
+    Position.Y = 18.000000000000000000
+    StyleLookup = 'buttonstyle'
+    Width = 23.000000000000000000
+    WordWrap = True
+    OnClick = CopySbClick
+  end
+  object GenerateBtn: TButton
+    Height = 25.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 51.000000000000000000
+    TabOrder = 0
+    Text = 'Generate Code'
+    Width = 105.000000000000000000
+    OnClick = GenerateBtnClick
+  end
+  object CodeEd: TEdit
+    Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+    TabOrder = 1
+    ReadOnly = True
+    Position.X = 8.000000000000000000
+    Position.Y = 19.000000000000000000
+    Width = 233.000000000000000000
+    Height = 21.000000000000000000
+    KillFocusByReturn = False
+  end
+  object CloseBtn: TButton
+    Height = 25.000000000000000000
+    Position.X = 192.000000000000000000
+    Position.Y = 51.000000000000000000
+    TabOrder = 2
+    Text = 'Close'
+    Width = 75.000000000000000000
+    WordWrap = True
+  end
+  object OgMakeCodes1: TOgMakeCodes
+    KeyFileName = 'ONGUARD.INI'
+    ShowHints = True
+    Left = 136
+    Top = 40
+  end
+end

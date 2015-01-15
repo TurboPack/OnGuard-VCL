@@ -1,0 +1,104 @@
+object frmStamp: TfrmStamp
+  Left = 282
+  Height = 160
+  Top = 192
+  Width = 428
+  HorzScrollBar.Page = 427
+  HorzScrollBar.Range = 409
+  VertScrollBar.Page = 159
+  VertScrollBar.Range = 130
+  ActiveControl = FileEd
+  Caption = 'Stamp EXE'
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  OnCreate = FormCreate
+  ShowHint = True
+  object Label1: TLabel
+    Left = 8
+    Height = 13
+    Top = 8
+    Width = 105
+    Caption = '&EXE file to stamp'
+    Color = clNone
+    FocusControl = FileEd
+    ParentColor = False
+  end
+  object StatusLbl: TLabel
+    Left = 8
+    Height = 13
+    Top = 112
+    Width = 35
+    Caption = 'Status'
+    Color = clNone
+    ParentColor = False
+  end
+  object FileEd: TEdit
+    Left = 8
+    Height = 26
+    Hint = 'Enter EXE file name'
+    Top = 32
+    Width = 305
+    OnChange = FileEdChange
+    TabOrder = 0
+  end
+  object BrowseBtn: TBitBtn
+    Left = 320
+    Height = 25
+    Hint = 'Search for EXE file'
+    Top = 29
+    Width = 89
+    Caption = '&Browse'
+    NumGlyphs = 0
+    OnClick = BrowseBtnClick
+    TabOrder = 1
+  end
+  object StampBtn: TBitBtn
+    Left = 8
+    Height = 25
+    Hint = 'Stamp EXE wiht signature record'
+    Top = 72
+    Width = 89
+    Caption = '&Stamp'
+    NumGlyphs = 0
+    OnClick = StampBtnClick
+    TabOrder = 2
+  end
+  object CloseBtn: TBitBtn
+    Left = 320
+    Height = 25
+    Top = 104
+    Width = 89
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 3
+  end
+  object ClearBtn: TBitBtn
+    Left = 104
+    Height = 25
+    Hint = 'Reset EXE''s stamped signature'
+    Top = 72
+    Width = 89
+    Caption = '&Clear'
+    NumGlyphs = 0
+    OnClick = ClearBtnClick
+    TabOrder = 4
+  end
+  object EraseMarkerCb: TCheckBox
+    Left = 184
+    Height = 22
+    Hint = 'Erase marker used to locate signature record'
+    Width = 108
+    Caption = 'Erase &Marker'
+    TabOrder = 5
+  end
+  object OpenDialog1: TOpenDialog
+    Title = 'Select EXE File to Stamp'
+    DefaultExt = '.exe'
+    Filter = 'EXE files (*.exe)|*.exe|All files (*.*)|*.*|Linux executable|*'
+    FilterIndex = 0
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist]
+    left = 133
+  end
+end

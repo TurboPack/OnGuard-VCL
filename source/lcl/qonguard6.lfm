@@ -1,0 +1,106 @@
+object ModifierFrm: TModifierFrm
+  Left = 295
+  Height = 145
+  Top = 224
+  Width = 433
+  ActiveControl = NoModifierCb
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Generate Modifier'
+  ClientHeight = 145
+  ClientWidth = 433
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object OKBtn: TBitBtn
+    Left = 285
+    Height = 26
+    Top = 104
+    Width = 57
+    Caption = 'OK'
+    Default = True
+    ModalResult = 1
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object CancelBtn: TBitBtn
+    Left = 344
+    Height = 24
+    Top = 104
+    Width = 62
+    Caption = 'Cancel'
+    ModalResult = 2
+    NumGlyphs = 0
+    TabOrder = 2
+  end
+  object GroupBox1: TGroupBox
+    Left = 3
+    Height = 90
+    Top = 6
+    Width = 406
+    Caption = '&Modifiers'
+    ClientHeight = 72
+    ClientWidth = 402
+    TabOrder = 0
+    object UniqueModifierCb: TCheckBox
+      Left = 133
+      Height = 17
+      Top = 37
+      Width = 91
+      Caption = 'Unique modifier'
+      OnClick = ModifierClick
+      TabOrder = 3
+    end
+    object MachineModifierCb: TCheckBox
+      Left = 133
+      Height = 17
+      Top = 20
+      Width = 98
+      Caption = 'Machine modifier'
+      OnClick = ModifierClick
+      TabOrder = 1
+    end
+    object DateModifierCb: TCheckBox
+      Left = 267
+      Height = 17
+      Top = 18
+      Width = 80
+      Caption = 'Date modifier'
+      OnClick = ModifierClick
+      TabOrder = 2
+    end
+    object NoModifierCb: TCheckBox
+      Left = 11
+      Height = 17
+      Top = 18
+      Width = 71
+      Caption = 'No modifier'
+      OnClick = ModifierClick
+      TabOrder = 0
+    end
+    object ModifierEd: TEdit
+      Left = 12
+      Height = 23
+      Top = 34
+      Width = 104
+      OnChange = InfoChanged
+      OnKeyPress = ModifierEdKeyPress
+      TabOrder = 4
+    end
+    object ModDateEd: TEdit
+      Left = 267
+      Height = 23
+      Hint = 'Code is invalid after this date'
+      Top = 35
+      Width = 120
+      Enabled = False
+      MaxLength = 10
+      OnChange = ModifierClick
+      OnKeyPress = DateEdKeyPress
+      TabOrder = 5
+    end
+  end
+end

@@ -1,0 +1,67 @@
+(* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is TurboPower OnGuard
+ *
+ * The Initial Developer of the Original Code is
+ * TurboPower Software
+ *
+ * Portions created by the Initial Developer are Copyright (C) 1996-2002
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *
+ * ***** END LICENSE BLOCK ***** *)
+package G115_D120;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE ON}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'TurboPower OnGuard 1.15 Designtime package - VCL120'}
+{$DESIGNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  vclx,
+  designide,
+  G115_R120;
+
+contains
+  OnGuard5 in '..\source\OnGuard5.pas',
+  OnGuard6 in '..\source\OnGuard6.pas',
+  OnGuard7 in '..\source\OnGuard7.pas',
+  OgReg in '..\source\OgReg.pas',
+  OgAbout0 in '..\source\OgAbout0.pas',
+  OgProExe in '..\source\OgProExe.pas';
+
+end.

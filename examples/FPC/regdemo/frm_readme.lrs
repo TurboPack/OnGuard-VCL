@@ -1,0 +1,70 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TfrmReadme','FORMDATA',[
+  'TPF0'#10'TfrmReadme'#9'frmReadme'#4'Left'#3#192#0#6'Height'#3#206#1#3'Top'#2
+  +'k'#5'Width'#3#27#2#13'ActiveControl'#7#5'Memo1'#7'Caption'#6#10'Readme.txt'
+  +#12'ClientHeight'#3#206#1#11'ClientWidth'#3#27#2#11'Font.Height'#2#245#9'Fon'
+  +'t.Name'#6#13'MS Sans Serif'#10'OnActivate'#7#12'FormActivate'#10'LCLVersion'
+  +#6#6'0.9.27'#0#5'TMemo'#5'Memo1'#4'Left'#2#0#6'Height'#3#206#1#3'Top'#2#0#5
+  +'Width'#3#27#2#5'Align'#7#8'alClient'#11'Font.Height'#2#243#9'Font.Name'#6#11
+  +'Courier New'#13'Lines.Strings'#1#6'&Registration Demo by Bill Mullen [TPX]'
+  +#6'&--------------------------------------'#6#0#6'>This demo consists of thr'
+  +'ee applications and complete project '#6#5'code.'#6#27'The three applicatio'
+  +'ns are:'#6#0#6'@RCG.EXE - This is the application you use to gather informa'
+  +'tion '#6#5'from '#6'@your user.  That information is then used to generate '
+  +'a release '#6#5'code '#6'%that you will give back to the user. '#6#0#6'?REG'
+  +'ISTRATION.EXE - A sample registration application that your '#6'=user would'
+  +' run when they are ready to register their product '#6#9'with you.'#6'AThey'
+  +' enter the serial number that was on their disk or CD.  When '#6'?they call'
+  +' you, they will read you their serial number, and the '#6#8'machine '#6'?id'
+  +'entifier (MachineModifier).  You will enter this information '#6#9'into RCG'
+  +' '#6'?(above) and calculate a release code.  You will then read them '#6#4
+  +'the '#6'Arelease code and they will enter it into the Release Code field. '
+  +#6#0#6'?When they click the SAVE button, it validates the release code '#6#4
+  +'and '#6'@if it is valid, the serial number and release code are saved to '#6
+  +#6'a file'#6#25'called REGISTRATION.DAT. '#6#0#6'<HELLOWORLD.EXE - A simple '
+  +'application that demonstrates the '#6'1use of the registration information '
+  +'found in the '#6#16'REGISTRATION.DAT'#6'@file that was created by the REGIS'
+  +'TRATION.EXE application.  The '#6'=serial number stored in the REGISTRATION'
+  +'.DAT file is used to '#6';calculate a release code on the machine the appli'
+  +'cation is '#6#8'running '#6'Aon and it them compares this release code with'
+  +' the one stored in '#6#4'the '#6'?REGISTRATION.DAT file.  If the two releas'
+  +'e codes are the same, '#6';the application runs (displays "Hello World") ot'
+  +'herwise it '#6#12'informs the '#6')user that they have an unregistered demo'
+  +'.'#6#0#6'AAn OnGuard.ini file is included that contains the KEY that I use '
+  +#6#3'in '#6'@this demo. When running the demo as shipped, you should use the'
+  +' '#6';supplied OnGuard.ini file when getting the application key.'#6#0#6':B'
+  +'efore opening and modifying any code, you should run the '#6#10'following '
+  +#6'<test  to see how these applications work with one another.  '#6#0#6'?1. '
+  +' Run the HELLOWORLD.EXE application.  As you can see, it is '#6#15'not regi'
+  +'stered.'#6#0#6'<2.  Execute REGISTRATION.EXE.  Enter any valid long integer'
+  +' '#6'9value in the serial number field in the REGISTRATION.EXE '#6#12'appli'
+  +'cation.'#6'=Execute RCG.EXE and arrange the windows so that you can view '#6
+  +#7'both.  '#6#0#6'?a.  In the RCG application, load the key by pressing the '
+  +'speed '#6#7'button '#6'?and selecting the Hello World application from the '
+  +'OnGuard.ini '#6#10'file that '#6#15'was supplied.  '#6#0#6'Ab.  Select the '
+  +'"Apply a Machine Modifier" checkbox and enter the '#6';machine modifier tha'
+  +'t is displayed in the REGISTRATION.EXE '#6'Aapplication (this simulates the'
+  +' user reading that information to '#6#7'you).  '#6#0#6'Ac.  Skip the Expira'
+  +'tion portion as I did not use this feature in '#6#4'the '#6#17'other progra'
+  +'ms.  '#6#0#6':d.  Next enter the serial number that is displayed in the '#6
+  +'5REGISTRATION.EXE application (again, a simulation).  '#6#0#6'Ae.  Generate'
+  +' a release code by pressing the speed button next to '#6#28'the Release Cod'
+  +'e edit field.'#6#0#6'2f.  Have the user enter the release code in their '#6
+  +#16'REGISTRATION.EXE'#6'=application that you read them from your RGC.EXE ap'
+  +'plication '#6'@(simulated).  For testing purposes, change any single charac'
+  +'ter '#6#3'as '#6';you enter the data so you can see how the application wil'
+  +'l '#6#9'reject an'#6'@invalid code.  (Now simply copy and paste the release'
+  +' code from '#6'>RGC to REGISTRATION to save yourself having to enter the wh'
+  +'ole'#6#14'string again.)'#6#0#6';If you entered everything correctly, the R'
+  +'EGISTRASTION.EXE '#6'?application will inform you and save the data.  Now l'
+  +'et''s test '#6#4'the '#6#25'registration information.'#6#0#6'83.  Run the H'
+  +'ELLOWORLD.EXE application.  If you entered '#6'6everything correctly in ste'
+  +'p 2, you will see that the '#6#15'application is '#6'''registered (It displ'
+  +'ays "HELLO WORLD").'#6#0#6'6If you have another computer, copy HELLOWORLD.E'
+  +'XE and '#6'5REGISTRASTION.DAT to that machine and try to execute '#6'<HELLO'
+  +'WORLD.EXE - you should be told that the application is '#6':an unregistered'
+  +' demo.    You can also edit the any single '#6'.character in REGISTRASTION.'
+  ,'DAT and try to run '#6#17'HELLOWORLD.EXE.  '#6#0#0#10'ParentFont'#8#8'ReadO'
+  +'nly'#9#10'ScrollBars'#7#6'ssBoth'#8'TabOrder'#2#0#0#0#0
+]);

@@ -1,0 +1,18 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TForm1','FORMDATA',[
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3'-'#1#6'Height'#3#192#0#3'Top'#3#218#0#5'W'
+  +'idth'#3#6#1#7'Caption'#6#5'Form1'#12'ClientHeight'#3#192#0#11'ClientWidth'#3
+  +#6#1#10'Font.Color'#7#7'clBlack'#11'Font.Height'#2#245#9'Font.Name'#6#13'MS '
+  +'Sans Serif'#8'Position'#7#14'poScreenCenter'#10'LCLVersion'#6#6'0.9.27'#0#6
+  +'TLabel'#6'Label1'#4'Left'#2'E'#6'Height'#2#14#3'Top'#2'b'#5'Width'#2'C'#9'A'
+  +'lignment'#7#8'taCenter'#7'Caption'#6#14'Registered to:'#11'ParentColor'#8#0
+  +#0#5'TMemo'#5'Memo1'#4'Left'#2#13#6'Height'#2'O'#3'Top'#2#10#5'Width'#3#223#0
+  +#13'Lines.Strings'#1#6',If you can edit this, then your program was '#6#14'a'
+  +'llowed to run'#0#10'ScrollBars'#7#10'ssVertical'#8'TabOrder'#2#0#0#0#7'TBit'
+  +'Btn'#8'CloseBtn'#4'Left'#2'K'#6'Height'#2'!'#3'Top'#2't'#5'Width'#2'Y'#4'Ki'
+  +'nd'#7#7'bkClose'#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#19'TOgRegistrationCod'
+  +'e'#19'OgRegistrationCode1'#9'OnChecked'#7#26'OgRegistrationCode1Checked'#8
+  +'OnGetKey'#7#25'OgRegistrationCode1GetKey'#9'OnGetCode'#7#26'OgRegistrationC'
+  +'ode1GetCode'#4'left'#3#165#0#3'top'#2'v'#0#0#0
+]);

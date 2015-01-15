@@ -1,0 +1,185 @@
+object frmExRegCode: TfrmExRegCode
+  Left = 391
+  Height = 298
+  Top = 180
+  Width = 391
+  BorderStyle = bsDialog
+  Caption = 'Registration Code Example'
+  ClientHeight = 298
+  ClientWidth = 391
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 129
+    Top = 8
+    Width = 369
+    Caption = ' Registration Code Generator (vendor site) '
+    ClientHeight = 111
+    ClientWidth = 365
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 39
+      Height = 14
+      Top = 28
+      Width = 57
+      Alignment = taRightJustify
+      Caption = 'User Name:'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 14
+      Height = 14
+      Top = 60
+      Width = 76
+      Alignment = taRightJustify
+      Caption = 'Expiration Date:'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 6
+      Height = 14
+      Top = 92
+      Width = 88
+      Alignment = taRightJustify
+      Caption = 'Registration Code:'
+      ParentColor = False
+    end
+    object btnGenerate: TSpeedButton
+      Left = 328
+      Height = 22
+      Hint = 'Generate Registration Code'
+      Top = 88
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000001000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888880000088888800000008888
+        0088808008888000000088808088888800888000000088088880008888088000
+        0000880088000008880880000000808880098900808080000000808880089800
+        8880800000008008800898008800800000008088800989008880800000008808
+        8800000888088000000088080880008808088000000088808808888880888000
+        0000888800888080088880000000888888000008888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = btnGenerateClick
+      ShowHint = True
+      ParentShowHint = False
+    end
+    object edtUserName1: TEdit
+      Left = 120
+      Height = 23
+      Top = 24
+      Width = 233
+      TabOrder = 0
+    end
+    object edtRegCode1: TEdit
+      Left = 120
+      Height = 23
+      Top = 88
+      Width = 201
+      Color = clBtnFace
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object edDate: TEdit
+      Left = 121
+      Height = 23
+      Top = 57
+      Width = 118
+      TabOrder = 2
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Height = 129
+    Top = 152
+    Width = 369
+    Caption = ' Registration Code Verification (client site) '
+    ClientHeight = 111
+    ClientWidth = 365
+    TabOrder = 1
+    object Label4: TLabel
+      Left = 38
+      Height = 14
+      Top = 60
+      Width = 57
+      Alignment = taRightJustify
+      Caption = 'User Name:'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 6
+      Height = 14
+      Top = 28
+      Width = 88
+      Alignment = taRightJustify
+      Caption = 'Registration Code:'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 70
+      Height = 14
+      Top = 92
+      Width = 34
+      Alignment = taRightJustify
+      Caption = 'Status:'
+      ParentColor = False
+    end
+    object btnVerify: TSpeedButton
+      Left = 224
+      Height = 22
+      Hint = 'Verify Registration Code'
+      Top = 88
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000001000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888888888888888800000008888
+        8888888888888000000088888888888888888000000088880008888888888000
+        0000888000008808888080000000880098900808008080000000880089800000
+        0000800000008800898000000000800000008800989008888888800000008880
+        0000888888888000000088880008888888888000000088888888888888888000
+        0000888888888888888880000000888888888888888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = btnVerifyClick
+      ShowHint = True
+      ParentShowHint = False
+    end
+    object edtUserName2: TEdit
+      Left = 120
+      Height = 23
+      Top = 56
+      Width = 233
+      TabOrder = 0
+    end
+    object edtRegCode2: TEdit
+      Left = 120
+      Height = 23
+      Top = 24
+      Width = 233
+      TabOrder = 1
+    end
+    object edtStatus: TEdit
+      Left = 120
+      Height = 23
+      Top = 88
+      Width = 97
+      Color = clBtnFace
+      ReadOnly = True
+      TabOrder = 2
+    end
+  end
+end

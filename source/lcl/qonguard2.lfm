@@ -1,0 +1,539 @@
+object CodeGenerateFrm: TCodeGenerateFrm
+  Left = 228
+  Height = 516
+  Top = 84
+  Width = 556
+  ActiveControl = OKBtn
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Code Generation'
+  ClientHeight = 516
+  ClientWidth = 556
+  Color = clForm
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object OKBtn: TBitBtn
+    Left = 384
+    Height = 25
+    Top = 472
+    Width = 75
+    Caption = 'OK'
+    ModalResult = 1
+    NumGlyphs = 0
+    TabOrder = 0
+  end
+  object CancelBtn: TBitBtn
+    Left = 464
+    Height = 25
+    Top = 472
+    Width = 75
+    Caption = 'Cancel'
+    ModalResult = 2
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object CodesNbk: TPageControl
+    Left = 4
+    Height = 130
+    Top = 4
+    Width = 533
+    ActivePage = TabSheet1
+    TabIndex = 0
+    TabOrder = 2
+    OnChanging = CodesNbkChanging
+    object TabSheet1: TTabSheet
+      Caption = 'Date'
+      ClientHeight = 104
+      ClientWidth = 525
+      object Label9: TLabel
+        Left = 4
+        Height = 14
+        Top = 12
+        Width = 54
+        Caption = 'Start date:'
+        ParentColor = False
+      end
+      object Label11: TLabel
+        Left = 204
+        Height = 14
+        Top = 12
+        Width = 48
+        Caption = 'End date:'
+        ParentColor = False
+      end
+      object StartDateEd: TEdit
+        Left = 92
+        Height = 23
+        Top = 8
+        Width = 101
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 0
+      end
+      object EndDateEd: TEdit
+        Left = 284
+        Height = 23
+        Top = 8
+        Width = 101
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 1
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Days'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 1
+      object Label13: TLabel
+        Left = 4
+        Height = 13
+        Top = 12
+        Width = 52
+        Caption = 'Day count:'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 228
+        Height = 13
+        Top = 12
+        Width = 37
+        Caption = 'Expires:'
+        ParentColor = False
+      end
+      object DaysCountEd: TEdit
+        Left = 88
+        Height = 21
+        Top = 8
+        Width = 113
+        OnChange = ParametersChanged
+        OnKeyPress = NumberKeyEdPress
+        TabOrder = 0
+        Text = '0'
+      end
+      object DaysExpiresEd: TEdit
+        Left = 296
+        Height = 21
+        Top = 8
+        Width = 97
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 1
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Reg'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 2
+      object RegStrCopySb: TSpeedButton
+        Left = 490
+        Height = 23
+        Hint = 'Copy to clipboard'
+        Top = 7
+        Width = 23
+        Color = clBtnFace
+        Glyph.Data = {
+          42010000424D4201000000000000760000002800000011000000110000000100
+          040000000000CC00000000000000000000000000000000000000000000000000
+          8000008000000080800080000000800080008080000080808000C0C0C0000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+          8888800000008888888888888888800000008888888444444444800000008888
+          8884FFFFFFF48000000088888884F00000F48000000080000004FFFFFFF48000
+          000080FFFFF4F00000F48000000080F00004FFFFFFF48000000080FFFFF4F00F
+          44448000000080F00004FFFF4F488000000080FFFFF4FFFF44888000000080F0
+          0F04444448888000000080FFFF0F088888888000000080FFFF00888888888000
+          0000800000088888888880000000888888888888888880000000888888888888
+          888880000000
+        }
+        NumGlyphs = 0
+        OnClick = RegStrCopySbClick
+      end
+      object Label6: TLabel
+        Left = 8
+        Height = 14
+        Top = 12
+        Width = 33
+        Caption = 'String:'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 292
+        Height = 14
+        Top = 48
+        Width = 40
+        Caption = 'Expires:'
+        ParentColor = False
+      end
+      object RegRandomBtn: TButton
+        Left = 72
+        Height = 25
+        Top = 44
+        Width = 145
+        BorderSpacing.InnerBorder = 4
+        Caption = '&Random Number'
+        OnClick = RegRandomBtnClick
+        TabOrder = 1
+      end
+      object RegStrEd: TEdit
+        Left = 68
+        Height = 23
+        Top = 8
+        Width = 413
+        TabOrder = 0
+      end
+      object RegExpiresEd: TEdit
+        Left = 357
+        Height = 23
+        Top = 44
+        Width = 92
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 2
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = 'S/N'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 3
+      object Label7: TLabel
+        Left = 8
+        Height = 14
+        Top = 12
+        Width = 71
+        Caption = '&Serial Number:'
+        ParentColor = False
+      end
+      object Label15: TLabel
+        Left = 268
+        Height = 14
+        Top = 12
+        Width = 40
+        Caption = 'Expires:'
+        ParentColor = False
+      end
+      object SerRandomBtn: TButton
+        Left = 8
+        Height = 25
+        Top = 44
+        Width = 145
+        BorderSpacing.InnerBorder = 4
+        Caption = '&Random Number'
+        OnClick = SerRandomBtnClick
+        TabOrder = 2
+      end
+      object SerialNumberEd: TEdit
+        Left = 124
+        Height = 23
+        Top = 8
+        Width = 125
+        OnChange = ParametersChanged
+        OnKeyPress = NumberKeyEdPress
+        TabOrder = 0
+        Text = '0'
+      end
+      object SerialExpiresEd: TEdit
+        Left = 336
+        Height = 23
+        Top = 8
+        Width = 97
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 1
+      end
+    end
+    object TabSheet5: TTabSheet
+      Caption = 'Usage'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 4
+      object Label14: TLabel
+        Left = 4
+        Height = 13
+        Top = 12
+        Width = 64
+        Caption = 'Usage count:'
+        ParentColor = False
+      end
+      object Label17: TLabel
+        Left = 268
+        Height = 13
+        Top = 12
+        Width = 37
+        Caption = 'Expires:'
+        ParentColor = False
+      end
+      object UsageCountEd: TEdit
+        Left = 108
+        Height = 21
+        Top = 8
+        Width = 113
+        OnChange = ParametersChanged
+        OnKeyPress = NumberKeyEdPress
+        TabOrder = 0
+        Text = '0'
+      end
+      object UsageExpiresEd: TEdit
+        Left = 336
+        Height = 21
+        Top = 8
+        Width = 97
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 1
+      end
+    end
+    object TabSheet6: TTabSheet
+      Caption = 'Network'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 5
+      object Label10: TLabel
+        Left = 4
+        Height = 13
+        Top = 12
+        Width = 64
+        Caption = 'Access Slots:'
+        ParentColor = False
+      end
+      object NetworkSlotsEd: TEdit
+        Left = 116
+        Height = 21
+        Top = 8
+        Width = 113
+        OnChange = ParametersChanged
+        OnKeyPress = NumberKeyEdPress
+        TabOrder = 0
+        Text = '2'
+      end
+    end
+    object TabSheet7: TTabSheet
+      Caption = 'Special'
+      ClientHeight = 104
+      ClientWidth = 525
+      ImageIndex = 6
+      object Label12: TLabel
+        Left = 4
+        Height = 13
+        Top = 12
+        Width = 62
+        Caption = 'Special data:'
+        ParentColor = False
+      end
+      object Label19: TLabel
+        Left = 252
+        Height = 13
+        Top = 12
+        Width = 37
+        Caption = 'Expires:'
+        ParentColor = False
+      end
+      object SpecialDataEd: TEdit
+        Left = 104
+        Height = 21
+        Top = 8
+        Width = 129
+        OnChange = ParametersChanged
+        OnKeyPress = NumberKeyEdPress
+        TabOrder = 0
+        Text = '0'
+      end
+      object SpecialExpiresEd: TEdit
+        Left = 320
+        Height = 21
+        Top = 8
+        Width = 105
+        OnChange = ParametersChanged
+        OnKeyPress = DateEdKeyPress
+        TabOrder = 1
+      end
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 4
+    Height = 248
+    Top = 136
+    Width = 540
+    Caption = '&Key used to encode'
+    ClientHeight = 230
+    ClientWidth = 536
+    Color = clBtnFace
+    ParentColor = False
+    TabOrder = 3
+    object GenerateKeySb: TSpeedButton
+      Left = 498
+      Height = 23
+      Hint = 'Generate key'
+      Top = 195
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888888888888888800000008888
+        8888888888888000000088888888888888888000000088880008888888888000
+        0000888000008808888080000000880098900808008080000000880089800000
+        0000800000008800898000000000800000008800989008888888800000008880
+        0000888888888000000088880008888888888000000088888888888888888000
+        0000888888888888888880000000888888888888888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = GenerateKeySbClick
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 14
+      Top = 115
+      Width = 43
+      Caption = 'Modifier:'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 12
+      Height = 14
+      Top = 172
+      Width = 23
+      Caption = 'Key:'
+      ParentColor = False
+    end
+    object NoModifierCb: TCheckBox
+      Left = 16
+      Height = 17
+      Top = 24
+      Width = 72
+      Caption = 'No modifier'
+      Checked = True
+      OnClick = ModifierClick
+      State = cbChecked
+      TabOrder = 0
+    end
+    object MachineModifierCb: TCheckBox
+      Left = 176
+      Height = 17
+      Top = 24
+      Width = 98
+      Caption = 'Machine modifier'
+      OnClick = ModifierClick
+      TabOrder = 1
+    end
+    object UniqueModifierCb: TCheckBox
+      Left = 360
+      Height = 17
+      Top = 24
+      Width = 92
+      Caption = 'Unique modifier'
+      OnClick = ModifierClick
+      TabOrder = 2
+    end
+    object DateModifierCb: TCheckBox
+      Left = 16
+      Height = 17
+      Top = 56
+      Width = 82
+      Caption = 'Date modifier'
+      OnClick = ModifierClick
+      TabOrder = 3
+    end
+    object StringModifierCb: TCheckBox
+      Left = 16
+      Height = 17
+      Top = 88
+      Width = 87
+      Caption = 'String Modifier'
+      OnClick = ModifierClick
+      TabOrder = 4
+    end
+    object ModDateEd: TEdit
+      Left = 159
+      Height = 23
+      Top = 53
+      Width = 98
+      OnChange = ModifierClick
+      OnKeyPress = DateEdKeyPress
+      TabOrder = 6
+    end
+    object ModStringEd: TEdit
+      Left = 160
+      Height = 23
+      Top = 85
+      Width = 361
+      OnChange = ModifierClick
+      TabOrder = 8
+    end
+    object ModifierEd: TEdit
+      Left = 8
+      Height = 23
+      Top = 140
+      Width = 169
+      OnChange = ParametersChanged
+      OnKeyPress = ModifierEdKeyPress
+      TabOrder = 5
+    end
+    object BlockKeyEd: TEdit
+      Left = 8
+      Height = 23
+      Top = 196
+      Width = 481
+      OnChange = InfoChanged
+      TabOrder = 7
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Height = 69
+    Top = 384
+    Width = 536
+    Caption = 'Generate Code'
+    ClientHeight = 51
+    ClientWidth = 532
+    TabOrder = 4
+    object RegCodeCopySb: TSpeedButton
+      Left = 502
+      Height = 23
+      Hint = 'Copy code to clipboard'
+      Top = 25
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888888444444444800000008888
+        8884FFFFFFF48000000088888884F00000F48000000080000004FFFFFFF48000
+        000080FFFFF4F00000F48000000080F00004FFFFFFF48000000080FFFFF4F00F
+        44448000000080F00004FFFF4F488000000080FFFFF4FFFF44888000000080F0
+        0F04444448888000000080FFFF0F088888888000000080FFFF00888888888000
+        0000800000088888888880000000888888888888888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = RegCodeCopySbClick
+    end
+    object GenerateBtn: TButton
+      Left = 8
+      Height = 25
+      Hint = 'Generate code'
+      Top = 24
+      Width = 77
+      BorderSpacing.InnerBorder = 4
+      Caption = '&Generate'
+      Default = True
+      OnClick = GenerateBtnClick
+      TabOrder = 0
+    end
+    object RegCodeEd: TEdit
+      Left = 96
+      Height = 23
+      Top = 26
+      Width = 401
+      OnChange = InfoChanged
+      TabOrder = 1
+    end
+  end
+end

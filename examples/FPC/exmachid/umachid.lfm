@@ -1,0 +1,77 @@
+object frmExMachineID: TfrmExMachineID
+  Left = 364
+  Height = 174
+  Top = 254
+  Width = 240
+  ActiveControl = chkUser
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'ExMachineID'
+  ClientHeight = 174
+  ClientWidth = 240
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 137
+    Top = 8
+    Width = 113
+    Caption = ' Machine Info Set '
+    ClientHeight = 119
+    ClientWidth = 109
+    TabOrder = 0
+    object chkUser: TCheckBox
+      Left = 24
+      Height = 17
+      Top = 16
+      Width = 40
+      Caption = 'User'
+      TabOrder = 0
+    end
+    object chkSystem: TCheckBox
+      Left = 24
+      Height = 17
+      Top = 40
+      Width = 52
+      Caption = 'System'
+      TabOrder = 1
+    end
+    object chkNetwork: TCheckBox
+      Left = 24
+      Height = 17
+      Top = 64
+      Width = 58
+      Caption = 'Network'
+      TabOrder = 2
+    end
+    object chkDrives: TCheckBox
+      Left = 24
+      Height = 17
+      Top = 88
+      Width = 48
+      Caption = 'Drives'
+      TabOrder = 3
+    end
+  end
+  object btnGenerate: TButton
+    Left = 131
+    Height = 25
+    Top = 32
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Generate'
+    OnClick = btnGenerateClick
+    TabOrder = 1
+  end
+  object edtMachineID: TEdit
+    Left = 128
+    Height = 23
+    Top = 72
+    Width = 81
+    ReadOnly = True
+    TabOrder = 2
+  end
+end

@@ -1,0 +1,74 @@
+(* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is TurboPower OnGuard
+ *
+ * The Initial Developer of the Original Code is
+ * TurboPower Software
+ *
+ * Portions created by the Initial Developer are Copyright (C) 1996-2002
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *
+ * ***** END LICENSE BLOCK ***** *)
+package G115_R190;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE ON}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'TurboPower OnGuard 1.15 Runtime package - VCL190'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  vclx;
+
+contains
+  ognetwrk in '..\source\ognetwrk.pas',
+  ogutil in '..\source\ogutil.pas',
+  ogconst in '..\source\ogconst.pas',
+  onguard in '..\source\onguard.pas',
+  onguard1 in '..\source\onguard1.pas',
+  onguard2 in '..\source\onguard2.pas',
+  onguard3 in '..\source\onguard3.pas',
+  onguard4 in '..\source\onguard4.pas',
+  ogfirst in '..\source\ogfirst.pas',
+  ogsrmgr in '..\source\ogsrmgr.pas',
+  ogfile in '..\source\ogfile.pas',
+  ogjcl in '..\source\ogjcl.pas';
+
+end.

@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <AlwaysBuild Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <Title Value="exmachid"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="tponguard"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="14">
+      <Unit0>
+        <Filename Value="exmachid.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="38" Y="15"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="umachid.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmExMachineID"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMachID"/>
+        <CursorPos X="31" Y="31"/>
+        <TopLine Value="26"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../../../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="33" Y="11"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="1" Y="604"/>
+        <TopLine Value="589"/>
+        <UsageCount Value="11"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../../../../lazarus0915/lcl/include/control.inc"/>
+        <CursorPos X="29" Y="1533"/>
+        <TopLine Value="1531"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../../../lazarus0915/lcl/include/buttoncontrol.inc"/>
+        <CursorPos X="39" Y="47"/>
+        <TopLine Value="45"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../../../../lazarus0915/lcl/include/buttons.inc"/>
+        <CursorPos X="48" Y="233"/>
+        <TopLine Value="230"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../../../lazarus0915/lcl/interfaces/win32/win32proc.pp"/>
+        <UnitName Value="win32proc"/>
+        <CursorPos X="30" Y="557"/>
+        <TopLine Value="554"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../../../lazarus0915/lcl/include/customform.inc"/>
+        <CursorPos X="21" Y="1033"/>
+        <TopLine Value="1032"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="umachid.lfm"/>
+        <CursorPos X="28" Y="12"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../source/ogutil.pas"/>
+        <UnitName Value="ogutil"/>
+        <CursorPos X="50" Y="1284"/>
+        <TopLine Value="1261"/>
+        <UsageCount Value="11"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../source/IdeSN.pas"/>
+        <UnitName Value="idesn"/>
+        <CursorPos X="53" Y="158"/>
+        <TopLine Value="142"/>
+        <UsageCount Value="11"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../../../../../temp/fpc/rtl/i386/strings.inc"/>
+        <CursorPos X="1" Y="64"/>
+        <TopLine Value="49"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../../../../../../temp/fpc/rtl/objpas/sysutils/sysutils.inc"/>
+        <CursorPos X="1" Y="361"/>
+        <TopLine Value="346"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+    </Units>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

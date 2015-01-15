@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="3">
+    <Name Value="tponguard_fpgui"/>
+    <AddToProjectUsesSection Value="False"/>
+    <Author Value="Graeme Geldenhuys"/>
+    <CompilerOptions>
+      <Version Value="9"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="../source/fpgui"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="OnGuard GUI support files for use with the fpGUI Toolkit"/>
+    <License Value="LGPL 2 with static linking exception"/>
+    <Version Major="2"/>
+    <Files Count="4">
+      <Item1>
+        <Filename Value="../source/fpgui/frm_keymaint.pas"/>
+        <UnitName Value="frm_keymaint"/>
+      </Item1>
+      <Item2>
+        <Filename Value="../source/fpgui/frm_productmaint.pas"/>
+        <UnitName Value="frm_productmaint"/>
+      </Item2>
+      <Item3>
+        <Filename Value="../source/fpgui/frm_keygen.pas"/>
+        <UnitName Value="frm_keygen"/>
+      </Item3>
+      <Item4>
+        <Filename Value="../source/fpgui/frm_codegen.pas"/>
+        <UnitName Value="frm_codegen"/>
+      </Item4>
+    </Files>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="fpgui_toolkit"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="tponguard"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <Provides Count="1"/>
+  </Package>
+</CONFIG>

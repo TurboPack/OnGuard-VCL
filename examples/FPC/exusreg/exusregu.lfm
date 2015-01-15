@@ -1,0 +1,99 @@
+object Form1: TForm1
+  Left = 252
+  Height = 300
+  Top = 138
+  Width = 492
+  HorzScrollBar.Page = 491
+  VertScrollBar.Page = 299
+  BorderStyle = bsDialog
+  Caption = 'Usage Code Example'
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  object StatusLbl: TLabel
+    Left = 8
+    Height = 13
+    Top = 262
+    Width = 35
+    Caption = 'Status'
+    Color = clNone
+    ParentColor = False
+  end
+  object Label1: TLabel
+    Left = 232
+    Height = 13
+    Top = 14
+    Width = 77
+    Caption = 'Current code:'
+    Color = clNone
+    ParentColor = False
+  end
+  object CodeLbl: TLabel
+    Left = 320
+    Height = 13
+    Top = 14
+    Width = 113
+    Caption = '0000000000000000'
+    Color = clNone
+    ParentColor = False
+  end
+  object CodeBtn: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 89
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Enter Code'
+    OnClick = CodeBtnClick
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 209
+    Top = 40
+    Width = 465
+    Color = clBtnFace
+    Lines.Strings = (
+      'The label at the bottom of this form indicates the status of the code. An invalid code indicates that '
+      'the code is either the incorrect type or that none has been entered. '
+      ''
+      'If the proper code has not been entered or the ONGUARD.INI file was deleted, the message will '
+      'say that the code is invalid.'
+      ''
+      'Use the "Enter Code" button to enter a code (the CODEGEN program can be used to generate '
+      'the proper "Usage" code). '
+      ''
+      'The "Remove Code" button can be used to remove the entered code from the INI file. Doing so '
+      'will cause the TOgUsageCode component to report that the code is invalid.'
+    )
+    ReadOnly = True
+    TabOrder = 1
+  end
+  object CloseBtn: TBitBtn
+    Left = 400
+    Height = 25
+    Top = 256
+    Width = 75
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 2
+  end
+  object RemoveBtn: TButton
+    Left = 288
+    Height = 25
+    Top = 256
+    Width = 97
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Remove Code'
+    OnClick = RemoveBtnClick
+    TabOrder = 3
+  end
+  object OgUsageCode1: TOgUsageCode
+    OnChecked = CodeChecked
+    OnGetKey = GetKey
+    OnGetCode = GetCode
+    OnChangeCode = ChangeCode
+    left = 16
+    top = 216
+  end
+end

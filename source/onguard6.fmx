@@ -1,0 +1,106 @@
+object ModifierFrm: TModifierFrm
+  Left = 244
+  Top = 174
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Generate Modifier'
+  ClientHeight = 107
+  ClientWidth = 464
+  Position = poScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop, dkiPhone, dkiPad]
+  OnCreate = FormCreate
+  Left = 244
+  Top = 174
+  DesignerMobile = False
+  DesignerWidth = 0
+  DesignerHeight = 0
+  DesignerDeviceName = ''
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object OKBtn: TButton
+    Default = True
+    Height = 25.000000000000000000
+    ModalResult = 1
+    Position.X = 306.000000000000000000
+    Position.Y = 79.000000000000000000
+    TabOrder = 1
+    Text = 'OK'
+    Width = 75.000000000000000000
+    WordWrap = True
+  end
+  object CancelBtn: TButton
+    Height = 25.000000000000000000
+    ModalResult = 2
+    Position.X = 386.000000000000000000
+    Position.Y = 79.000000000000000000
+    TabOrder = 2
+    Text = 'Cancel'
+    Width = 75.000000000000000000
+    WordWrap = True
+  end
+  object GroupBox1: TGroupBox
+    Height = 65.000000000000000000
+    Position.X = 4.000000000000000000
+    Position.Y = 8.000000000000000000
+    Text = 'Modifiers'
+    Width = 457.000000000000000000
+    TabOrder = 0
+    object UniqueModifierCb: TCheckBox
+      Height = 17.000000000000000000
+      Position.X = 184.000000000000000000
+      Position.Y = 40.000000000000000000
+      TabOrder = 3
+      Text = 'Unique modifier'
+      Width = 105.000000000000000000
+      OnClick = ModifierClick
+    end
+    object MachineModifierCb: TCheckBox
+      Height = 17.000000000000000000
+      Position.X = 184.000000000000000000
+      Position.Y = 16.000000000000000000
+      TabOrder = 1
+      Text = 'Machine modifier'
+      Width = 105.000000000000000000
+      OnClick = ModifierClick
+    end
+    object DateModifierCb: TCheckBox
+      Height = 17.000000000000000000
+      Position.X = 328.000000000000000000
+      Position.Y = 16.000000000000000000
+      TabOrder = 2
+      Text = 'Date modifier'
+      Width = 105.000000000000000000
+      OnClick = ModifierClick
+    end
+    object NoModifierCb: TCheckBox
+      Height = 17.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      TabOrder = 0
+      Text = 'No modifier'
+      Width = 105.000000000000000000
+      OnClick = ModifierClick
+    end
+    object ModifierEd: TEdit
+      Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+      TabOrder = 4
+      Position.X = 16.000000000000000000
+      Position.Y = 36.000000000000000000
+      Width = 145.000000000000000000
+      Height = 21.000000000000000000
+      KillFocusByReturn = False
+      OnChange = InfoChanged
+    end
+    object ModDateCalendarEdit: TCalendarEdit
+      Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+      TabOrder = 5
+      Cursor = crIBeam
+      Date = 41739.000000000000000000
+      Height = 22.000000000000000000
+      Position.X = 330.000000000000000000
+      Position.Y = 34.000000000000000000
+      Width = 100.000000000000000000
+    end
+  end
+end

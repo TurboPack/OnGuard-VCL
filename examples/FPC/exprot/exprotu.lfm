@@ -1,0 +1,55 @@
+object Form1: TForm1
+  Left = 258
+  Height = 151
+  Top = 146
+  Width = 446
+  HorzScrollBar.Page = 445
+  HorzScrollBar.Range = 441
+  VertScrollBar.Page = 150
+  VertScrollBar.Range = 145
+  ActiveControl = Memo1
+  Caption = 'Protect Exe Example'
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Position = poScreenCenter
+  object StatusLbl: TLabel
+    Left = 8
+    Height = 13
+    Top = 126
+    Width = 35
+    Caption = 'Status'
+    Color = clNone
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 105
+    Top = 8
+    Width = 433
+    Lines.Strings = (
+      'The label at the bottom of this form indicates the status of the EXE file. '
+      ''
+      'If the EXE file has not been stamped, use the StampEXE program to protect it.'
+      ''
+      'The EXE file will need to be stamped after each compile since this re-writes the EXE file.'
+    )
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object CloseBtn: TBitBtn
+    Left = 360
+    Height = 25
+    Top = 120
+    Width = 75
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object OgProtectExe1: TOgProtectExe
+    OnChecked = OgProtectExe1Checked
+    left = 124
+    top = 120
+  end
+end

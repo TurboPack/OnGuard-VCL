@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="3">
+    <Name Value="tponguard"/>
+    <AddToProjectUsesSection Value="False"/>
+    <Author Value="TurboPower Software Company"/>
+    <CompilerOptions>
+      <Version Value="9"/>
+      <SearchPaths>
+        <IncludeFiles Value="../source"/>
+        <OtherUnitFiles Value="../source"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+        <SrcPath Value="../source"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <UseAnsiStrings Value="False"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="TurboPower OnGuard is a library to create demo versions of your Borland Delphi &amp; C++Builder applications. Create demo versions that are time-limited, feature-limited, limited to a certain number of uses, or limited to a certain # of concurrent network users.
+Ports :   Andrew Haines (Kylix version), Bogusław Brandys (FPC/Lazarus), Graeme Geldenhuys (fpGUI Toolkit)"/>
+    <License Value="Mozilla Public License 1.1
+
+"/>
+    <Version Major="1" Minor="20" Release="1"/>
+    <Files Count="7">
+      <Item1>
+        <Filename Value="../source/ogfile.pas"/>
+        <UnitName Value="ogfile"/>
+      </Item1>
+      <Item2>
+        <Filename Value="../source/ognetwrk.pas"/>
+        <UnitName Value="ognetwrk"/>
+      </Item2>
+      <Item3>
+        <Filename Value="../source/ogproexe.pas"/>
+        <UnitName Value="ogproexe"/>
+      </Item3>
+      <Item4>
+        <Filename Value="../source/ogutil.pas"/>
+        <UnitName Value="ogutil"/>
+      </Item4>
+      <Item5>
+        <Filename Value="../source/ogconst.pas"/>
+        <UnitName Value="ogconst"/>
+      </Item5>
+      <Item6>
+        <Filename Value="../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+      </Item6>
+      <Item7>
+        <Filename Value="../source/onguard.inc"/>
+        <Type Value="Include"/>
+      </Item7>
+    </Files>
+    <RequiredPkgs Count="1">
+      <Item1>
+        <PackageName Value="fcl"/>
+      </Item1>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

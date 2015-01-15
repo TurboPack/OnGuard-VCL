@@ -1,0 +1,94 @@
+#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = Codegen Exdmod Exdtp21 Exdtreg Exdyreg Exdys30 Exinst Exnet Exprot \
+  ExReg Exrgreg Exrgstr EXSELAPI ExSelCode ExSelect Exsnreg ExSpName Exspreg \
+  Exsrnm1 Exusg1 Exusg2 Exusreg Fixnaf Nafmgr Stampexe
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+Codegen: Codegen.bpr
+  $(MAKE)
+
+Exdmod: Exdmod.bpr
+  $(MAKE)
+
+Exdtp21: Exdtp21.bpr
+  $(MAKE)
+
+Exdtreg: Exdtreg.bpr
+  $(MAKE)
+
+Exdyreg: Exdyreg.bpr
+  $(MAKE)
+
+Exdys30: Exdys30.bpr
+  $(MAKE)
+
+Exinst: Exinst.bpr
+  $(MAKE)
+
+Exnet: Exnet.bpr
+  $(MAKE)
+
+Exprot: Exprot.bpr
+  $(MAKE)
+
+ExReg: ExReg.bpr
+  $(MAKE)
+
+Exrgreg: Exrgreg.bpr
+  $(MAKE)
+
+Exrgstr: Exrgstr.bpr
+  $(MAKE)
+
+EXSELAPI: EXSELAPI.bpr
+  $(MAKE)
+
+ExSelCode: ExSelCode.bpr
+  $(MAKE)
+
+ExSelect: ExSelect.bpr
+  $(MAKE)
+
+Exsnreg: Exsnreg.bpr
+  $(MAKE)
+
+ExSpName: ExSpName.bpr
+  $(MAKE)
+
+Exspreg: Exspreg.bpr
+  $(MAKE)
+
+Exsrnm1: Exsrnm1.bpr
+  $(MAKE)
+
+Exusg1: Exusg1.bpr
+  $(MAKE)
+
+Exusg2: Exusg2.bpr
+  $(MAKE)
+
+Exusreg: Exusreg.bpr
+  $(MAKE)
+
+Fixnaf: Fixnaf.bpr
+  $(MAKE)
+
+Nafmgr: Nafmgr.bpr
+  $(MAKE)
+
+Stampexe: Stampexe.bpr
+  $(MAKE)
+
+

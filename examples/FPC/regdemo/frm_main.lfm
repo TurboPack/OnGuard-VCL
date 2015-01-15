@@ -1,0 +1,49 @@
+object frmMain: TfrmMain
+  ActiveControl = Button1
+  Caption = 'Hello World'
+  ClientHeight = 143
+  ClientWidth = 367
+  Font.Height = -13
+  Font.Name = 'Arial'
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  HorzScrollBar.Page = 366
+  VertScrollBar.Page = 142
+  Left = 383
+  Height = 143
+  Top = 289
+  Width = 367
+  object Label1: TLabel
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'Hello World!'
+    Color = clNone
+    Font.Height = -33
+    Font.Name = 'Arial'
+    ParentColor = False
+    Left = 4
+    Height = 41
+    Top = 16
+    Width = 359
+  end
+  object Button1: TButton
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 0
+    Left = 280
+    Height = 25
+    Top = 88
+    Width = 75
+  end
+  object btnReadme: TButton
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Readme...'
+    OnClick = btnReadmeClick
+    TabOrder = 1
+    Left = 16
+    Height = 25
+    Top = 88
+    Width = 75
+  end
+end

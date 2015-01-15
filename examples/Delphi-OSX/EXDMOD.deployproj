@@ -1,0 +1,93 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <ItemGroup Condition="'$(Platform)'=='Android'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win32'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSX32'">
+        <DeployFile Include="OSX32\Debug\EXDMOD.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>EXDMOD.app\Contents\</RemoteDir>
+            <RemoteName>Entitlements.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\delphi_PROJECTICNS.icns" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>EXDMOD.app\Contents\Resources\</RemoteDir>
+            <RemoteName>EXDMOD.icns</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib">
+            <RemoteDir>EXDMOD.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libcgunwind.1.0.dylib</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="OSX32\Release\EXDMOD" Condition="'$(Config)'=='Release'">
+            <RemoteDir>EXDMOD.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>EXDMOD</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\delphi_PROJECTICNS.icns" Condition="'$(Config)'=='Release'">
+            <RemoteDir>EXDMOD.app\Contents\Resources\</RemoteDir>
+            <RemoteName>EXDMOD.icns</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="OSX32\Debug\EXDMOD" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>EXDMOD.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>EXDMOD</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="OSX32\Debug\EXDMOD.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>EXDMOD.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="OSX32\Release\EXDMOD.info.plist" Condition="'$(Config)'=='Release'">
+            <RemoteDir>EXDMOD.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="OSX32\Release\EXDMOD.entitlements" Condition="'$(Config)'=='Release'">
+            <RemoteDir>EXDMOD.app\Contents\</RemoteDir>
+            <RemoteName>Entitlements.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="OSX32\Debug\EXDMOD.rsm" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>EXDMOD.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>EXDMOD.rsm</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Win64'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSSimulator'">
+        <DeployFile Include="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib">
+            <RemoteDir>EXDMOD.app\</RemoteDir>
+            <RemoteName>libcgunwind.1.0.dylib</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+    </ItemGroup>
+</Project>

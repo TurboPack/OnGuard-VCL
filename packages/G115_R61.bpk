@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="G113_R61.bpl"/>
+    <OBJFILES value="G113_R61.obj ..\source\ONGUARD4.obj ..\source\OGFIRST.obj
+      ..\source\OGNETWRK.obj ..\source\OGPROEXE.obj ..\source\OgSrmgr.obj
+      ..\source\OGUTIL.obj ..\source\ONGUARD.obj ..\source\ONGUARD1.obj
+      ..\source\ONGUARD2.obj ..\source\ONGUARD3.obj ..\source\OGCONST.obj"/>
+    <RESFILES value="G113_R61.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) ..\source\ONGUARD4.dfm ..\source\ONGUARD1.dfm
+      ..\source\ONGUARD2.dfm ..\source\ONGUARD3.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib vcl.lib"/>
+    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source;..\source"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT;_VIS_NOLIB;USEPACKAGES"/>
+    <MAINSOURCE value="G113_R61.cpp"/>
+    <INCLUDEPATH value="..\source;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\source;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\source -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -Vx -Ve -X- -a8 -b- -k- -vi -c -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;TurboPower OnGuard 1.13 Runtime package - VCL61&quot; -aa -Tpp -Gpr -x -Gl
+      -Gi -w"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="G113_R61.cpp" FORMNAME="" UNITNAME="G113_R61" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G113_R61.res" FORMNAME="" UNITNAME="G113_R61.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="vclx.bpi" FORMNAME="" UNITNAME="vclx" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD4.PAS" FORMNAME="EditProductFrm" UNITNAME="OnGuard4" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGFIRST.PAS" FORMNAME="" UNITNAME="OgFirst" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGNETWRK.PAS" FORMNAME="" UNITNAME="OgNetWrk" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGPROEXE.PAS" FORMNAME="" UNITNAME="OgProExe" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OgSrmgr.pas" FORMNAME="" UNITNAME="OgSrMgr" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGUTIL.PAS" FORMNAME="" UNITNAME="OgUtil" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD.PAS" FORMNAME="" UNITNAME="OnGuard" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD1.PAS" FORMNAME="KeyGenerateFrm" UNITNAME="OnGuard1" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD2.PAS" FORMNAME="CodeGenerateFrm" UNITNAME="OnGuard2" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD3.PAS" FORMNAME="KeyMaintFrm" UNITNAME="OnGuard3" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGCONST.PAS" FORMNAME="" UNITNAME="OgConst" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=13
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=OnGuard 1.13 Runtime package - VCL61
+FileVersion=1.13.0.0
+InternalName=
+LegalCopyright=Copyright (c) 1996-2002 TurboPower Software Company
+LegalTrademarks=
+OriginalFilename=
+ProductName=OnGuard
+ProductVersion=1.13
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=1
+Item0=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

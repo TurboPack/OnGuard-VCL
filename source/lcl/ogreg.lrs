@@ -1,0 +1,190 @@
+LazarusResources.Add('TOGUSAGECODE','XPM',[
+  '/* XPM */'#10'static char *TOGUSAGECODE_xpm[] = {'#10'/* width height num_co'
+  +'lors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* co'
+  +'lors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #'
+  +'808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c '
+  +'#808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c'
+  +' #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m '
+  +'c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaam'
+  +'jaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaa'
+  +'bbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10
+  +'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaa'
+  +'aaaaaaaaaaaaaa",'#10'"aaa`aaa`aa```aaa```aaaaa",'#10'"aaa`aaa`a`aaa`a`aaa`a'
+  +'aaa",'#10'"aaa`aaa`aa``aaa`aaaaaaaa",'#10'"aaa`aaa`aaa```a`aa``aaaa",'#10'"'
+  +'aaa`aaa`a`aaa`a`aaa`aaaa",'#10'"aaaa```aaa```aaa```aaaaa",'#10'"aaaaaaaaaaa'
+  +'aaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaa'
+  +'aa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"a'
+  +'amjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaa'
+  +'aabbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGSPECIALCODE','XPM',[
+  '/* XPM */'#10'static char *TOGSPECIALCODE_xpm[] = {'#10'/* width height num_'
+  +'colors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* '
+  +'colors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c'
+  +' #808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e '
+  +'c #808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i'
+  +' c #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"'
+  +'m c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaa'
+  +'amjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaa'
+  +'aabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10
+  +'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaa'
+  +'aaaaaaaaaaaaaa",'#10'"aaa``aa```aa````aa```aaa",'#10'"aa`aa`a`aa`a`aaaa`aaa'
+  +'`aa",'#10'"aa``aaa`aa`a```aa`aaaaaa",'#10'"aaaa``a```aa`aaaa`aaaaaa",'#10'"'
+  +'aa`aa`a`aaaa`aaaa`aaa`aa",'#10'"aaa``aa`aaaa````aa```aaa",'#10'"aaaaaaaaaaa'
+  +'aaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaa'
+  +'aa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"a'
+  +'amjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaa'
+  +'aabbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGSERIALNUMBERCODE','XPM',[
+  '/* XPM */'#10'static char *TOGSERIALNUMBERCODE_xpm[] = {'#10'/* width height'
+  +' num_colors chars_per_pixel */'#10'"    24    24       16            1",'#10
+  +'/* colors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"'
+  +'a c #808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10
+  +'"e c #808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10
+  +'"i c #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10
+  +'"m c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaa'
+  +'aamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabba'
+  +'aaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'
+  +#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaa'
+  +'aaaaaaaaaaaaaaaaa",'#10'"aaaaaaa```aa`aaa`aaaaaaa",'#10'"aaaaaa`aaa`a``aa`a'
+  +'aaaaaa",'#10'"aaaaaaa``aaa`a`a`aaaaaaa",'#10'"aaaaaaaa``aa`a`a`aaaaaaa",'#10
+  +'"aaaaaa`aaa`a`aa``aaaaaaa",'#10'"aaaaaaa```aa`aaa`aaaaaaa",'#10'"aaaaaaaaaa'
+  +'aaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaa'
+  +'aaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"'
+  +'aamjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabba'
+  +'aaabbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGREGISTRATIONCODE','XPM',[
+  '/* XPM */'#10'static char *TOGREGISTRATIONCODE_xpm[] = {'#10'/* width height'
+  +' num_colors chars_per_pixel */'#10'"    24    24       16            1",'#10
+  +'/* colors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"'
+  +'a c #808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10
+  +'"e c #808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10
+  +'"i c #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10
+  +'"m c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaa'
+  +'aamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabba'
+  +'aaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'
+  +#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaa'
+  +'aaaaaaaaaaaaaaaaa",'#10'"aaaa````aa````aa```aaaaa",'#10'"aaaa`aa``a`aaaa`aa'
+  +'a`aaaa",'#10'"aaaa`aaa`a```aa`aaaaaaaa",'#10'"aaaa````aa`aaaa`aa``aaaa",'#10
+  +'"aaaa`aaa`a`aaaa`aaa`aaaa",'#10'"aaaa`aaa`a````aa````aaaa",'#10'"aaaaaaaaaa'
+  +'aaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaa'
+  +'aaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"'
+  +'aamjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabba'
+  +'aaabbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGPROTECTEXE','XPM',[
+  '/* XPM */'#10'static char *TOGPROTECTEXE_xpm[] = {'#10'/* width height num_c'
+  +'olors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* c'
+  +'olors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c '
+  +'#808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c'
+  +' #808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i '
+  +'c #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m'
+  +' c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaa'
+  +'mjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaa'
+  +'abbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10
+  +'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaa'
+  +'aaaaaaaaaaaaaa",'#10'"a```aa```aaa```aa`aaa`aa",'#10'"a`aa`a`aa`a`aaa`aa`a`'
+  +'aaa",'#10'"a`aa`a`aa`a`aaa`aaa`aaaa",'#10'"a```aa```aa`aaa`aaa`aaaa",'#10'"'
+  +'a`aaaa`aa`a`aaa`aa`a`aaa",'#10'"a`aaaa`aa`aa```aa`aaa`aa",'#10'"aaaaaaaaaaa'
+  +'aaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaa'
+  +'aa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"a'
+  +'amjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaa'
+  +'aabbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGNETCODE','XPM',[
+  '/* XPM */'#10'static char *TOGNETCODE_xpm[] = {'#10'/* width height num_colo'
+  +'rs chars_per_pixel */'#10'"    24    24       16            1",'#10'/* colo'
+  +'rs */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #80'
+  +'8000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c #8'
+  +'08080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c #'
+  +'ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m c '
+  +'#ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaamja'
+  +'aaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaabb'
+  +'aa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"a'
+  +'aaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaa'
+  +'aaaaaaaaaaaa",'#10'"aaaa`aaa`aa````a`````aaa",'#10'"aaaa``aa`aa`aaaaaa`aaaa'
+  +'a",'#10'"aaaa`a`a`aa```aaaa`aaaaa",'#10'"aaaa`aa``aa`aaaaaa`aaaaa",'#10'"aa'
+  +'aa`aaa`aa`aaaaaa`aaaaa",'#10'"aaaa`aaa`aa````aaa`aaaaa",'#10'"aaaaaaaaaaaaa'
+  +'aaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa'
+  +'",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aam'
+  +'jaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaa'
+  +'bbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGMAKEKEYS','XPM',[
+  '/* XPM */'#10'static char *TOGMAKEKEYS_xpm[] = {'#10'/* width height num_col'
+  +'ors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* col'
+  +'ors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #8'
+  +'08000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c #'
+  +'808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c '
+  +'#ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m c'
+  +' #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaamj'
+  +'aaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaab'
+  +'baa",'#10'"aaaaaaaaaaaaaaaaamiiaaaa",'#10'"aaaaaaaaaaaaaaaamiiiaaaa",'#10'"'
+  +'aaaaaaaaaaaaaaamiii`aaaa",'#10'"aaaaaaaaaaaaaamiii`aaaaa",'#10'"aaaaaaaaaaa'
+  +'aamiii`aaaaaa",'#10'"aaaaaaammaamiiii`aaaaaaa",'#10'"aaaaamiiiiiiiii`aaaaaa'
+  +'aa",'#10'"aaaamiiiiiiiii`aaaaaaaaa",'#10'"aaaaiiiiiiiii``aaaaaaaaa",'#10'"a'
+  +'aamiiiiiiiii`aaaaaaaaaa",'#10'"aaamiiiiiiiiiiaaaaaaaaaa",'#10'"aaamii`aiiii'
+  +'i`aaaaaaaaaa",'#10'"aaamii`aaiiiiiaaaaaaaaaa",'#10'"aaaaii`aamiii`aaaaaaaaa'
+  +'a",'#10'"aaaaaiimmiii`aaaaaaaaaaa",'#10'"aaaaaai```i`aaaaaaaaaaaa",'#10'"aa'
+  +'aaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaa'
+  +'bmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaabbaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGMAKECODES','XPM',[
+  '/* XPM */'#10'static char *TOGMAKECODES_xpm[] = {'#10'/* width height num_co'
+  +'lors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* co'
+  +'lors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #'
+  +'808000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c '
+  +'#808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c'
+  +' #ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m '
+  +'c #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaaa'
+  +'aaaaaaaaaaamjaa",'#10'"abmmbaaajjjjjjjjaaabmmba",'#10'"aabbaajjjmmmmmmjjjaa'
+  +'bbaa",'#10'"aaaaajjmmmm`emmmmjjaaaaa",'#10'"aaaajmmmmmmm`mmmmmjjaaaa",'#10
+  +'"aaajmm`emmmmmmmme`mmjaaa",'#10'"aaajmmm`mmmjjmmm`mmmjaaa",'#10'"aajjmmmmmj'
+  +'bbbbjmmmmmjjaa",'#10'"aabmmmmmjbbbbbbjmmmmmbaa",'#10'"aabmmmmmbbmbmbbbmmmmm'
+  +'baa",'#10'"aabmemmmbmbmbmbbmm``mbaa",'#10'"aabm``mmbbmbmbmbmmmembaa",'#10'"'
+  +'aabmmmmmbmbmbmbbmmmmmbaa",'#10'"aabmmmmmj`mbmb`jmmmmmbaa",'#10'"aabbmmmmmj`'
+  +'jj`jmmmmmbbaa",'#10'"aaabmmm`mmj``jmm`emmbaaa",'#10'"aaabbm`emmmmmmmmm`mmba'
+  +'aa",'#10'"aaaabbmmmmmm`mmmmmbbaaaa",'#10'"aaaaa``mmmmm`emmm``aaaaa",'#10'"a'
+  +'amjaa```mmmmmmm``aamjaa",'#10'"abmmbaaa````````aaabmmba",'#10'"aabbaaaaaaaa'
+  +'aaaaaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGDAYSCODE','XPM',[
+  '/* XPM */'#10'static char *TOGDAYSCODE_xpm[] = {'#10'/* width height num_col'
+  +'ors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* col'
+  +'ors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #8'
+  +'08000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c #'
+  +'808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c '
+  +'#ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m c'
+  +' #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaamj'
+  +'aaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaab'
+  +'baa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"'
+  +'aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaa'
+  +'aaaaaaaaaaaaa",'#10'"a```aaaa`aaa`aaa`a```aaa",'#10'"a`aa`aaa``aaa`a`aa`aa`'
+  +'aa",'#10'"a`aa`aa```aaa```aa``aaaa",'#10'"a`aa`aa`aa`aaa`aaaaa``aa",'#10'"a'
+  +'`aa`aa````aaa`aaa`aa`aa",'#10'"a```aa``aa``aa`aaa```aaa",'#10'"aaaaaaaaaaaa'
+  +'aaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaa'
+  +'a",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aa'
+  +'mjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaa'
+  +'abbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);
+LazarusResources.Add('TOGDATECODE','XPM',[
+  '/* XPM */'#10'static char *TOGDATECODE_xpm[] = {'#10'/* width height num_col'
+  +'ors chars_per_pixel */'#10'"    24    24       16            1",'#10'/* col'
+  +'ors */'#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #8'
+  +'08000",'#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c #'
+  +'808080",'#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c '
+  +'#ffff00",'#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m c'
+  +' #ffffff",'#10'/* pixels */'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aamjaaaamj'
+  +'aaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaaabbaaaab'
+  +'baa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"'
+  +'aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaa'
+  +'aaaaaaaaaaaaa",'#10'"a```aaaaa`aa`````a````aa",'#10'"a`aa`aaa``aaaa`aaa`aaa'
+  +'aa",'#10'"a`aa`aa`aa`aaa`aaa````aa",'#10'"a`aa`aa````aaa`aaa`aaaaa",'#10'"a'
+  +'`aa`aa`aa`aaa`aaa`aaaaa",'#10'"a```aa``aa``aa`aaa````aa",'#10'"aaaaaaaaaaaa'
+  +'aaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaa'
+  +'a",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa",'#10'"aa'
+  +'mjaaaamjaaaamjaaaamjaa",'#10'"abmmbaabmmbaabmmbaabmmba",'#10'"aabbaaaabbaaa'
+  +'abbaaaabbaa",'#10'"aaaaaaaaaaaaaaaaaaaaaaaa"'#10'};'#10
+]);

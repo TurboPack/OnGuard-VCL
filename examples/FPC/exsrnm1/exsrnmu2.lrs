@@ -1,0 +1,21 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TSNEntryDlg','FORMDATA',[
+  'TPF0'#11'TSNEntryDlg'#10'SNEntryDlg'#4'Left'#3#147#1#6'Height'#3#166#0#3'Top'
+  +#3#26#1#5'Width'#3#247#0#18'HorzScrollBar.Page'#3#246#0#18'VertScrollBar.Pag'
+  +'e'#3#165#0#13'ActiveControl'#7#6'SNText'#7'Caption'#6#13'Serial Number'#10
+  +'Font.Color'#7#7'clBlack'#11'Font.Height'#2#245#9'Font.Name'#6#13'MS Sans Se'
+  +'rif'#0#6'TLabel'#6'Label1'#4'Left'#2#8#6'Height'#2#13#3'Top'#2'('#5'Width'#2
+  +#18#7'Caption'#6#2'SN'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6
+  +'Label2'#4'Left'#2#8#6'Height'#2#13#3'Top'#2'B'#5'Width'#2#31#7'Caption'#6#4
+  +'Code'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'Left'
+  +#2'('#6'Height'#2#13#3'Top'#2#7#5'Width'#3#193#0#7'Caption'#6'!Call your Ven'
+  +'dor NOW to register!'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#5'TEdit'#6
+  +'SNText'#4'Left'#2','#6'Height'#2#20#3'Top'#2'$'#5'Width'#2'y'#8'TabOrder'#2
+  +#0#0#0#5'TEdit'#8'CodeText'#4'Left'#2','#6'Height'#2#20#3'Top'#2'>'#5'Width'
+  +#3#185#0#8'TabOrder'#2#1#0#0#7'TBitBtn'#5'OKBtn'#4'Left'#2#23#6'Height'#2'!'
+  +#3'Top'#2'^'#5'Width'#2'Y'#4'Kind'#7#4'bkOK'#11'ModalResult'#2#1#9'NumGlyphs'
+  +#2#0#8'TabOrder'#2#2#0#0#7'TBitBtn'#9'CancelBtn'#4'Left'#2''#6'Height'#2'!'
+  +#3'Top'#2'^'#5'Width'#2'Y'#4'Kind'#7#8'bkCancel'#9'NumGlyphs'#2#0#7'OnClick'
+  +#7#14'CancelBtnClick'#8'TabOrder'#2#3#0#0#0
+]);

@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="tponguard"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="8">
+      <Unit0>
+        <Filename Value="exdyreg.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="48" Y="7"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="exdyregu.pas"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ExDYRegU"/>
+        <CursorPos X="3" Y="46"/>
+        <TopLine Value="42"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../../source/qonguard3.pas"/>
+        <ComponentName Value="KeyMaintFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard3"/>
+        <CursorPos X="1" Y="132"/>
+        <TopLine Value="132"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../source/qonguard2.pas"/>
+        <ComponentName Value="CodeGenerateFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard2"/>
+        <CursorPos X="4" Y="351"/>
+        <TopLine Value="348"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../../../../fpcfix/fpc/rtl/objpas/sysutils/datih.inc"/>
+        <CursorPos X="11" Y="101"/>
+        <TopLine Value="84"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../../../fpcfix/fpc/rtl/objpas/sysutils/dati.inc"/>
+        <CursorPos X="3" Y="123"/>
+        <TopLine Value="120"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="24" Y="1865"/>
+        <TopLine Value="1846"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../source/ogutil.pas"/>
+        <UnitName Value="ogutil"/>
+        <CursorPos X="29" Y="506"/>
+        <TopLine Value="472"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+    </Units>
+    <JumpHistory Count="8" HistoryIndex="7">
+      <Position1>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="12" Column="24" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="92" Column="1" TopLine="77"/>
+      </Position2>
+      <Position3>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="94" Column="1" TopLine="79"/>
+      </Position3>
+      <Position4>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="95" Column="1" TopLine="80"/>
+      </Position4>
+      <Position5>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="96" Column="1" TopLine="81"/>
+      </Position5>
+      <Position6>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="98" Column="17" TopLine="89"/>
+      </Position6>
+      <Position7>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="98" Column="17" TopLine="56"/>
+      </Position7>
+      <Position8>
+        <Filename Value="exdyregu.pas"/>
+        <Caret Line="132" Column="3" TopLine="54"/>
+      </Position8>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Source Value="exdyregu.pas"/>
+        <Line Value="92"/>
+      </Item1>
+      <Item2>
+        <Source Value="../../source/ogutil.pas"/>
+        <Line Value="505"/>
+      </Item2>
+    </BreakPoints>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

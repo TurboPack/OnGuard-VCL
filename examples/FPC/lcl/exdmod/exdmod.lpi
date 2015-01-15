@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <SaveOnlyProjectUnits Value="True"/>
+      </Flags>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+    </General>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="tponguard"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="3">
+      <Unit0>
+        <Filename Value="exdmod.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="exdmodu1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Exdmodu1"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="exdmodu2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SNEntryDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Exdmodu2"/>
+      </Unit2>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="exdmod"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="units\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

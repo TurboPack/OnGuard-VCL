@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <AlwaysBuild Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="tponguard"/>
+        <MinVersion Valid="True"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="27">
+      <Unit0>
+        <Filename Value="exinst.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="12" Y="18"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="exinstu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FirstInstFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="EXINSTU"/>
+        <CursorPos X="22" Y="7"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="exinstu.lrs"/>
+        <CursorPos X="14" Y="2"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../../../lazarus0915/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <CursorPos X="29" Y="966"/>
+        <TopLine Value="962"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../../../../lazarus0915/lcl/include/application.inc"/>
+        <CursorPos X="15" Y="298"/>
+        <TopLine Value="297"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../../../lazarus0915/fpcsrc/fcl/inc/custapp.pp"/>
+        <UnitName Value="CustApp"/>
+        <CursorPos X="10" Y="200"/>
+        <TopLine Value="198"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../../../../lazarus0915/lcl/include/wincontrol.inc"/>
+        <CursorPos X="23" Y="5008"/>
+        <TopLine Value="5004"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../source/ogfirst.pas"/>
+        <UnitName Value="ogfirst"/>
+        <CursorPos X="3" Y="71"/>
+        <TopLine Value="161"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../../../lazarus0915/fpcsrc/rtl/win32/wininc/ascdef.inc"/>
+        <CursorPos X="13" Y="55"/>
+        <TopLine Value="47"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../source/qonguard7.pas"/>
+        <UnitName Value="qonguard7"/>
+        <CursorPos X="33" Y="42"/>
+        <TopLine Value="38"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../source/qonguard6.pas"/>
+        <ComponentName Value="ModifierFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard6"/>
+        <CursorPos X="27" Y="2"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../source/qonguard6.lfm"/>
+        <CursorPos X="42" Y="8"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../source/qonguard4.pas"/>
+        <ComponentName Value="EditProductFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard4"/>
+        <CursorPos X="37" Y="8"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../../source/qonguard3.pas"/>
+        <ComponentName Value="KeyMaintFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard3"/>
+        <CursorPos X="45" Y="9"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../../source/qonguard4.lfm"/>
+        <CursorPos X="46" Y="8"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../source/onguard.inc"/>
+        <CursorPos X="14" Y="25"/>
+        <TopLine Value="42"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="/usr/share/fpcsrc/rtl/linux/ostypes.inc"/>
+        <CursorPos X="30" Y="108"/>
+        <TopLine Value="92"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/baseunix.pp"/>
+        <UnitName Value="BaseUnix"/>
+        <CursorPos X="30" Y="56"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="/usr/share/fpcsrc/packages/base/libc/sstath.inc"/>
+        <CursorPos X="38" Y="37"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="/usr/share/fpcsrc/rtl/netwlibc/libc.pp"/>
+        <UnitName Value="libc"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="/usr/share/fpcsrc/rtl/netware/nwserv.pp"/>
+        <UnitName Value="nwserv"/>
+        <CursorPos X="1" Y="4630"/>
+        <TopLine Value="4613"/>
+        <UsageCount Value="10"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="/usr/share/fpcsrc/packages/base/libc/libc.pp"/>
+        <UnitName Value="libc"/>
+        <CursorPos X="1" Y="57"/>
+        <TopLine Value="41"/>
+        <UsageCount Value="10"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="../../source/ogutil.pas"/>
+        <UnitName Value="ogutil"/>
+        <CursorPos X="34" Y="1514"/>
+        <TopLine Value="1499"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="../../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="40" Y="941"/>
+        <TopLine Value="926"/>
+        <UsageCount Value="10"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="../../source/ogfile.pas"/>
+        <UnitName Value="ogfile"/>
+        <CursorPos X="30" Y="140"/>
+        <TopLine Value="121"/>
+        <UsageCount Value="10"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="/usr/share/fpcsrc/fcl/db/dbase/dbf_wtil.pas"/>
+        <UnitName Value="dbf_wtil"/>
+        <CursorPos X="39" Y="204"/>
+        <TopLine Value="185"/>
+        <UsageCount Value="10"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="exinstu.lfm"/>
+        <CursorPos X="21" Y="10"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit26>
+    </Units>
+    <JumpHistory Count="2" HistoryIndex="1">
+      <Position1>
+        <Filename Value="exinst.lpr"/>
+        <Caret Line="18" Column="12" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="../../source/ogfirst.pas"/>
+        <Caret Line="87" Column="21" TopLine="83"/>
+      </Position2>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <SearchPaths>
+      <OtherUnitFiles Value="../../source/"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Source Value="../../source/ogfirst.pas"/>
+        <Line Value="234"/>
+      </Item1>
+    </BreakPoints>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

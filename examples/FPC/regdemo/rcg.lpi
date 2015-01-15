@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="tponguard"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="6">
+      <Unit0>
+        <Filename Value="rcg.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="54" Y="12"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="rcg_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="rcgMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="rcg_Main"/>
+        <CursorPos X="59" Y="74"/>
+        <TopLine Value="74"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="frm_readme.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmReadme"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_Readme"/>
+        <CursorPos X="90" Y="13"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../source/onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="30" Y="1300"/>
+        <TopLine Value="1299"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../../source/qonguard3.pas"/>
+        <ComponentName Value="KeyMaintFrm"/>
+        <HasResources Value="True"/>
+        <UnitName Value="qonguard3"/>
+        <CursorPos X="23" Y="131"/>
+        <TopLine Value="125"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../source/qonguard3.lfm"/>
+        <CursorPos X="29" Y="78"/>
+        <TopLine Value="76"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit5>
+    </Units>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

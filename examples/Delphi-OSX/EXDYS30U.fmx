@@ -1,0 +1,56 @@
+object Form1: TForm1
+  Left = 394
+  Top = 257
+  Caption = 'Form1'
+  ClientHeight = 161
+  ClientWidth = 234
+  Position = poScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop, dkiPhone, dkiPad]
+  Left = 394
+  Top = 257
+  DesignerMobile = False
+  DesignerWidth = 0
+  DesignerHeight = 0
+  DesignerDeviceName = ''
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object Label1: TLabel
+    AutoSize = True
+    Height = 19.000000000000000000
+    Position.X = 64.000000000000000000
+    Position.Y = 74.000000000000000000
+    Text = 'Days Remaining: '
+    Width = 87.000000000000000000
+    WordWrap = False
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
+    Height = 45.000000000000000000
+    Position.X = 6.000000000000000000
+    Position.Y = 14.000000000000000000
+    TabOrder = 0
+    Width = 213.000000000000000000
+    Lines.Strings = (
+      'If you can edit this, then your program '
+      'was allowed to run')
+  end
+  object CloseBtn: TButton
+    Height = 33.000000000000000000
+    Position.X = 64.000000000000000000
+    Position.Y = 92.000000000000000000
+    TabOrder = 1
+    Text = 'Close'
+    Width = 89.000000000000000000
+    WordWrap = True
+  end
+  object OgDaysCode1: TOgDaysCode
+    OnChecked = OgDaysCode1Checked
+    OnGetKey = OgDaysCode1GetKey
+    OnGetCode = OgDaysCode1GetCode
+    OnChangeCode = OgDaysCode1ChangeCode
+    Left = 167
+    Top = 92
+  end
+end

@@ -1,0 +1,105 @@
+object regMain: TregMain
+  ActiveControl = edtSerial
+  BorderStyle = bsDialog
+  Caption = 'Registration Tools'
+  ClientHeight = 261
+  ClientWidth = 300
+  Font.Height = -13
+  Font.Name = 'Arial'
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  HorzScrollBar.Page = 299
+  VertScrollBar.Page = 260
+  Left = 468
+  Height = 261
+  Top = 153
+  Width = 300
+  object Label1: TLabel
+    Caption = 'Enter your serial number from your CD'
+    Color = clNone
+    ParentColor = False
+    Left = 10
+    Height = 14
+    Top = 67
+    Width = 186
+  end
+  object Label2: TLabel
+    Caption = 'Machine Identifier'
+    Color = clNone
+    ParentColor = False
+    Left = 10
+    Height = 14
+    Top = 115
+    Width = 87
+  end
+  object Label3: TLabel
+    Caption = 'Enter the release code you were given by us'
+    Color = clNone
+    ParentColor = False
+    Left = 10
+    Height = 14
+    Top = 163
+    Width = 216
+  end
+  object edtSerial: TEdit
+    MaxLength = 10
+    TabOrder = 1
+    Left = 10
+    Height = 24
+    Top = 83
+    Width = 268
+  end
+  object Memo1: TMemo
+    Color = clBtnFace
+    Lines.Strings = (
+      'Thank you for registering HelloWorld.  To '
+      'complete your registration, please contact us '
+      'at (800) 555-1212.'
+    )
+    OnEnter = Memo1Enter
+    ReadOnly = True
+    TabOrder = 0
+    TabStop = False
+    Left = 10
+    Height = 49
+    Top = 8
+    Width = 268
+  end
+  object edtMachine: TEdit
+    ReadOnly = True
+    TabStop = False
+    TabOrder = 2
+    Left = 10
+    Height = 24
+    Top = 131
+    Width = 268
+  end
+  object edtRelease: TEdit
+    MaxLength = 19
+    TabOrder = 3
+    Left = 10
+    Height = 24
+    Top = 179
+    Width = 268
+  end
+  object btnSave: TButton
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Save'
+    OnClick = btnSaveClick
+    TabOrder = 4
+    Left = 203
+    Height = 25
+    Top = 215
+    Width = 75
+  end
+  object btnReadme: TButton
+    BorderSpacing.InnerBorder = 4
+    Caption = 'Readme...'
+    OnClick = btnReadmeClick
+    TabOrder = 5
+    Left = 10
+    Height = 25
+    Top = 215
+    Width = 75
+  end
+end

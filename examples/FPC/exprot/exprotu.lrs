@@ -1,0 +1,20 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TForm1','FORMDATA',[
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3#2#1#6'Height'#3#151#0#3'Top'#3#146#0#5'Wi'
+  +'dth'#3#190#1#18'HorzScrollBar.Page'#3#189#1#19'HorzScrollBar.Range'#3#185#1
+  +#18'VertScrollBar.Page'#3#150#0#19'VertScrollBar.Range'#3#145#0#13'ActiveCon'
+  +'trol'#7#5'Memo1'#7'Caption'#6#19'Protect Exe Example'#10'Font.Color'#7#6'cl'
+  +'Text'#11'Font.Height'#2#11#9'Font.Name'#6#13'MS Sans Serif'#10'Font.Pitch'#7
+  +#10'fpVariable'#8'Position'#7#14'poScreenCenter'#0#6'TLabel'#9'StatusLbl'#4
+  +'Left'#2#8#6'Height'#2#13#3'Top'#2'~'#5'Width'#2'#'#7'Caption'#6#6'Status'#5
+  +'Color'#7#6'clNone'#11'ParentColor'#8#0#0#5'TMemo'#5'Memo1'#4'Left'#2#8#6'He'
+  +'ight'#2'i'#3'Top'#2#8#5'Width'#3#177#1#13'Lines.Strings'#1#6'KThe label at '
+  +'the bottom of this form indicates the status of the EXE file. '#6#0#6'MIf t'
+  +'he EXE file has not been stamped, use the StampEXE program to protect it.'#6
+  +#0#6'ZThe EXE file will need to be stamped after each compile since this re-'
+  +'writes the EXE file.'#0#8'ReadOnly'#9#8'TabOrder'#2#0#0#0#7'TBitBtn'#8'Clos'
+  +'eBtn'#4'Left'#3'h'#1#6'Height'#2#25#3'Top'#2'x'#5'Width'#2'K'#4'Kind'#7#7'b'
+  +'kClose'#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#13'TOgProtectExe'#13'OgProtect'
+  +'Exe1'#9'OnChecked'#7#20'OgProtectExe1Checked'#4'left'#2'|'#3'top'#2'x'#0#0#0
+]);

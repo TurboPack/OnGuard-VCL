@@ -1,0 +1,33 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TfrmStamp','FORMDATA',[
+  'TPF0'#9'TfrmStamp'#8'frmStamp'#4'Left'#3#26#1#6'Height'#3#160#0#3'Top'#3#192
+  +#0#5'Width'#3#172#1#18'HorzScrollBar.Page'#3#171#1#19'HorzScrollBar.Range'#3
+  +#153#1#18'VertScrollBar.Page'#3#159#0#19'VertScrollBar.Range'#3#130#0#13'Act'
+  +'iveControl'#7#6'FileEd'#7'Caption'#6#9'Stamp EXE'#10'Font.Color'#7#6'clText'
+  +#11'Font.Height'#2#11#9'Font.Name'#6#13'MS Sans Serif'#10'Font.Pitch'#7#10'f'
+  +'pVariable'#8'OnCreate'#7#10'FormCreate'#8'ShowHint'#9#0#6'TLabel'#6'Label1'
+  +#4'Left'#2#8#6'Height'#2#13#3'Top'#2#8#5'Width'#2'i'#7'Caption'#6#18'&EXE fi'
+  +'le to stamp'#5'Color'#7#6'clNone'#12'FocusControl'#7#6'FileEd'#11'ParentCol'
+  +'or'#8#0#0#6'TLabel'#9'StatusLbl'#4'Left'#2#8#6'Height'#2#13#3'Top'#2'p'#5'W'
+  +'idth'#2'#'#7'Caption'#6#6'Status'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0
+  +#5'TEdit'#6'FileEd'#4'Left'#2#8#6'Height'#2#26#4'Hint'#6#19'Enter EXE file n'
+  +'ame'#3'Top'#2' '#5'Width'#3'1'#1#8'OnChange'#7#12'FileEdChange'#8'TabOrder'
+  +#2#0#0#0#7'TBitBtn'#9'BrowseBtn'#4'Left'#3'@'#1#6'Height'#2#25#4'Hint'#6#19
+  +'Search for EXE file'#3'Top'#2#29#5'Width'#2'Y'#7'Caption'#6#7'&Browse'#9'Nu'
+  +'mGlyphs'#2#0#7'OnClick'#7#14'BrowseBtnClick'#8'TabOrder'#2#1#0#0#7'TBitBtn'
+  +#8'StampBtn'#4'Left'#2#8#6'Height'#2#25#4'Hint'#6#31'Stamp EXE wiht signatur'
+  +'e record'#3'Top'#2'H'#5'Width'#2'Y'#7'Caption'#6#6'&Stamp'#9'NumGlyphs'#2#0
+  +#7'OnClick'#7#13'StampBtnClick'#8'TabOrder'#2#2#0#0#7'TBitBtn'#8'CloseBtn'#4
+  +'Left'#3'@'#1#6'Height'#2#25#3'Top'#2'h'#5'Width'#2'Y'#4'Kind'#7#7'bkClose'#9
+  +'NumGlyphs'#2#0#8'TabOrder'#2#3#0#0#7'TBitBtn'#8'ClearBtn'#4'Left'#2'h'#6'He'
+  +'ight'#2#25#4'Hint'#6#29'Reset EXE''s stamped signature'#3'Top'#2'H'#5'Width'
+  +#2'Y'#7'Caption'#6#6'&Clear'#9'NumGlyphs'#2#0#7'OnClick'#7#13'ClearBtnClick'
+  +#8'TabOrder'#2#4#0#0#9'TCheckBox'#13'EraseMarkerCb'#4'Left'#3#184#0#6'Height'
+  +#2#22#4'Hint'#6',Erase marker used to locate signature record'#5'Width'#2'l'
+  +#7'Caption'#6#13'Erase &Marker'#8'TabOrder'#2#5#0#0#11'TOpenDialog'#11'OpenD'
+  +'ialog1'#5'Title'#6#24'Select EXE File to Stamp'#10'DefaultExt'#6#4'.exe'#6
+  +'Filter'#6'>EXE files (*.exe)|*.exe|All files (*.*)|*.*|Linux executable|*'
+  +#11'FilterIndex'#2#0#7'Options'#11#14'ofHideReadOnly'#15'ofPathMustExist'#15
+  +'ofFileMustExist'#0#4'left'#3#133#0#0#0#0
+]);

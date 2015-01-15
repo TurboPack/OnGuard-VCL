@@ -1,0 +1,108 @@
+object ModifierFrm: TModifierFrm
+  Left = 317
+  Top = 795
+  Width = 406
+  Height = 113
+  HorzScrollBar.Range = 333
+  VertScrollBar.Range = 75
+  ActiveControl = NoModifierCb
+  AutoScroll = False
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Generate Modifier'
+  Color = clButton
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  ParentFont = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object OKBtn: TBitBtn
+    Left = 285
+    Top = 89
+    Width = 54
+    Height = 18
+    Caption = 'OK'
+    Default = True
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object CancelBtn: TBitBtn
+    Left = 343
+    Top = 89
+    Width = 54
+    Height = 18
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 2
+  end
+  object GroupBox1: TGroupBox
+    Left = 3
+    Top = 6
+    Width = 398
+    Height = 75
+    Caption = '&Modifiers'
+    TabOrder = 0
+    object UniqueModifierCb: TCheckBox
+      Left = 133
+      Top = 37
+      Width = 100
+      Height = 12
+      Caption = 'Unique modifier'
+      TabOrder = 3
+      OnClick = ModifierClick
+    end
+    object MachineModifierCb: TCheckBox
+      Left = 133
+      Top = 20
+      Width = 108
+      Height = 12
+      Caption = 'Machine modifier'
+      TabOrder = 1
+      OnClick = ModifierClick
+    end
+    object DateModifierCb: TCheckBox
+      Left = 253
+      Top = 20
+      Width = 92
+      Height = 12
+      Caption = 'Date modifier'
+      TabOrder = 2
+      OnClick = ModifierClick
+    end
+    object NoModifierCb: TCheckBox
+      Left = 12
+      Top = 20
+      Width = 101
+      Height = 12
+      Caption = 'No modifier'
+      TabOrder = 0
+      OnClick = ModifierClick
+    end
+    object ModifierEd: TEdit
+      Left = 12
+      Top = 34
+      Width = 104
+      Height = 26
+      TabOrder = 4
+      OnChange = InfoChanged
+      OnKeyPress = ModifierEdKeyPress
+    end
+    object ModDateEd: TEdit
+      Left = 252
+      Top = 35
+      Width = 56
+      Height = 26
+      Hint = 'Code is invalid after this date'
+      Enabled = False
+      MaxLength = 10
+      TabOrder = 5
+      OnChange = ModifierClick
+      OnKeyPress = DateEdKeyPress
+    end
+  end
+end

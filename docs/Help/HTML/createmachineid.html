@@ -1,0 +1,588 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+   <title>CreateMachineID</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, minimum-scale=1" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="content-language" content="en-us" />
+   <meta name="description" content="This is a private function first added in version 1.05." />
+   <meta http-equiv="Content-Style-Type" content="text/css" />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link id="tabscheme" type="text/css" href="hm_topic.css" rel="stylesheet" />   
+<style type="text/css">
+/* No header topics */
+
+/* Breadcrumb trail */
+p#breadcrumbs {
+font-family: Verdana, Tahoma, Helvetica, Sans-Serif;   padding: 2px 0 1px 2px;
+   margin: 0;
+   font-size: 8pt; 
+   color: #999;
+   }   
+p#breadcrumbs a { color: #999; text-decoration: none;}
+p#breadcrumbs a:visited {color: #999;}
+p#breadcrumbs a:hover { color: #333; border-bottom: 1px dotted #333; }
+
+/* Search hightlight color */
+span.highlight {background-color: #ffff40;}
+</style>
+<script type="text/javascript">
+var hmHeaderTopic = true;
+
+</script> 
+<!--[if IE 9]>
+<link id="iesvgcss" rel="stylesheet" type="text/css" href="hm_webhelp_svg.css" />
+<![endif]-->	
+<script src="jquery.js"></script>
+<script type="text/javascript" src="jquery.tools.min.js"></script>
+<script type="text/javascript" src="jquery.scrollTo-min.js"></script>
+<script type="text/javascript"> 
+// General topic variables
+var tVars = {
+   hmHelpPage: "index.html",
+   nextP: "",
+   prevP: "",
+   currP: "createmachineid.html",
+   descr: "This is a private function first added in version 1.05.",
+   keys: "",
+   defP: "onguard_contents.html",
+   mailUrl: "",
+   mailUrlQuery: "",
+   projectTitle: "OnGuard Help",
+   titleP: "CreateMachineID",
+   mailsubject: "Feedback on: OnGuard Help - CreateMachineID",
+   sharesubject: "OnGuard Help - CreateMachineID",
+   simplesubject: "Documentation%20Feedback",
+   mailid: "CreateMachineID",
+   mailpath: "Files &gt; OgReg /",
+   mailbody: "Dear Support Staff,",
+   fbtype: false,
+   header: true,
+   background: "spacer.gif",
+   tablesReady: false,
+   togglesReady: false,
+   webRedirect: true,
+   topicTitleBar: true,
+   titleBarContent: "topic",
+   printFooter: true,
+   zoomTip: "Click to view full size image",
+   autoPrint: true,
+   printButton: "Print",
+   printButtonTip: "Print the current topic"
+   }
+// Popup configuration
+ var hmpBShadow = true;
+ var hmPopSmallDim = 500;
+ var hmPopKillVideo = true;
+ // AutoTOC variables
+ var hmatocvars = {
+   atoc_show: true,
+   atoc_title: "Contents",
+   atoc_tip: "Jump to:&nbsp;",
+   atoc_minHeaders: 3,
+   atoc_btntip_off: "No contents entries on this page",
+   atoc_btntip_on: "Display/hide topic directory",
+   atoc_toptip: "Jump to top of page",
+   atoc_top: "Scroll to Top of Page",
+   atoc_bg: "#f6f6f6",
+   atoc_border: "silver",
+   atoc_linkcolor: "#444",
+   atoc_linklimit: 45,
+   atoc_hovercolor: "#000",
+   atoc_hoverbgcolor: "#e0e0e0"
+}
+// Sortable tables
+var sortVars = {
+   europeandate: false,
+   germanNumbers: false,
+   imagePath: "",
+   image_up: "arrow-up.gif",
+   image_down: "arrow-down.gif",
+   image_empty: "arrow-empty.gif",
+   image_none: "arrow-none.gif",
+   sort_tip: "Click to sort on this column",
+   umlauts: "false"
+   }
+
+</script>
+
+
+<script type="text/javascript" src="helpman_settings.js"></script>
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<script type="text/javascript" src="hmtopic.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "createmachineid.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+<!-- Help & Manual Premium Pack templates by Tim Green, Copyright (c) 2011-2013, All Rights Reserved -->
+<!--ZOOMSTOP-->
+
+
+
+<ul id="topictabs" class="tabs">
+<li id="indextab" class="hmtabs"><a href="#" id="indextablink" class="current"><span>CreateMachineID</span></a></li>
+</ul>
+<div id="hmbox">
+<div id="hmheader">
+<div id="hmheadercontents">
+<p id="breadcrumbs" class="sync-toc">
+<b><span class="sync-toc"><a rel="nofollow" class="sync-toc-link" href="index.html?createmachineid.html" target="_top">&lt;&lt;&nbsp;Click here to display Table of Contents&nbsp;&gt;&gt;</a>&nbsp;&nbsp;</span></b></p> 
+<h2 class="p_Heading2"><span class="f_FunctionHead">CreateMachineID</span></h2>
+
+</div>
+<div id="atocIcon" class="navdivs">
+<img class="navicon" id="hmAtocLink" src="contents_off.png" alt="No contents entries on this page" title="No contents entries on this page" />
+<br /><span>Contents</span>
+</div>
+</div>
+<div id="autoTocWrapper" class="topicmenu"></div>
+<div id="idcontent">
+<div id="unclicker"></div>
+<!--ZOOMRESTART-->
+<p>This is a private function first added in version 1.05.</p>
+<p>In version 1.14 the Ansi parameter was added to the Win32 version.</p>
+<p>&nbsp;</p>
+<h2 class="p_Heading2"><span class="f_Heading2">function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : LongInt;</span></h2>
+<h2 class="p_Heading2"><span class="f_Heading2">function CreateMachineID(MachineInfo : TEsMachineInfoSet) : LongInt;</span></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Originally declared in OnGuard it was moved to OgUtil in version 1.15.</p>
+<p>&nbsp;</p>
+<h2 class="p_Heading2"><span class="f_Heading2">Summary</span></h2>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table style="border:solid 2px #000000; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="2" style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><br />
+</td>
+<td colspan="7" style="vertical-align:top; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Delphi</span></p>
+</td>
+<td colspan="3" style="vertical-align:top; width:258px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">FPC</span></p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Kylix</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Win16</span></p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Win32</span></p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Win64</span></p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">MacOS</span></p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">iOS</span></p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Android</span></p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Linux</span></p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">UNIX</span></p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Win32</span></p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Win64</span></p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;"><span style="font-weight: bold;">Linux</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midUser</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midSystem</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midNetwork</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midDrives</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td colspan="12" style="vertical-align:bottom; width:1117px; height:24px; padding:0px; border:solid 1px #000000;"><p style="margin: 0px 0px 0px 24px;"><span style="font-style: italic;">Following added in version 1.15</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midCPUID</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midCPUIDJCL</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midBIOS</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midWinProd</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midCryptoID</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midNetMAC</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:127px; padding:0px; border:solid 1px #000000;"><p>midDomain</p>
+</td>
+<td style="vertical-align:top; width:68px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:75px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">Yes</p>
+</td>
+<td style="vertical-align:top; width:74px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:81px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:89px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">?</p>
+</td>
+<td style="vertical-align:top; width:83px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+<td style="vertical-align:top; width:163px; padding:0px; border:solid 1px #000000;"><p style="text-align: center;">n/a</p>
+</td>
+</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table style="border:solid 2px #000000; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p><span style="font-weight: bold;">MachineInfo</span></p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p><span style="font-weight: bold;">Comments</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midUser</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in Software\Microsoft\Windows\CurrentVersion or Software\Microsoft\Windows NT\CurrentVersion. &nbsp;Uses the values of RegisteredOwner and RegisteredOrganization.</p>
+<p>&nbsp;</p>
+<p>on FPC uses Environment variables USERNAME, USER, or LOGNAME.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midSystem</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win16 uses the Windows directory, Windows System directory, GetWinFlags, and WinProcs.GetVersion.</p>
+<p>on Win32 uses GetSystemInfo's dwOemId and dwProcessorType values.</p>
+<p>&nbsp;</p>
+<p>on FPC uses /proc/cpuinfo, /proc/sys/kernel/version, /proc/sys/kernel/osrelease, /proc/sys/kernel/hostname files.</p>
+<p>on Kylix uses /proc/cpuinfo, /proc/sys/kernel/version, /proc/sys/kernel/osrelease, /proc/sys/kernel/hostname files.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midNetwork</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win16 compares the Data4 field of two GUIDs. &nbsp;If the same then uses the Data4 field.</p>
+<p>on Win32 compares the Data4 field of two GUIDs. &nbsp;If the same then uses the Data4 field.</p>
+<p>&nbsp;</p>
+<p>on FPC compares the Data4 field of two GUIDs. &nbsp;If the same then uses the Data4 field.</p>
+<p>on Kylix compares the Data4 field of two GUIDs. &nbsp;If the same then uses the Data4 field.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midDrives</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win16 uses the GetDiskSerialNumber for each fixed drive from C: to Z:.</p>
+<p>on Delphi-Win32 uses the GetVolumeInformation for each fixed drive from C: to Z:. &nbsp;Ignores SUBST drives.</p>
+<p>&nbsp;</p>
+<p>on Kylix uses the GetDiskSerialNumber for each fixed drive from 2 to 26 (C to Z).</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midCPUID</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in Software\Microsoft\Windows NT\CurrentVersion. &nbsp;Uses the values of Identifier, ProcessorNameString, and VendorIdentifier.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midCPUIDJCL</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><br />
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midBIOS</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in HARDWARE\DESCRIPTION\System\BIOS. &nbsp;Uses the values of BaseBoardManufacturer, BaseBoardProduct, BaseBoardVersion, BIOSReleaseDate, BIOSVendor, BIOSVersion, SystemFamily, SystemManufacturer, SystemProductName, SystemSKU, and SystemVersion.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midWinProd</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in Software\Microsoft\Windows NT\CurrentVersion. &nbsp;Uses the values of ProductID, InstallDate, ProductName, InstallationType and EditionID.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midCryptoID</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in Software\Microsoft\Cryptography. &nbsp;Uses the value of MachineGUID.</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midNetMAC</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><br />
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:122px; padding:0px; border:solid 1px #000000;"><p>midDomain</p>
+</td>
+<td style="vertical-align:top; width:992px; padding:0px; border:solid 1px #000000;"><p>on Win32 uses the HKEY_LOCAL_MACHINE registry hive to read the values in System\CurrentControlSet\Services\Tcpip\Parameters. &nbsp;Uses the values of DhcpDomain, Domain, ICSDomain, and &quot;NV Domain&quot;.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+
+<!--ZOOMSTOP-->
+
+
+</div> <!-- idcontent -->
+</div><!-- hmbox --> 
+</body>
+</html>

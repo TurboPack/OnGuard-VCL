@@ -1,0 +1,41 @@
+object FirstInstFrm: TFirstInstFrm
+  ActiveControl = Memo1
+  Caption = 'Single Instance Example'
+  ClientHeight = 140
+  ClientWidth = 320
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  PixelsPerInch = 96
+  HorzScrollBar.Page = 319
+  HorzScrollBar.Range = 307
+  VertScrollBar.Page = 139
+  VertScrollBar.Range = 129
+  Left = 327
+  Height = 140
+  Top = 218
+  Width = 320
+  object Memo1: TMemo
+    Lines.Strings = (
+      'Attempts to execute this application a second time result in '
+      'the first instance to be activated and the second instance '
+      'terminated.'
+    )
+    ReadOnly = True
+    TabOrder = 0
+    Left = 8
+    Height = 89
+    Top = 8
+    Width = 297
+  end
+  object BitBtn2: TBitBtn
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 1
+    Left = 232
+    Height = 25
+    Top = 104
+    Width = 75
+  end
+end

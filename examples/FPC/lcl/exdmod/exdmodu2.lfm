@@ -1,0 +1,91 @@
+object SNEntryDlg: TSNEntryDlg
+  Left = 450
+  Height = 195
+  Top = 330
+  Width = 247
+  ActiveControl = SNText
+  Caption = 'Serial Number w/Modifer'
+  ClientHeight = 195
+  ClientWidth = 247
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.30.1'
+  object Label1: TLabel
+    Left = 8
+    Height = 14
+    Top = 64
+    Width = 17
+    Caption = 'SN'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 14
+    Top = 90
+    Width = 30
+    Caption = 'Code'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 40
+    Height = 14
+    Top = 7
+    Width = 191
+    Caption = 'Call your Vendor NOW to register!'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Height = 14
+    Top = 37
+    Width = 47
+    Caption = 'Modifier'
+    ParentColor = False
+  end
+  object SNText: TEdit
+    Left = 52
+    Height = 22
+    Top = 60
+    Width = 121
+    TabOrder = 1
+  end
+  object CodeText: TEdit
+    Left = 52
+    Height = 22
+    Top = 86
+    Width = 175
+    TabOrder = 2
+  end
+  object OKBtn: TBitBtn
+    Left = 23
+    Height = 33
+    Top = 118
+    Width = 89
+    Kind = bkOK
+    ModalResult = 1
+    NumGlyphs = 0
+    TabOrder = 3
+  end
+  object CancelBtn: TBitBtn
+    Left = 127
+    Height = 33
+    Top = 118
+    Width = 89
+    Kind = bkCancel
+    NumGlyphs = 0
+    OnClick = CancelBtnClick
+    TabOrder = 4
+  end
+  object ModString: TEdit
+    Left = 52
+    Height = 22
+    Top = 33
+    Width = 121
+    ReadOnly = True
+    TabStop = False
+    TabOrder = 0
+  end
+end

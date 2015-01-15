@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="G113_D61.bpl"/>
+    <OBJFILES value="G113_D61.obj ..\source\ONGUARD7.obj ..\source\ONGUARD5.obj
+      ..\source\ONGUARD6.obj ..\source\OGREG.obj"/>
+    <RESFILES value="G113_D61.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) ..\source\ONGUARD6.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="vcldbx.lib soaprtl.lib dbexpress.lib inetdbxpress.lib bdertl.lib
+      inetdbbde.lib bcbsmp.lib visualdbclx.lib vcldb.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib vcldb.lib visualdbclx.lib bcbsmp.lib inetdbbde.lib
+      bdertl.lib inetdbxpress.lib dbexpress.lib soaprtl.lib vcldbx.lib"/>
+    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi designide.bpi G113_R61.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;..\source;..\source;..\source;..\source"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT;_VIS_NOLIB;USEPACKAGES"/>
+    <MAINSOURCE value="G113_D61.cpp"/>
+    <INCLUDEPATH value="..\source;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\source;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\source -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -Vx -Ve -X- -a8 -b- -k- -vi -c -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$J -$D- -$A8 -v -M -JPHNE -LUDesignIDE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;TurboPower OnGuard 1.13 Designtime package - VCL61&quot; -aa -Tpp -Gpd -x
+      -Gl -Gi"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="G113_D61.cpp" FORMNAME="" UNITNAME="G113_D61" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G113_D61.res" FORMNAME="" UNITNAME="G113_D61.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="vclx.bpi" FORMNAME="" UNITNAME="vclx" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="designide.bpi" FORMNAME="" UNITNAME="designide" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\G113_R61.bpi" FORMNAME="" UNITNAME="G113_R61" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD7.PAS" FORMNAME="" UNITNAME="OnGuard7" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD5.PAS" FORMNAME="" UNITNAME="OnGuard5" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\ONGUARD6.PAS" FORMNAME="ModifierFrm" UNITNAME="OnGuard6" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\source\OGREG.PAS" FORMNAME="" UNITNAME="OgReg" CONTAINERID="PascalCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=13
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=TurboPower Software
+FileDescription=OnGuard 1.13 Designtime package - VCL61
+FileVersion=1.13.0.0
+InternalName=
+LegalCopyright=Copyright (c) 1996-2002 TurboPower Software Company
+LegalTrademarks=
+OriginalFilename=
+ProductName=OnGuard
+ProductVersion=1.13
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=4
+Item0=$(BCB)\include;$(BCB)\include\vcl
+Item1=..\OnGuard;..\SrMgr;$(BCB)\include;$(BCB)\include\vcl
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\OnGuard;..\SrMgr
+Item3=$(BCB)\include;$(BCB)\include\vcl;\OnGuard;\SrMgr
+
+[HistoryLists\hlLibraryPath]
+Count=8
+Item0=$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item1=;$(BCB)\Projects\Lib;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item2=$(BCB)\Projects\Lib;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item3=;;$(BCB)\Projects\Lib;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item4=$(BCB)\Projects\Lib;..\OnGuard;..\SrMgr;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\OnGuard;..\SrMgr;$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib
+Item6=$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib;..\OnGuard;..\SrMgr
+Item7=$(BCB)\lib\release;$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH);\OnGuard;\SrMgr
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=$(BCB)\source\vcl
+Item1=$(BCB)\source\vcl;..\SrMgr
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=USEPACKAGES
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

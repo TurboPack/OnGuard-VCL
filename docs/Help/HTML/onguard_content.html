@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html><head>
+   <title>OnGuard Help</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="content-language" content="en-us" />
+   <meta name="description" content="&nbsp;" />
+   <meta name="robots" content="index,follow" />
+   <meta http-equiv="Content-Style-Type" content="text/css" />
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" language="Javascript" src="jquery.tools.min.js"></script>
+   <script type="text/javascript" language="Javascript" src="jquery.scrollTo-min.js"></script>
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <style type="text/css">
+   body, html {        
+	background-color: transparent;
+	overflow: hidden;    
+	font-family: Verdana, Tahoma, Helvetica, Sans-Serif;  
+	}
+/* General links */
+	a { color: black; text-decoration: none;  }
+	a:visited {color: black;}
+	a:hover { color: black; text-decoration: underline; }
+	a:focus { outline: #707070 dashed thin; }
+
+/* TOC LIST CSS */
+	#toc    { margin: 0; padding: 0; } /* General margin of the TOC (root entry) */
+	#toc li { margin:  0 0 0 0; padding: 0 0 0 0; background-position: left center; vertical-align: bottom;} /* Vertical spacing between TOC items */
+	#toc ul { margin: 2px 0 0 0; padding: 0; vertical-align: bottom; } /* Indentation per level (negative value) */
+/* TOC LIST CSS */
+div#hmtocheader {
+	position: absolute; 
+	top: 10px; left: 10px; right: 18px;
+	}
+div#hmtocbody {
+	position: absolute;
+	background-image: url('tocbg.gif');
+	top: 85px; left: 7px; right: 0; bottom: 35px;
+	overflow-y: auto;
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px 0 1px 0;
+	padding-top: 7px;
+	margin-right: 2px;
+	}
+div#tree {
+	overflow-y: hidden;
+	}
+div#hmtocfooter {
+	position: absolute;
+	bottom: 0; left: 8px; right: 8px;
+	background-color: transparent;
+	}
+div#hmtocfooter p {
+	font-size: 0.7em; 
+	text-align: center;
+	margin-bottom: 5px;   
+	color: #737373;
+	}
+.navtitle { font-size: 13pt; font-weight: bold; margin-bottom: 10px; line-height: 93%; }      
+.navsubtitle { display: none; font-size: 9pt; font-weight: bold; padding: 0; margin: -8px 0 0 0; color: silver;}
+.nojstitle { font-size: 11pt; white-space: nowrap; margin-top: -8px; }
+.nojstitle a { color: black; text-decoration: none; }
+.nojstitle a:visited {color: black;}
+.nojstitle a:hover {text-decoration: underline; }
+li.heading1 {background-position: 1px 1px !important;}
+.heading1 { font-family: Arial,Helvetica; font-weight: normal; font-size: 11pt; color: #000000; text-decoration: none; }
+.heading2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+.heading3 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+.heading4 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+.heading5 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+.heading6 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #000000; text-decoration: none; }
+
+.hilight1 { font-family: Arial,Helvetica; font-weight: normal; font-size: 11pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+.hilight2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+.hilight3 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+.hilight4 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+.hilight5 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+.hilight6 { font-family: Arial,Helvetica; font-weight: normal; font-size: 10pt; color: #FFFFFF; background: #002682; text-decoration: none; }
+
+   </style>
+   <script type="text/javascript">
+   /*! Table of contents init functions for HM Premium Pack Version 2.32
+Copyright (c) 2008-2013 by Tim Green 
+All rights reserved. */
+function nshResize(test) {
+	var bodyTop = $("div#hmtocheader").outerHeight()+15;
+	var bodyBottom = $("div#hmtocfooter").outerHeight()+5;
+	$("div#hmtocbody").css("top", bodyTop+"px").css("bottom", bodyBottom+"px");
+	if (test) $("span#operabug").html("bloop").hide();
+	}
+function tocScroller(target) {
+	if (target.lastIndexOf("/") > -1) {
+		target = target.substr(target.lastIndexOf("/")+1);
+		}
+	if (target.lastIndexOf("#") > -1) {
+		target = target.substr(0,target.lastIndexOf("#"));
+	}
+	if (target.lastIndexOf("?") > -1) {
+		target = target.substr(0,target.lastIndexOf("?"));
+	}
+	var scrollTarget = $("a[href*='"+target+"']");
+	var scrollTimer = setInterval(function() {
+	if ($(scrollTarget).is(":visible")) {
+		$("div#hmtocbody").scrollTo(scrollTarget,400,{offset:{top:-10, left:0},onAfter:
+		// Necessary for poor retarded Internet Explorer...
+		function() {
+		if ($(scrollTarget).position().top > $("#hmtocbody").height())
+			$("div#hmtocbody").scrollTo(scrollTarget,400,{offset:{top:-10, left:0}});
+			}
+		});
+		clearInterval(scrollTimer);			
+		if ($(scrollTarget).position().top > $("#hmtocbody").height());
+	}
+	},100);
+}
+
+// Prevent FireFox from loading iFrame from cache when topics have been updated
+function ffFix() {
+	if (!/gecko.+?firefox/i.test(navigator.UserAgent)) return;
+	var loc = document.location.search;
+	 if (loc.indexOf("r2d2") > -1) return;
+	 else {
+	 loc = loc == "" ? "?r2d2" : loc + "&r2d2";
+	document.location.search = loc;
+	}
+}
+
+$(document).ready(function() {
+if (parent.window.hmnavpages && parent.window.hmnavpages.ffCacheFix) ffFix();
+$(".nojstitle").hide();
+$(".navsubtitle").show();
+var tocExtLinks = false;
+
+// Manage external files in TOC and tabs
+if (tocExtLinks) {
+	var topicExtn = parent.hmWebHelp.textn;
+	topicExtn = topicExtn.replace("\.","");
+	var $filelinks = $("a[target='hmcontent']").not("[href^='http'], [href$='"+topicExtn+"']");
+	var $weblinks = $("a[target='hmcontent']").filter("[href^='http']");
+	$.merge($filelinks,$weblinks);
+	$filelinks.each(function() {
+		$(this).click(function() {
+		var caption = $(this).children("span").text();
+		$("a#topictablink",parent.document).html("<span>"+caption+"</span>");
+		parent.hmWebHelp.external=$(this).attr("href");
+		});
+	});
+} // TOC external links
+
+
+nshResize(false);
+$(window).bind("resize",function() {
+		nshResize(true);
+		});
+
+// Scroll down to default topic or URL-targeted topic
+tocScroller(parent.hmnavpages.def);
+});
+   </script> 
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body>
+<!-- Help & Manual Premium Pack templates by Tim Green, Copyright (c) 2011-2013, All Rights Reserved -->
+<div id="hmtocheader">
+<p class="navtitle">OnGuard Help</p> 
+<span id="operabug" style="display:none;">Opera Bug</span>
+<p class="nojstitle"><b>Contents</b> | <a href="onguard_kwindex.html" target="_self">Index</a></p>
+</div>
+<!-- Placeholder for the TOC - this variable is REQUIRED! -->
+<div id="hmtocbody">
+<ul id="toc" style="list-style-type:none;display:block;padding-left:0;margin:0">
+<li class="heading1" id="i1" data-bg="toc_closedbook.png;toc_openbook.png" style="background:url(toc_openbook.png) no-repeat;cursor:pointer;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="onguard_overview.html" target="hmcontent"><span class="heading1" id="s1" ondblclick="return dblclicked(this)">Overview</span></a>
+<ul id="ul1" style="list-style-type:none;margin-left:0px;padding:0">
+<li class="heading2" id="i1.1" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a1.1" href="onguard_contents.html" target="hmcontent"><span class="heading2" id="s1.1">Contents</span></a>
+</li>
+<li class="heading2" id="i1.2" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a1.2" href="history.html" target="hmcontent"><span class="heading2" id="s1.2">History</span></a>
+</li>
+<li class="heading2" id="i1.3" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a1.3" href="license.html" target="hmcontent"><span class="heading2" id="s1.3">License</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i2" data-bg="toc_closedbook.png;toc_openbook.png" style="background:url(toc_openbook.png) no-repeat;cursor:pointer;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href="onguard_classes.html" target="hmcontent"><span class="heading1" id="s2" ondblclick="return dblclicked(this)">Classes</span></a>
+<ul id="ul2" style="list-style-type:none;margin-left:0px;padding:0">
+<li class="heading2" id="i2.1" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.1" href="togcodebase_class.html" target="hmcontent"><span class="heading2" id="s2.1">TOgCodeBase Class</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i3" data-bg="toc_closedbook.png;toc_openbook.png" style="background:url(toc_openbook.png) no-repeat;cursor:pointer;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a3" href="onguard_components.html" target="hmcontent"><span class="heading1" id="s3" ondblclick="return dblclicked(this)">Components</span></a>
+<ul id="ul3" style="list-style-type:none;margin-left:0px;padding:0">
+<li class="heading2" id="i3.1" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.1" href="togdatecode_component.html" target="hmcontent"><span class="heading2" id="s3.1">TOgDateCode Component</span></a>
+</li>
+<li class="heading2" id="i3.2" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.2" href="togdayscode_component.html" target="hmcontent"><span class="heading2" id="s3.2">TOgDaysCode Component</span></a>
+</li>
+<li class="heading2" id="i3.3" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.3" href="togmakecodes_component.html" target="hmcontent"><span class="heading2" id="s3.3">TOgMakeCodes Component</span></a>
+</li>
+<li class="heading2" id="i3.4" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.4" href="togmakekeys_component.html" target="hmcontent"><span class="heading2" id="s3.4">TOgMakeKeys Component</span></a>
+</li>
+<li class="heading2" id="i3.5" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.5" href="tognetcode_component.html" target="hmcontent"><span class="heading2" id="s3.5">TOgNetCode Component</span></a>
+</li>
+<li class="heading2" id="i3.6" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.6" href="togprotectexe_component.html" target="hmcontent"><span class="heading2" id="s3.6">TOgProtectExe Component</span></a>
+</li>
+<li class="heading2" id="i3.7" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.7" href="togregistrationcode_component.html" target="hmcontent"><span class="heading2" id="s3.7">TOgRegistrationCode Component</span></a>
+</li>
+<li class="heading2" id="i3.8" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.8" href="togserialnumbercode_component.html" target="hmcontent"><span class="heading2" id="s3.8">TOgSerialNumberCode Component</span></a>
+</li>
+<li class="heading2" id="i3.9" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.9" href="togspecialcode_component.html" target="hmcontent"><span class="heading2" id="s3.9">TOgSpecialCode Component</span></a>
+</li>
+<li class="heading2" id="i3.10" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.10" href="togusagecode_component.html" target="hmcontent"><span class="heading2" id="s3.10">TOgUsageCode Component</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i4" data-bg="toc_closedbook.png;toc_openbook.png" style="background:url(toc_openbook.png) no-repeat;cursor:pointer;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a4" href="api_reference.html" target="hmcontent"><span class="heading1" id="s4" ondblclick="return dblclicked(this)">Low-Level Routines</span></a>
+<ul id="ul4" style="list-style-type:none;margin-left:0px;padding:0">
+<li class="heading2" id="i4.1" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a4.1" href="api_reference.html" target="hmcontent"><span class="heading2" id="s4.1">API Reference</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i5" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a5" href="onguard_types.html" target="hmcontent"><span class="heading1" id="s5">Types</span></a>
+</li>
+<li class="heading1" id="i6" data-bg="toc_closedbook.png;toc_openbook.png" style="background:url(toc_openbook.png) no-repeat;cursor:pointer;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a6" href="onguard_files.html" target="hmcontent"><span class="heading1" id="s6" ondblclick="return dblclicked(this)">Files</span></a>
+<ul id="ul6" style="list-style-type:none;margin-left:0px;padding:0">
+<li class="heading2" id="i6.1" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.1" href="ogconstunit.html" target="hmcontent"><span class="heading2" id="s6.1">OgConst</span></a>
+</li>
+<li class="heading2" id="i6.2" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.2" href="ogutilunit.html" target="hmcontent"><span class="heading2" id="s6.2">OgUtil</span></a>
+</li>
+<li class="heading2" id="i6.3" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.3" href="onguardunit.html" target="hmcontent"><span class="heading2" id="s6.3">OnGuard</span></a>
+</li>
+<li class="heading2" id="i6.4" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.4" href="ogfirstunit.html" target="hmcontent"><span class="heading2" id="s6.4">OgFirst</span></a>
+</li>
+<li class="heading2" id="i6.5" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.5" href="ognetwrkunit.html" target="hmcontent"><span class="heading2" id="s6.5">OgNetWrk</span></a>
+</li>
+<li class="heading2" id="i6.6" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.6" href="ogfileunit.html" target="hmcontent"><span class="heading2" id="s6.6">OgFile</span></a>
+</li>
+<li class="heading2" id="i6.7" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.7" href="ogproexeunit.html" target="hmcontent"><span class="heading2" id="s6.7">OgProExe</span></a>
+</li>
+<li class="heading2" id="i6.8" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.8" href="onguard1unit.html" target="hmcontent"><span class="heading2" id="s6.8">OnGuard1</span></a>
+</li>
+<li class="heading2" id="i6.9" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.9" href="onguard2unit.html" target="hmcontent"><span class="heading2" id="s6.9">OnGuard2</span></a>
+</li>
+<li class="heading2" id="i6.10" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.10" href="onguard3unit.html" target="hmcontent"><span class="heading2" id="s6.10">OnGuard3</span></a>
+</li>
+<li class="heading2" id="i6.11" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.11" href="onguard4unit.html" target="hmcontent"><span class="heading2" id="s6.11">OnGuard4</span></a>
+</li>
+<li class="heading2" id="i6.12" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.12" href="onguard5unit.html" target="hmcontent"><span class="heading2" id="s6.12">OnGuard5</span></a>
+</li>
+<li class="heading2" id="i6.13" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.13" href="onguard6unit.html" target="hmcontent"><span class="heading2" id="s6.13">OnGuard6</span></a>
+</li>
+<li class="heading2" id="i6.14" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.14" href="onguard7unit.html" target="hmcontent"><span class="heading2" id="s6.14">OnGuard7</span></a>
+</li>
+<li class="heading2" id="i6.15" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.15" href="ogabout0unit.html" target="hmcontent"><span class="heading2" id="s6.15">OgAbout0</span></a>
+</li>
+<li class="heading2" id="i6.16" style="background:url(toc_topic.png) no-repeat;margin-top:2px;margin-left:0;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a6.16" href="ogregunit.html" target="hmcontent"><span class="heading2" id="s6.16">OgReg</span></a>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('toc_openbook.png','toc_closedbook.png','toc_topic.png');</script>
+</div>
+<div id="hmtocfooter" >
+<p>Copyright © 1997 TurboPower Software Co.</p>
+</div> 
+</body>
+</html>

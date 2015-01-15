@@ -1,0 +1,48 @@
+	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{6603F463-E991-4226-A7CF-CDC2FAA841ED}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="G115_R120.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="G115_D120.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="G115_R120">
+			<MSBuild Projects="G115_R120.dproj"/>
+		</Target>
+		<Target Name="G115_R120:Clean">
+			<MSBuild Targets="Clean" Projects="G115_R120.dproj"/>
+		</Target>
+		<Target Name="G115_R120:Make">
+			<MSBuild Targets="Make" Projects="G115_R120.dproj"/>
+		</Target>
+		<Target Name="G115_D120">
+			<MSBuild Projects="G115_D120.dproj"/>
+		</Target>
+		<Target Name="G115_D120:Clean">
+			<MSBuild Targets="Clean" Projects="G115_D120.dproj"/>
+		</Target>
+		<Target Name="G115_D120:Make">
+			<MSBuild Targets="Make" Projects="G115_D120.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="G115_R120;G113_D120"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="G115_R120:Clean;G115_D120:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="G115_R120:Make;G115_D120:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

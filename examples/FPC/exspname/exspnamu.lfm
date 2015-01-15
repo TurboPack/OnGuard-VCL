@@ -1,0 +1,112 @@
+object Form1: TForm1
+  Left = 200
+  Height = 295
+  Top = 108
+  Width = 372
+  HorzScrollBar.Page = 371
+  VertScrollBar.Page = 294
+  Caption = 'Build/Check Special Code with Name string'
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  object GroupBox1: TGroupBox
+    Left = 16
+    Height = 97
+    Top = 16
+    Width = 337
+    Caption = ' Generate the Code '
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 24
+      Height = 13
+      Top = 28
+      Width = 53
+      Caption = 'User Name'
+      Color = clNone
+      ParentColor = False
+    end
+    object edtUserName1: TEdit
+      Left = 104
+      Height = 21
+      Top = 24
+      Width = 217
+      TabOrder = 0
+    end
+    object btnGenCode: TButton
+      Left = 6
+      Height = 25
+      Top = 54
+      Width = 85
+      BorderSpacing.InnerBorder = 4
+      Caption = 'Gen Code'
+      OnClick = btnGenCodeClick
+      TabOrder = 1
+    end
+    object edtCode1: TEdit
+      Left = 104
+      Height = 21
+      Top = 56
+      Width = 217
+      ReadOnly = True
+      TabOrder = 2
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 16
+    Height = 129
+    Top = 128
+    Width = 337
+    Caption = ' Check the Code '
+    TabOrder = 1
+    object Label2: TLabel
+      Left = 24
+      Height = 13
+      Top = 28
+      Width = 53
+      Caption = 'User Name'
+      Color = clNone
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 24
+      Height = 13
+      Top = 60
+      Width = 25
+      Caption = 'Code'
+      Color = clNone
+      ParentColor = False
+    end
+    object lblCheckResult: TLabel
+      Left = 104
+      Height = 13
+      Top = 96
+      Width = 71
+      Caption = 'lblCheckResult'
+      Color = clNone
+      ParentColor = False
+    end
+    object edtUserName2: TEdit
+      Left = 104
+      Height = 21
+      Top = 24
+      Width = 217
+      TabOrder = 0
+    end
+    object edtCode2: TEdit
+      Left = 104
+      Height = 21
+      Top = 56
+      Width = 217
+      TabOrder = 1
+    end
+    object btnCheckCode: TButton
+      Left = 6
+      Height = 25
+      Top = 88
+      Width = 85
+      BorderSpacing.InnerBorder = 4
+      Caption = 'Check Code'
+      OnClick = btnCheckCodeClick
+      TabOrder = 2
+    end
+  end
+end

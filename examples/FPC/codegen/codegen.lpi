@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <AlwaysBuild Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="3"/>
+    </General>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="\usr\X11R6\bin\xterm -T 'Lazarus Run Output' -e $(LazarusDir)\tools\runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="tponguard"/>
+        <MinVersion Valid="True"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="22">
+      <Unit0>
+        <Filename Value="codegen.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="73" Y="13"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="codegenu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CodeGenFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CODEGENU"/>
+        <CursorPos X="21" Y="7"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\source\qonguard3.pas"/>
+        <ComponentName Value="KeyMaintFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qonguard3"/>
+        <CursorPos X="1" Y="141"/>
+        <TopLine Value="124"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\source\ogconst.pas"/>
+        <UnitName Value="ogconst"/>
+        <CursorPos X="3" Y="62"/>
+        <TopLine Value="42"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\..\..\lazarus\lcl\include\control.inc"/>
+        <CursorPos X="1" Y="1544"/>
+        <TopLine Value="1525"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\..\..\lazarus\lcl\interfaces\gtk\gtkwscontrols.pp"/>
+        <UnitName Value="GtkWSControls"/>
+        <CursorPos X="1" Y="270"/>
+        <TopLine Value="251"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\..\..\lazarus\lcl\include\customlistbox.inc"/>
+        <CursorPos X="1" Y="401"/>
+        <TopLine Value="382"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="usr\share\fpcsrc\fcl\inc\inifiles.pp"/>
+        <UnitName Value="IniFiles"/>
+        <CursorPos X="3" Y="598"/>
+        <TopLine Value="593"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\source\qonguard5.pas"/>
+        <UnitName Value="qonguard5"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="72"/>
+        <UsageCount Value="11"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\source\qonguard2.pas"/>
+        <ComponentName Value="CodeGenerateFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qonguard2"/>
+        <CursorPos X="1" Y="236"/>
+        <TopLine Value="218"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\source\onguard.pas"/>
+        <UnitName Value="onguard"/>
+        <CursorPos X="19" Y="1186"/>
+        <TopLine Value="1170"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\source\qonguard1.pas"/>
+        <ComponentName Value="KeyGenerateFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qonguard1"/>
+        <CursorPos X="56" Y="7"/>
+        <TopLine Value="76"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\source\qonguard4.pas"/>
+        <ComponentName Value="EditProductFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qonguard4"/>
+        <CursorPos X="20" Y="37"/>
+        <TopLine Value="31"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\source\ogutil.pas"/>
+        <UnitName Value="ogutil"/>
+        <CursorPos X="32" Y="693"/>
+        <TopLine Value="714"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="codegenu.lfm"/>
+        <CursorPos X="18" Y="12"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\..\source\qogabout0.pas"/>
+        <ComponentName Value="OgAboutForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qogabout0"/>
+        <CursorPos X="42" Y="25"/>
+        <TopLine Value="12"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\source\qogabout0.lfm"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\..\source\qonguard6.pas"/>
+        <ComponentName Value="ModifierFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="qonguard6"/>
+        <CursorPos X="50" Y="7"/>
+        <TopLine Value="75"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\..\source\qonguard6.lfm"/>
+        <CursorPos X="28" Y="13"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+        <SyntaxHighlighter Value="LFM"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\source\qonguard7.pas"/>
+        <UnitName Value="qonguard7"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="72"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\..\source\idesn.pas"/>
+        <UnitName Value="idesn"/>
+        <CursorPos X="1" Y="23"/>
+        <TopLine Value="37"/>
+        <UsageCount Value="11"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\..\..\..\..\..\temp\fpc\rtl\inc\systemh.inc"/>
+        <CursorPos X="11" Y="571"/>
+        <TopLine Value="556"/>
+        <UsageCount Value="11"/>
+      </Unit21>
+    </Units>
+    <JumpHistory Count="3" HistoryIndex="2">
+      <Position1>
+        <Filename Value="codegenu.pas"/>
+        <Caret Line="7" Column="21" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\..\source\qonguard3.pas"/>
+        <Caret Line="161" Column="5" TopLine="144"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\source\qonguard3.pas"/>
+        <Caret Line="141" Column="1" TopLine="124"/>
+      </Position3>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <PathDelim Value="\"/>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="159"/>
+      </Item1>
+      <Item2>
+        <Source Value="..\..\source\qonguard3.pas"/>
+        <Line Value="212"/>
+      </Item2>
+    </BreakPoints>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="KeyFileName"/>
+        <Enabled Value="False"/>
+      </Item1>
+    </Watches>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

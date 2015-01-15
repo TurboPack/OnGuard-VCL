@@ -1,0 +1,124 @@
+object EditProductFrm: TEditProductFrm
+  Left = 280
+  Height = 110
+  Top = 326
+  Width = 526
+  HorzScrollBar.Page = 525
+  HorzScrollBar.Range = 521
+  VertScrollBar.Page = 109
+  VertScrollBar.Range = 105
+  ActiveControl = ProductEd
+  BorderIcons = []
+  Caption = 'Description and Key'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  object Panel1: TPanel
+    Left = 4
+    Height = 68
+    Top = 5
+    Width = 517
+    TabOrder = 0
+    object GenerateKeySb: TSpeedButton
+      Left = 482
+      Height = 23
+      Hint = 'Generate encryption key'
+      Top = 37
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000000000000000000000000000000000
+        8000008000000080800080000000800080008080000080808000C0C0C0000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00888888888888
+        8888800000008888888888888888800000008888888444444444800000008888
+        8884FFFFFFF48000000088888884F00000F48000000080000004FFFFFFF48000
+        000080FFFFF4F00000F48000000080F00004FFFFFFF48000000080FFFFF4F00F
+        44448000000080F00004FFFF4F488000000080FFFFF4FFFF44888000000080F0
+        0F04444448888000000080FFFF0F088888888000000080FFFF00888888888000
+        0000800000088888888880000000888888888888888880000000888888888888
+        888880000000
+      }
+      NumGlyphs = 0
+      OnClick = GenerateKeySbClick
+    end
+    object KeyPasteSb: TSpeedButton
+      Left = 456
+      Height = 23
+      Hint = 'Paste from clipboard'
+      Top = 37
+      Width = 23
+      Color = clBtnFace
+      Glyph.Data = {
+        42010000424D4201000000000000760000002800000011000000110000000100
+        040000000000CC00000000000000000000000000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00222222222222
+        2222200000002222222222222222200000002222224444444444200000002000
+        004FFFFFFFF4200000000838384F000000F4200000000383834FFFFFFFF42000
+        00000838384F000F4444200000000383834FFFFF4F42200000000838384FFFFF
+        4422200000000383834444444022200000000838383838383022200000000380
+        0000000380222000000008307777770830222000000003830B00B08380222000
+        0000200000BB0000022220000000222220000222222220000000222222222222
+        222220000000
+      }
+      NumGlyphs = 0
+      OnClick = KeyPasteSbClick
+    end
+    object Label1: TLabel
+      Left = 12
+      Height = 20
+      Top = 12
+      Width = 84
+      Caption = '&Description:'
+      Color = clNone
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 12
+      Height = 20
+      Top = 40
+      Width = 32
+      Caption = '&Key:'
+      Color = clNone
+      ParentColor = False
+    end
+    object ProductEd: TEdit
+      Left = 104
+      Height = 28
+      Top = 8
+      Width = 345
+      OnChange = InfoChanged
+      TabOrder = 0
+    end
+    object KeyEd: TEdit
+      Left = 104
+      Height = 28
+      Top = 38
+      Width = 345
+      OnChange = InfoChanged
+      TabOrder = 1
+    end
+  end
+  object OKBtn: TButton
+    Left = 361
+    Height = 25
+    Top = 80
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Caption = 'OK'
+    Default = True
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object CancelBtn: TButton
+    Left = 441
+    Height = 25
+    Top = 80
+    Width = 75
+    BorderSpacing.InnerBorder = 4
+    Cancel = True
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 2
+  end
+end

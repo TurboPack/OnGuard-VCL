@@ -1,0 +1,78 @@
+object EditProductFrm: TEditProductFrm
+  Left = 299
+  Top = 201
+  BorderIcons = []
+  Caption = 'Description and Key'
+  ClientHeight = 110
+  ClientWidth = 464
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  object OKBtn: TButton
+Position.Point = '(305,80)'
+    Width = 75
+    Height = 25
+    Text = 'OK'
+    Default = True
+    ModalResult = 1
+    TabOrder = 0
+  end
+  object CancelBtn: TButton
+Position.Point = '(385,80)'
+    Width = 75
+    Height = 25
+    Cancel = True
+    Text = 'Cancel'
+    ModalResult = 2
+    TabOrder = 1
+  end
+  object Panel1: TPanel
+Position.Point = '(4,5)'
+    Width = 456
+    Height = 68
+    TabOrder = 2
+    object Label1: TLabel
+Position.Point = '(12,12)'
+      Width = 56
+      Height = 13
+      Text = 'Description:'
+WordWrap = False
+AutoSize = True
+    end
+    object Label2: TLabel
+Position.Point = '(12,40)'
+      Width = 21
+      Height = 13
+      Text = 'Key:'
+WordWrap = False
+AutoSize = True
+    end
+    object GenerateKeySb: TSpeedButton
+Position.Point = '(426,37)'
+      Width = 23
+      Height = 23
+      OnClick = GenerateKeySbClick
+WordWrap = True
+    end
+    object KeyPasteSb: TSpeedButton
+Position.Point = '(400,37)'
+      Width = 23
+      Height = 23
+      OnClick = KeyPasteSbClick
+WordWrap = True
+    end
+    object ProductEd: TEdit
+Position.Point = '(80,8)'
+      Width = 318
+      Height = 21
+      TabOrder = 0
+      OnChange = InfoChanged
+    end
+    object KeyEd: TEdit
+Position.Point = '(80,38)'
+      Width = 318
+      Height = 21
+      TabOrder = 1
+      OnChange = InfoChanged
+    end
+  end
+end

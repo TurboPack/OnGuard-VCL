@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html><head>
+   <title>OnGuard Help</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="content-language" content="en-us" />
+   <meta name="robots" content="index,follow" />
+   <meta http-equiv="Content-Style-Type" content="text/css" />
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="jquery.tools.min.js"></script>
+   <script type="text/javascript" src="jquery.scrollTo-min.js"></script>
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link id="tabscheme" type="text/css" href="hm_topic.css" rel="stylesheet" />
+<!--[if IE 9]>
+<link id="iesvgcss" rel="stylesheet" type="text/css" href="hm_webhelp_svg.css" />
+<![endif]-->
+<style type="text/css">
+html, body {
+	overflow: hidden; 
+	font-family: Verdana, Tahoma, Helvetica, Sans-Serif;  
+	}
+div#hmidxheader {
+	position: absolute;
+	background: transparent;
+	top: 10px; left: 10px; right: 18px;
+	}
+div#idxheader { 
+	position: relative;
+	top: 0px; left: 0px; right: 0px;
+	display: none;
+	background-color: white;
+	z-index: 100;
+	}
+div#idxbody {
+	position: absolute;
+	top: 85px; bottom: 0; left: 9px; right: 0;
+	overflow-y: scroll;
+	margin-right: 2px;
+	padding-bottom: 5px;
+	border-top: 1px solid silver;
+	}
+.navtitle { font-size: 13pt; font-weight: bold; margin-bottom: 10px; }
+.nojstitle { font-size: 11pt; white-space: nowrap; margin-top: -8px; }
+.nojstitle a { color: black; text-decoration: none; }
+.nojstitle a:visited {color: black;}
+.nojstitle a:hover {text-decoration: underline; }
+#idx          { margin: 0; padding: 0; }     /* div tag that wraps the keyword index */
+#idx a        { color: #000; text-decoration: none; outline: none;}  /* all links in index appear as text */
+#idx a:visited { color: #000; } 
+#idx a:hover        { color: #000; text-decoration: underline; } 
+
+#idx p             { margin: 2px; }       /* keywords and secondary keywords */
+#idx p.idxkeyword2 { margin-left: 20px }  /* indentation for secondary keywords */
+.idxsection  { font-family: Arial,Helvetica; font-weight: normal; font-size: 14pt; color: #000000; text-decoration: none;
+			  margin-top: 15px; margin-bottom: 5px; }
+.idxkeyword  { font-family: Arial,Helvetica; font-weight: normal; font-size: 11pt; color: #000000; text-decoration: none; }
+.idxkeyword2 { font-family: Arial,Helvetica; font-weight: normal; font-size: 11pt; color: #000000; text-decoration: none; }
+.idxlink     { font-family: Arial,Helvetica; font-weight: normal; font-size: 9pt; color: #000000; text-decoration: none; }
+p.idxkeyword a:link, p.idxkeyword2 a:link { color: black; text-decoration: none;}
+p.idxkeyword a:visited, p.idxkeyword2 a:visited {color: black;}
+p.idxkeyword a:hover, p.idxkeyword2 a:hover { color: black; text-decoration: underline;}
+span.idxlabel { font-family: Arial,Helvetica; font-weight: normal; font-size: 8pt;}
+table.idxtable { background: #F4F4F4;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	-moz-box-shadow: 2px 2px 2px #B0B0B0;
+	-webkit-box-shadow: 2px 2px 2px #B0B0B0;
+	box-shadow: 2px 2px 2px #B0B0B0;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=B0B0B0, Direction=135, Strength=4); 
+	}
+td.idxtable    { background: #F4F4F4; }
+td.idxtable a:link { color: black; text-decoration: none;}
+td.idxtable a:visited {color: black;}
+td.idxtable a:hover { color: black; text-decoration: underline;}
+a.idxrefs:link {color: black; text-decoration: none;}
+a.idxrefs:visited {color: black;}
+a.idxrefs:hover {color: black; text-decoration: underline;}
+</style>
+<script type="text/javascript">
+/*! Keyword index init functions for HM Premium Pack Version 2.32
+Copyright (c) 2008-2013 by Tim Green 
+All rights reserved. */
+function ffFix(){if(!/gecko.+?firefox/i.test(navigator.UserAgent)){return}var a=document.location.search;if(a.indexOf("r2d2")>-1){return}else{a=a==""?"?r2d2":a+"&r2d2";document.location.search=a}}if(parent.window.hmnavpages&&parent.window.hmnavpages.ffCacheFix){ffFix()}var clicked=[];var idxTMP="";var idxCount=0;try{var Parent=parent.hmWebHelp?parent:window.opener.hmWebHelp?window.opener:false}catch(err){var Parent=false;document.location.replace("index.html")}function gotoIndex(a){if($(a).length>0){$("span.idxkeyword,span.idxkeyword2").css("backgroundColor","transparent");$("div#idxbody").scrollTo($(a),400)}else{alert("No index entries starting with "+a.replace("#",""))}}function hmScrollToKey(){var c=$("div#idxbody").height();var a=$("#idxSearch").val();var b=$("span.idxkeyword,span.idxkeyword2").filter(function(){return(new RegExp(a,"i")).test($(this).text())});if($(b[idxCount]).offset()&&a!=""){var d=$(b[idxCount]).offset();while(d&&d.top<(c+$("#idxSearch").scrollTop())){idxCount++;d=$(b[idxCount]).offset()}if($(b[idxCount]).html()!=null){$("div#idxbody").scrollTo(b[idxCount],400,{offset:-10})}else{idxCount=0;$("div#idxbody").scrollTo(b[idxCount],400,{offset:-10})}}}function hmFindKey(){var a=$("#idxSearch").val();$("span.idxkeyword,span.idxkeyword2").css("backgroundColor","transparent");var b=$("span.idxkeyword,span.idxkeyword2").filter(function(){return(new RegExp(a,"i")).test($(this).text())});var c=$(b)[0];if(b.length>0&&a.length>0){$(b).css("background-color","yellow");$("div#idxbody").scrollTo(c,400,{offset:-10})}else{if(a.length==0){$("div#idxbody").scrollTo({top:"0px",left:"0px"},400)}}}function idxIncr(a){if((idxTMP==a)&&(a!="")){idxCount++}else{idxCount=0;idxTMP=a}}function indexSearch(){var a=$("#idxSearch").val();idxIncr(a);if(a==""){hmFindKey()}if(idxCount>0&&a!=""){hmScrollToKey()}else{hmFindKey()}}function nsHeader(){var a=$("div#idxheader").outerHeight()+10;$("div#idxbody").css("top",a+"px")}$(document).ready(function(){$("div#hmidxheader").hide();$("div#idxbody").css("margin","5px 0px 2px 0px");$("div#idxheader").css("display","block");$("table.idxtable").css("position","absolute");nsHeader();$(window).bind("resize",function(){nsHeader()});if(window.opener){$("ul.tabs").show();$("ul.tabs a").css("cursor","default");$("div#hmbox").css("padding","10px");$("link#tabscheme").attr("href","hm_webhelp_undocked.css");$("body,html").css("backgroundImage","url('spacer.gif')");var a=setInterval(function(){function e(){clearInterval(a);window.close()}try{var c=window.opener.hmWebHelp.openWindows.length}catch(d){e()}if(!window.opener||c<1){e()}},500)}$("a[target='hmcontent']").click(function(){var c=$(this).attr("href");Parent.hmWebHelp.tocWin.tocScroller(c)});$("#idxSearch").keydown(function(c){if(c.keyCode==13){c.preventDefault();indexSearch()}});if(window.frameElement&&Parent.hmLayout.hmIndexArg!=""){var b=setInterval(function(){var d=document.getElementById("idxSearch");try{if(d.name){clearInterval(b);d.value=Parent.hmLayout.hmIndexArg;Parent.hmLayout.hmIndexArg="";if(document.all&&!window.opera){setTimeout(function(){indexSearch()},200)}else{indexSearch()}}}catch(c){}},100)}$("a[target='hmcontent']").click(function(){var c=parent.hmWebHelp?parent.window:window.opener?window.opener:false;var d=$(this).attr("href");var e=d.substr(0,d.indexOf("#"));if(c){if(e==c.hmWebHelp.currentPage){c.hmWebHelp.tabsapi.click(0)}}})});
+</script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="onguard_contextids.js"></script>
+</head>
+<body>
+<!-- Help & Manual Premium Pack templates by Tim Green, Copyright (c) 2011-2013, All Rights Reserved -->
+<ul id="topictabs" class="tabs">
+<li id="indextab" class="hmtabs"><a href="#" id="indextablink" class="current"><span>Index</span></a></li>
+</ul>
+<div id="hmbox">
+<div id="hmidxheader">
+<p class="navtitle">OnGuard Help</p>
+<p class="nojstitle"><a href="onguard_content.html" target="_self">Contents</a> | <b>Index</b></p>
+</div>
+<div id="hminnerbox">
+<div id="idxheader">
+<div id="indexRefs">
+  <a href="javascript:gotoIndex('#A')" class="idxrefs">A</a>
+  <a href="javascript:gotoIndex('#B')" class="idxrefs">B</a>
+  <a href="javascript:gotoIndex('#C')" class="idxrefs">C</a>
+  <a href="javascript:gotoIndex('#D')" class="idxrefs">D</a>
+  <a href="javascript:gotoIndex('#E')" class="idxrefs">E</a>
+  <a href="javascript:gotoIndex('#F')" class="idxrefs">F</a>
+  <a href="javascript:gotoIndex('#G')" class="idxrefs">G</a>
+  <a href="javascript:gotoIndex('#H')" class="idxrefs">H</a>
+  <a href="javascript:gotoIndex('#I')" class="idxrefs">I</a>
+  <a href="javascript:gotoIndex('#J')" class="idxrefs">J</a>
+  <a href="javascript:gotoIndex('#K')" class="idxrefs">K</a>
+  <a href="javascript:gotoIndex('#L')" class="idxrefs">L</a>
+  <a href="javascript:gotoIndex('#M')" class="idxrefs">M</a>
+  <a href="javascript:gotoIndex('#N')" class="idxrefs">N</a>
+  <a href="javascript:gotoIndex('#O')" class="idxrefs">O</a>
+  <a href="javascript:gotoIndex('#P')" class="idxrefs">P</a>
+  <a href="javascript:gotoIndex('#Q')" class="idxrefs">Q</a>
+  <a href="javascript:gotoIndex('#R')" class="idxrefs">R</a>
+  <a href="javascript:gotoIndex('#S')" class="idxrefs">S</a>
+  <a href="javascript:gotoIndex('#T')" class="idxrefs">T</a>
+  <a href="javascript:gotoIndex('#U')" class="idxrefs">U</a>
+  <a href="javascript:gotoIndex('#V')" class="idxrefs">V</a>
+  <a href="javascript:gotoIndex('#W')" class="idxrefs">W</a>
+  <a href="javascript:gotoIndex('#X')" class="idxrefs">X</a>
+  <a href="javascript:gotoIndex('#Y')" class="idxrefs">Y</a>
+  <a href="javascript:gotoIndex('#Z')" class="idxrefs">Z</a>
+<div id="callout-wrap">
+<div id="callout">
+</div>
+</div>
+<form id="searchForm" style="margin-top: 2px; margin-bottom: 2px;">
+<input type="text" name="idxSearch" size="20" value="" id="idxSearch" />
+&nbsp;<button type="button" onclick="indexSearch();" title="Click again or press ENTER to scroll to the next highlighted item">Search Keywords</button>
+</form>
+</div>
+</div>
+<div id="idxbody">
+<!-- Place holder for the keyword index - this variable is REQUIRED! -->
+<script type="text/javascript">
+
+  function hmInitHideLinks(cssCode) {
+  	var styleElement = document.createElement("style");
+  	styleElement.type = "text/css";
+  	if (styleElement.styleSheet) {
+    	styleElement.styleSheet.cssText = cssCode;
+  	}
+  	else {
+    	styleElement.appendChild(document.createTextNode(cssCode));
+  	}
+  	document.getElementsByTagName("head")[0].appendChild(styleElement);
+  }
+
+  hmInitHideLinks("#idx div { display: none }");
+
+  var currentdiv = null;
+  var canhidelinks = true;
+
+  function hmshowLinks(divID) {
+    var thisdiv = document.getElementById(divID);
+    canhidelinks = true;
+    hmhideLinks();
+    if (thisdiv) {
+      currentdiv = thisdiv;
+      $(currentdiv).show();
+      $(currentdiv).mouseover(hmdivMouseOver).mouseout(hmdivMouseOut);
+      $(document).mouseup(hmhideLinks);
+    }
+  }
+  function hmdivMouseOver() { canhidelinks = false; };
+  function hmdivMouseOut() { canhidelinks = true; };
+  function hmhideLinks() {
+    if (canhidelinks) {
+      if (currentdiv) {
+        $(currentdiv).hide();
+        $(currentdiv).unbind("onmouseover", "onmouseout");
+      }
+      currentdiv = null;
+      $(document).unbind("onmouseup");
+    }
+  }
+</script>
+<div id="idx" style="margin:0;padding:0;border:none">
+<a name="A" id="A"></a><p class="idxsection">- A -</p>
+<p class="idxkeyword"><a href="ogfirst_activatefirstinstance.html" target="hmcontent"><span class="idxkeyword">ActivateFirstInstance</span></a></p>
+<p class="idxkeyword"><a href="tognetcode_activeusers.html" target="hmcontent"><span class="idxkeyword">ActiveUsers</span></a></p>
+<p class="idxkeyword"><a href="api_reference.html" target="hmcontent"><span class="idxkeyword">API Reference</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_applymodifiertokey.html" target="hmcontent"><span class="idxkeyword">ApplyModifierToKey</span></a></p>
+<p class="idxkeyword"><a href="applymodifiertokeyprim.html" target="hmcontent"><span class="idxkeyword">ApplyModifierToKeyPrim</span></a></p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k6')"><span class="idxkeyword">AutoCheck</span></a></p>
+<div id="k6" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togcodebase_autocheck.html" target="hmcontent"><span class="idxlink">AutoCheck property<br/>
+property TOgCodeBase.AutoCheck : Boolean<br/>
+		Default: False</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togprotectexe_autocheck.html" target="hmcontent"><span class="idxlink">AutoCheck property<br/>
+property TOgProtectExe.AutoCheck : Boolean<br/>
+		Default: False</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k7')"><span class="idxkeyword">AutoDecrease</span></a></p>
+<div id="k7" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togdayscode_autodecrease.html" target="hmcontent"><span class="idxlink">AutoDecrease property<br/>
+property TOgDaysCode.AutoDecrease : Boolean<br/>
+		Default: True</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togusagecode_autodecrease.html" target="hmcontent"><span class="idxlink">AutoDecrease property<br/>
+property TOgUsageCode.AutoDecrease : Boolean<br/>
+		Default: True</span></a></td></tr></table></td></tr></table></div>
+<a name="B" id="B"></a><p class="idxsection">- B -</p>
+<p class="idxkeyword"><a href="buffertohex.html" target="hmcontent"><span class="idxkeyword">BufferToHex</span></a></p>
+<p class="idxkeyword"><a href="buffertohexbytes.html" target="hmcontent"><span class="idxkeyword">BufferToHexBytes</span></a></p>
+<a name="C" id="C"></a><p class="idxsection">- C -</p>
+<p class="idxkeyword"><a href="togcodebase_checkcode.html" target="hmcontent"><span class="idxkeyword">CheckCode</span></a></p>
+<p class="idxkeyword"><a href="togprotectexe_checkexe.html" target="hmcontent"><span class="idxkeyword">CheckExe</span></a></p>
+<p class="idxkeyword"><a href="checknetaccessfile.html" target="hmcontent"><span class="idxkeyword">CheckNetAccessFile</span></a></p>
+<p class="idxkeyword"><a href="togprotectexe_checksize.html" target="hmcontent"><span class="idxkeyword">CheckSize</span></a></p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k14')"><span class="idxkeyword">Code</span></a></p>
+<div id="k14" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togcodebase_code.html" target="hmcontent"><span class="idxlink">Code property<br/>
+property TOgCodeBase.Code : string</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_code.html" target="hmcontent"><span class="idxlink">Code property<br/>
+property TOgMakeCodes.Code : TCode</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="togmakecodes_codetype.html" target="hmcontent"><span class="idxkeyword">CodeType</span></a></p>
+<p class="idxkeyword"><a href="onguard_contents.html" target="hmcontent"><span class="idxkeyword">Contents</span></a></p>
+<p class="idxkeyword"><a href="createnetaccessfile.html" target="hmcontent"><span class="idxkeyword">CreateNetAccessFile</span></a></p>
+<p class="idxkeyword"><a href="createnetaccessfileex.html" target="hmcontent"><span class="idxkeyword">CreateNetAccessFileEx</span></a></p>
+<a name="D" id="D"></a><p class="idxsection">- D -</p>
+<p class="idxkeyword"><a href="decdayscode.html" target="hmcontent"><span class="idxkeyword">DecDaysCode</span></a></p>
+<p class="idxkeyword"><a href="decodenafcountcode.html" target="hmcontent"><span class="idxkeyword">DecodeNAFCountCode</span></a></p>
+<p class="idxkeyword"><a href="togdayscode_decrease.html" target="hmcontent"><span class="idxkeyword">Decrease</span></a></p>
+<p class="idxkeyword"><a href="decusagecode.html" target="hmcontent"><span class="idxkeyword">DecUsageCode</span></a></p>
+<a name="E" id="E"></a><p class="idxsection">- E -</p>
+<p class="idxkeyword"><a href="encodenafcountcode.html" target="hmcontent"><span class="idxkeyword">EncodeNAFCountCode</span></a></p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k24')"><span class="idxkeyword">Execute</span></a></p>
+<div id="k24" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_execute.html" target="hmcontent"><span class="idxlink">Execute method<br/>
+function TOgMakeCodes.Execute : Boolean;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakekeys_execute.html" target="hmcontent"><span class="idxlink">Execute method<br/>
+function TOgMakeKeys.Execute: Boolean;</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="expanddate.html" target="hmcontent"><span class="idxkeyword">ExpandDate</span></a></p>
+<a name="F" id="F"></a><p class="idxsection">- F -</p>
+<p class="idxkeyword"><a href="tognetcode_filename.html" target="hmcontent"><span class="idxkeyword">FileName</span></a></p>
+<a name="G" id="G"></a><p class="idxsection">- G -</p>
+<p class="idxkeyword"><a href="togmakekeys_generatedatemodifier.html" target="hmcontent"><span class="idxkeyword">GenerateDateModifier</span></a></p>
+<p class="idxkeyword"><a href="generatedatemodifierprim.html" target="hmcontent"><span class="idxkeyword">GenerateDateModifierPrim</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_generatekey.html" target="hmcontent"><span class="idxkeyword">GenerateKey</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_generatemachinemodifier.html" target="hmcontent"><span class="idxkeyword">GenerateMachineModifier</span></a></p>
+<p class="idxkeyword"><a href="generatemachinemodifierprim.html" target="hmcontent"><span class="idxkeyword">GenerateMachineModifierPrim</span></a></p>
+<p class="idxkeyword"><a href="generatemd5keyprim.html" target="hmcontent"><span class="idxkeyword">GenerateMD5KeyPrim</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_generaterandomkey.html" target="hmcontent"><span class="idxkeyword">GenerateRandomKey</span></a></p>
+<p class="idxkeyword"><a href="generaterandomkeyprim.html" target="hmcontent"><span class="idxkeyword">GenerateRandomKeyPrim</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_generatestringmodifier.html" target="hmcontent"><span class="idxkeyword">GenerateStringModifier</span></a></p>
+<p class="idxkeyword"><a href="generatestringmodifierprim.html" target="hmcontent"><span class="idxkeyword">GenerateStringModifierPrim</span></a></p>
+<p class="idxkeyword"><a href="generatetmdkeyprim.html" target="hmcontent"><span class="idxkeyword">GenerateTMDKeyPrim</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_generateuniquemodifier.html" target="hmcontent"><span class="idxkeyword">GenerateUniqueModifier</span></a></p>
+<p class="idxkeyword"><a href="generateuniquemodifierprim.html" target="hmcontent"><span class="idxkeyword">GenerateUniqueModifierPrim</span></a></p>
+<p class="idxkeyword"><a href="getcodetype.html" target="hmcontent"><span class="idxkeyword">GetCodeType</span></a></p>
+<p class="idxkeyword"><a href="getdatecodevalue.html" target="hmcontent"><span class="idxkeyword">GetDateCodeValue</span></a></p>
+<p class="idxkeyword"><a href="getdayscodevalue.html" target="hmcontent"><span class="idxkeyword">GetDaysCodeValue</span></a></p>
+<p class="idxkeyword"><a href="getexpirationdate.html" target="hmcontent"><span class="idxkeyword">GetExpirationDate</span></a></p>
+<p class="idxkeyword"><a href="getnetaccessfileinfo.html" target="hmcontent"><span class="idxkeyword">GetNetAccessFileInfo</span></a></p>
+<p class="idxkeyword"><a href="getserialnumbercodevalue.html" target="hmcontent"><span class="idxkeyword">GetSerialNumberCodeValue</span></a></p>
+<p class="idxkeyword"><a href="getspecialcodevalue.html" target="hmcontent"><span class="idxkeyword">GetSpecialCodeValue</span></a></p>
+<p class="idxkeyword"><a href="getusagecodevalue.html" target="hmcontent"><span class="idxkeyword">GetUsageCodeValue</span></a></p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k48')"><span class="idxkeyword">GetValue</span></a></p>
+<div id="k48" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togdatecode_getvalue.html" target="hmcontent"><span class="idxlink">GetValue method<br/>
+function TOgDateCode.GetValue : TDateTime;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togdayscode_getvalue.html" target="hmcontent"><span class="idxlink">GetValue method<br/>
+function TOgDaysCode.GetValue : LongInt;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togserialnumbercode_getvalue.html" target="hmcontent"><span class="idxlink">GetValue method<br/>
+function TOgSerialNumberCode.GetValue : LongInt;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togspecialcode_getvalue.html" target="hmcontent"><span class="idxlink">GetValue method<br/>
+function TOgSpecialCode.GetValue : LongInt;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togusagecode_getvalue.html" target="hmcontent"><span class="idxlink">GetValue method<br/>
+function TOgUsageCode.GetValue : LongInt;</span></a></td></tr></table></td></tr></table></div>
+<a name="H" id="H"></a><p class="idxsection">- H -</p>
+<p class="idxkeyword"><a href="hexstringiszero.html" target="hmcontent"><span class="idxkeyword">HexStringIsZero</span></a></p>
+<p class="idxkeyword"><a href="hextobuffer.html" target="hmcontent"><span class="idxkeyword">HexToBuffer</span></a></p>
+<a name="I" id="I"></a><p class="idxsection">- I -</p>
+<p class="idxkeyword"><a href="initdatecode.html" target="hmcontent"><span class="idxkeyword">InitDateCode</span></a></p>
+<p class="idxkeyword"><a href="initdayscode.html" target="hmcontent"><span class="idxkeyword">InitDaysCode</span></a></p>
+<p class="idxkeyword"><a href="initregcode.html" target="hmcontent"><span class="idxkeyword">InitRegCode</span></a></p>
+<p class="idxkeyword"><a href="initserialnumbercode.html" target="hmcontent"><span class="idxkeyword">InitSerialNumberCode</span></a></p>
+<p class="idxkeyword"><a href="initspecialcode.html" target="hmcontent"><span class="idxkeyword">InitSpecialCode</span></a></p>
+<p class="idxkeyword"><a href="initusagecode.html" target="hmcontent"><span class="idxkeyword">InitUsageCode</span></a></p>
+<p class="idxkeyword"><a href="tognetcode_invalidusers.html" target="hmcontent"><span class="idxkeyword">InvalidUsers</span></a></p>
+<p class="idxkeyword"><a href="isapponnetwork.html" target="hmcontent"><span class="idxkeyword">IsAppOnNetwork</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_iscodevalid.html" target="hmcontent"><span class="idxkeyword">IsCodeValid</span></a></p>
+<p class="idxkeyword"><a href="isdatecodeexpired.html" target="hmcontent"><span class="idxkeyword">IsDateCodeExpired</span></a></p>
+<p class="idxkeyword"><a href="isdatecodevalid.html" target="hmcontent"><span class="idxkeyword">IsDateCodeValid</span></a></p>
+<p class="idxkeyword"><a href="isdayscodeexpired.html" target="hmcontent"><span class="idxkeyword">IsDaysCodeExpired</span></a></p>
+<p class="idxkeyword"><a href="isdayscodevalid.html" target="hmcontent"><span class="idxkeyword">IsDaysCodeValid</span></a></p>
+<p class="idxkeyword"><a href="ogfirst_isfirstinstance.html" target="hmcontent"><span class="idxkeyword">IsFirstInstance</span></a></p>
+<p class="idxkeyword"><a href="isregcodeexpired.html" target="hmcontent"><span class="idxkeyword">IsRegCodeExpired</span></a></p>
+<p class="idxkeyword"><a href="isregcodevalid.html" target="hmcontent"><span class="idxkeyword">IsRegCodeValid</span></a></p>
+<p class="idxkeyword"><a href="tognetcode_isremotedrive.html" target="hmcontent"><span class="idxkeyword">IsRemoteDrive</span></a></p>
+<p class="idxkeyword"><a href="isserialnumbercodeexpired.html" target="hmcontent"><span class="idxkeyword">IsSerialNumberCodeExpired</span></a></p>
+<p class="idxkeyword"><a href="isserialnumbercodevalid.html" target="hmcontent"><span class="idxkeyword">IsSerialNumberCodeValid</span></a></p>
+<p class="idxkeyword"><a href="isspecialcodevalid.html" target="hmcontent"><span class="idxkeyword">IsSpecialCodeValid</span></a></p>
+<p class="idxkeyword"><a href="isusagecodeexpired.html" target="hmcontent"><span class="idxkeyword">IsUsageCodeExpired</span></a></p>
+<p class="idxkeyword"><a href="isusagecodevalid.html" target="hmcontent"><span class="idxkeyword">IsUsageCodeValid</span></a></p>
+<a name="K" id="K"></a><p class="idxsection">- K -</p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k73')"><span class="idxkeyword">Key</span></a></p>
+<div id="k73" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_key.html" target="hmcontent"><span class="idxlink">Key run-time property<br/>
+property TOgMakeCodes.Key : TKey</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakekeys_key.html" target="hmcontent"><span class="idxlink">Key run-time property<br/>
+property TOgMakeKeys.Key : TKey<br/>
+TKey = array [0..15] of Byte;</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k74')"><span class="idxkeyword">KeyFileName</span></a></p>
+<div id="k74" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_keyfilename.html" target="hmcontent"><span class="idxlink">KeyFileName property<br/>
+property TOgMakeCodes.KeyFileName : string</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakekeys_keyfilename.html" target="hmcontent"><span class="idxlink">KeyFileName property<br/>
+property TOgMakeKeys.KeyFileName : string</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k75')"><span class="idxkeyword">KeyType</span></a></p>
+<div id="k75" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_keytype.html" target="hmcontent"><span class="idxlink">KeyType run-time property<br/>
+property TOgMakeCodes.KeyType : TKeyType<br/>
+TKeyType = (ktRandom, ktMessageDigest, ktMessageDigestCS);<br/>
+		Default: ktMessageDigest</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakekeys_keytype.html" target="hmcontent"><span class="idxlink">KeyType property<br/>
+property TOgMakeKeys.KeyType : TKeyType<br/>
+TKeyType = (ktRandom, ktMessageDigest, ktMessageDigestCS);<br/>
+		Default: ktMessageDigest</span></a></td></tr></table></td></tr></table></div>
+<a name="L" id="L"></a><p class="idxsection">- L -</p>
+<p class="idxkeyword"><a href="license.html" target="hmcontent"><span class="idxkeyword">License</span></a></p>
+<p class="idxkeyword"><a href="locknetaccessfile.html" target="hmcontent"><span class="idxkeyword">LockNetAccessFile</span></a></p>
+<a name="M" id="M"></a><p class="idxsection">- M -</p>
+<p class="idxkeyword"><a href="tognetcode_maxusers.html" target="hmcontent"><span class="idxkeyword">MaxUsers</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_modifier.html" target="hmcontent"><span class="idxkeyword">Modifier</span></a></p>
+<p class="idxkeyword"><a href="license.html" target="hmcontent"><span class="idxkeyword">Mozilla Public License</span></a></p>
+<p class="idxkeyword"><a href="license.html" target="hmcontent"><span class="idxkeyword">MPL</span></a></p>
+<a name="O" id="O"></a><p class="idxsection">- O -</p>
+<p class="idxkeyword"><a href="ogfirstunit.html" target="hmcontent"><span class="idxkeyword">OgFirst Unit</span></a></p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k83')"><span class="idxkeyword">OnChangeCode</span></a></p>
+<div id="k83" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togdayscode_onchangecode.html" target="hmcontent"><span class="idxlink">OnChangeCode event<br/>
+property OnChangeCode : TChangeCodeEvent<br/>
+TChangeCodeEvent = procedure(Sender : TObject; Code : TCode) of object;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togusagecode_onchangecode.html" target="hmcontent"><span class="idxlink">OnChangeCode event<br/>
+property TOgUsageCode.OnChangeCode : TChangeCodeEvent<br/>
+TChangeCodeEvent = procedure(Sender : TObject; Code : TCode) of object;</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k84')"><span class="idxkeyword">OnChecked</span></a></p>
+<div id="k84" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togcodebase_onchecked.html" target="hmcontent"><span class="idxlink">OnChecked event<br/>
+property TOgCodeBase.OnChecked : TCheckedCodeEvent<br/>
+TCheckedCodeEvent = procedure(Sender : TObject; Status : TCodeStatus) of object;</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togprotectexe_onchecked.html" target="hmcontent"><span class="idxlink">OnChecked event<br/>
+property TOgProtectExe.OnChecked : TCheckedExeEvent<br/>
+TCheckedExeEvent = procedure(Sender : TObject; Status : TExeStatus) of object;</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="togcodebase_ongetcode.html" target="hmcontent"><span class="idxkeyword">OnGetCode</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_ongetkey.html" target="hmcontent"><span class="idxkeyword">OnGetKey</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_ongetmodifier.html" target="hmcontent"><span class="idxkeyword">OnGetModifier</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcode_ongetregstring.html" target="hmcontent"><span class="idxkeyword">OnGetRegString</span></a></p>
+<a name="R" id="R"></a><p class="idxsection">- R -</p>
+<p class="idxkeyword"><a href="togregistrationcode_regstring.html" target="hmcontent"><span class="idxkeyword">RegString</span></a></p>
+<p class="idxkeyword"><a href="tognetcode_resetaccessfile.html" target="hmcontent"><span class="idxkeyword">ResetAccessFile</span></a></p>
+<p class="idxkeyword"><a href="resetnetaccessfile.html" target="hmcontent"><span class="idxkeyword">ResetNetAccessFile</span></a></p>
+<a name="S" id="S"></a><p class="idxsection">- S -</p>
+<p class="idxkeyword"><a href="javascript:void(0)" onclick="return hmshowLinks('k92')"><span class="idxkeyword">ShowHints</span></a></p>
+<div id="k92" style="position:relative;margin:0 0 0 20px;top:-3px">
+<table class="idxtable" style="padding:4px"><tr><td class="idxtable"><table style="border:none;padding:0"><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakecodes_showhints.html" target="hmcontent"><span class="idxlink">ShowHints property<br/>
+property TOgMakeCodes.ShowHints : Boolean<br/>
+		Default: False</span></a></td></tr><tr style="vertical-align:baseline"><td><img src="ciconidx.gif" style="border:none" alt="Icon"></td><td><a href="togmakekeys_showhints.html" target="hmcontent"><span class="idxlink">ShowHints property<br/>
+property TOgMakeKeys.ShowHints : Boolean<br/>
+		Default: False</span></a></td></tr></table></td></tr></table></div>
+<p class="idxkeyword"><a href="shrinkdate.html" target="hmcontent"><span class="idxkeyword">ShrinkDate</span></a></p>
+<p class="idxkeyword"><a href="togprotectexe_stampexe.html" target="hmcontent"><span class="idxkeyword">StampExe</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_storecode.html" target="hmcontent"><span class="idxkeyword">StoreCode</span></a></p>
+<p class="idxkeyword"><a href="togcodebase_storemodifier.html" target="hmcontent"><span class="idxkeyword">StoreModifier</span></a></p>
+<p class="idxkeyword"><a href="stringhashelf.html" target="hmcontent"><span class="idxkeyword">StringHashElf</span></a></p>
+<a name="T" id="T"></a><p class="idxsection">- T -</p>
+<p class="idxkeyword"><a href="togcodebase_class.html" target="hmcontent"><span class="idxkeyword">TOgCodeBase Class</span></a></p>
+<p class="idxkeyword"><a href="togcodebaseevents.html" target="hmcontent"><span class="idxkeyword">TOgCodeBase Events</span></a></p>
+<p class="idxkeyword"><a href="togcodebasemethods.html" target="hmcontent"><span class="idxkeyword">TOgCodeBase Methods</span></a></p>
+<p class="idxkeyword"><a href="togcodebaseproperties.html" target="hmcontent"><span class="idxkeyword">TOgCodeBase Properties</span></a></p>
+<p class="idxkeyword"><a href="togdatecode_component.html" target="hmcontent"><span class="idxkeyword">TOgDateCode Component</span></a></p>
+<p class="idxkeyword"><a href="togdatecodeevents.html" target="hmcontent"><span class="idxkeyword">TOgDateCode Events</span></a></p>
+<p class="idxkeyword"><a href="togdatecodemethods.html" target="hmcontent"><span class="idxkeyword">TOgDateCode Methods</span></a></p>
+<p class="idxkeyword"><a href="togdatecodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgDateCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togdayscode_component.html" target="hmcontent"><span class="idxkeyword">TOgDaysCode Component</span></a></p>
+<p class="idxkeyword"><a href="togdayscodeevents.html" target="hmcontent"><span class="idxkeyword">TOgDaysCode Events</span></a></p>
+<p class="idxkeyword"><a href="togdayscodemethods.html" target="hmcontent"><span class="idxkeyword">TOgDaysCode Methods</span></a></p>
+<p class="idxkeyword"><a href="togdayscodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgDaysCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togmakecodes_component.html" target="hmcontent"><span class="idxkeyword">TOgMakeCodes Component</span></a></p>
+<p class="idxkeyword"><a href="togmakecodesmethods.html" target="hmcontent"><span class="idxkeyword">TOgMakeCodes Methods</span></a></p>
+<p class="idxkeyword"><a href="togmakecodesproperties.html" target="hmcontent"><span class="idxkeyword">TOgMakeCodes Properties</span></a></p>
+<p class="idxkeyword"><a href="togmakekeys_component.html" target="hmcontent"><span class="idxkeyword">TOgMakeKeys Component</span></a></p>
+<p class="idxkeyword"><a href="togmakekeysmethods.html" target="hmcontent"><span class="idxkeyword">TOgMakeKeys Methods</span></a></p>
+<p class="idxkeyword"><a href="togmakekeysproperties.html" target="hmcontent"><span class="idxkeyword">TOgMakeKeys Properties</span></a></p>
+<p class="idxkeyword"><a href="tognetcode_component.html" target="hmcontent"><span class="idxkeyword">TOgNetCode Component</span></a></p>
+<p class="idxkeyword"><a href="tognetcodeevents.html" target="hmcontent"><span class="idxkeyword">TOgNetCode Events</span></a></p>
+<p class="idxkeyword"><a href="tognetcodemethods.html" target="hmcontent"><span class="idxkeyword">TOgNetCode Methods</span></a></p>
+<p class="idxkeyword"><a href="tognetcodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgNetCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togprotectexe_component.html" target="hmcontent"><span class="idxkeyword">TOgProtectExe Component</span></a></p>
+<p class="idxkeyword"><a href="togprotectexeevents.html" target="hmcontent"><span class="idxkeyword">TOgProtectExe Events</span></a></p>
+<p class="idxkeyword"><a href="togprotectexemethods.html" target="hmcontent"><span class="idxkeyword">TOgProtectExe Methods</span></a></p>
+<p class="idxkeyword"><a href="togprotectexeproperties.html" target="hmcontent"><span class="idxkeyword">TOgProtectExe Properties</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcode_component.html" target="hmcontent"><span class="idxkeyword">TOgRegistrationCode Component</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcodeevents.html" target="hmcontent"><span class="idxkeyword">TOgRegistrationCode Events</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcodemethods.html" target="hmcontent"><span class="idxkeyword">TOgRegistrationCode Methods</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgRegistrationCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togregistrationcode_storeregstring.html" target="hmcontent"><span class="idxkeyword">TOgRegistrationCode.StoreRegString</span></a></p>
+<p class="idxkeyword"><a href="togserialnumbercode_component.html" target="hmcontent"><span class="idxkeyword">TOgSerialNumberCode Component</span></a></p>
+<p class="idxkeyword"><a href="togserialnumbercodeevents.html" target="hmcontent"><span class="idxkeyword">TOgSerialNumberCode Events</span></a></p>
+<p class="idxkeyword"><a href="togserialnumbercodemethods.html" target="hmcontent"><span class="idxkeyword">TOgSerialNumberCode Methods</span></a></p>
+<p class="idxkeyword"><a href="togserialnumbercodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgSerialNumberCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togspecialcode_component.html" target="hmcontent"><span class="idxkeyword">TOgSpecialCode Component</span></a></p>
+<p class="idxkeyword"><a href="togspecialcodeevents.html" target="hmcontent"><span class="idxkeyword">TOgSpecialCode Events</span></a></p>
+<p class="idxkeyword"><a href="togspecialcodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgSpecialCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togusagecode_component.html" target="hmcontent"><span class="idxkeyword">TOgUsageCode Component</span></a></p>
+<p class="idxkeyword"><a href="togusagecodeevents.html" target="hmcontent"><span class="idxkeyword">TOgUsageCode Events</span></a></p>
+<p class="idxkeyword"><a href="togusagecodemethods.html" target="hmcontent"><span class="idxkeyword">TOgUsageCode Methods</span></a></p>
+<p class="idxkeyword"><a href="togusagecodeproperties.html" target="hmcontent"><span class="idxkeyword">TOgUsageCode Properties</span></a></p>
+<p class="idxkeyword"><a href="togusagecode_decrease.html" target="hmcontent"><span class="idxkeyword">TOgUsageCode.Decrease</span></a></p>
+<a name="U" id="U"></a><p class="idxsection">- U -</p>
+<p class="idxkeyword"><a href="unlocknetaccessfile.html" target="hmcontent"><span class="idxkeyword">UnlockNetAccessFile</span></a></p>
+<p class="idxkeyword"><a href="togprotectexe_unstampexe.html" target="hmcontent"><span class="idxkeyword">UnStampExe</span></a></p>
+</div>
+
+</div> <!-- idxbody --> 
+</div><!-- hminnerbox -->
+</div><!-- hmbox -->
+<script type="text/javascript">
+$(document).ready(function() {
+// Close popups when clicked so they are not orphaned
+$("span.idxlink").click(function() { setTimeout(function(){hmhideLinks();},500)});
+});
+</script>
+</body>
+</html>

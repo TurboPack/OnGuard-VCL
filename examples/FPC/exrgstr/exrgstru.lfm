@@ -1,0 +1,51 @@
+object Form1: TForm1
+  Left = 301
+  Height = 192
+  Top = 218
+  Width = 262
+  Caption = 'Form1'
+  ClientHeight = 192
+  ClientWidth = 262
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  LCLVersion = '0.9.27'
+  object Label1: TLabel
+    Left = 69
+    Height = 14
+    Top = 98
+    Width = 67
+    Alignment = taCenter
+    Caption = 'Registered to:'
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 13
+    Height = 79
+    Top = 10
+    Width = 223
+    Lines.Strings = (
+      'If you can edit this, then your program was '
+      'allowed to run'
+    )
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object CloseBtn: TBitBtn
+    Left = 75
+    Height = 33
+    Top = 116
+    Width = 89
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object OgRegistrationCode1: TOgRegistrationCode
+    OnChecked = OgRegistrationCode1Checked
+    OnGetKey = OgRegistrationCode1GetKey
+    OnGetCode = OgRegistrationCode1GetCode
+    left = 165
+    top = 118
+  end
+end

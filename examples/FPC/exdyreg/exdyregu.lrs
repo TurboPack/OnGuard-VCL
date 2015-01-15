@@ -1,0 +1,34 @@
+{ To jest automatycznie wygenerowany plik zasobów lazarusa }
+
+LazarusResources.Add('TForm1','FORMDATA',[
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3#252#0#6'Height'#3'/'#1#3'Top'#3#138#0#5'W'
+  +'idth'#3#237#1#18'HorzScrollBar.Page'#3#236#1#18'VertScrollBar.Page'#3'.'#1
+  +#11'BorderStyle'#7#8'bsDialog'#7'Caption'#6#17'Days Code Example'#11'Font.He'
+  +'ight'#2#245#9'Font.Name'#6#13'MS Sans Serif'#8'Position'#7#14'poScreenCente'
+  +'r'#0#6'TLabel'#9'StatusLbl'#4'Left'#2#8#6'Height'#2#13#3'Top'#3#6#1#5'Width'
+  +#2'#'#7'Caption'#6#6'Status'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'TL'
+  +'abel'#6'Label1'#4'Left'#3#232#0#6'Height'#2#13#3'Top'#2#14#5'Width'#2'M'#7
+  +'Caption'#6#13'Current code:'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#6'T'
+  +'Label'#7'CodeLbl'#4'Left'#3'@'#1#6'Height'#2#13#3'Top'#2#14#5'Width'#2'q'#7
+  +'Caption'#6#16'0000000000000000'#5'Color'#7#6'clNone'#11'ParentColor'#8#0#0#7
+  +'TButton'#7'CodeBtn'#4'Left'#2#8#6'Height'#2#25#3'Top'#2#8#5'Width'#2'Y'#25
+  +'BorderSpacing.InnerBorder'#2#4#7'Caption'#6#10'Enter Code'#7'OnClick'#7#12
+  +'CodeBtnClick'#8'TabOrder'#2#0#0#0#5'TMemo'#5'Memo1'#4'Left'#2#8#6'Height'#3
+  +#209#0#3'Top'#2'('#5'Width'#3#209#1#5'Color'#7#9'clBtnFace'#13'Lines.Strings'
+  +#1#6'fThe label at the bottom of this form indicates the status of the code.'
+  +' An invalid code indicates that '#6'Ethe code is either the incorrect type '
+  +'or that none has been entered. '#6#0#6'^If the proper code has not been ent'
+  +'ered or the ONGUARD.INI file was deleted, the message will '#6#29'say that '
+  +'the code is invalid.'#6#0#6'YUse the "Enter Code" button to enter a code (t'
+  +'he CODEGEN program can be used to generate '#6#25'the proper "Days" code). '
+  +#6#0#6'\The "Remove Code" button can be used to remove the entered code from'
+  +' the INI file. Doing so '#6'Hwill cause the TOgDaysCode component to report'
+  +' that the code is invalid.'#0#8'ReadOnly'#9#8'TabOrder'#2#1#0#0#7'TBitBtn'#8
+  +'CloseBtn'#4'Left'#3#144#1#6'Height'#2#25#3'Top'#3#0#1#5'Width'#2'K'#4'Kind'
+  +#7#7'bkClose'#9'NumGlyphs'#2#0#8'TabOrder'#2#2#0#0#7'TButton'#9'RemoveBtn'#4
+  +'Left'#3' '#1#6'Height'#2#25#3'Top'#3#0#1#5'Width'#2'a'#25'BorderSpacing.Inn'
+  +'erBorder'#2#4#7'Caption'#6#11'Remove Code'#7'OnClick'#7#14'RemoveBtnClick'#8
+  +'TabOrder'#2#3#0#0#11'TOgDaysCode'#11'OgDaysCode1'#9'OnChecked'#7#11'CodeChe'
+  +'cked'#8'OnGetKey'#7#6'GetKey'#9'OnGetCode'#7#7'GetCode'#12'OnChangeCode'#7
+  +#10'ChangeCode'#4'left'#2#16#3'top'#3#208#0#0#0#0
+]);

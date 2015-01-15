@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="500" height="500" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="toolbar-gradient-box" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="3%" style="stop-color:#ffffff;stop-opacity:1"/>
+            <stop offset="35%" style="stop-color:#0877d1;stop-opacity:1"/>
+        </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="500" height="500" style="fill:url(#toolbar-gradient-box)" />
+</svg>

@@ -1,0 +1,53 @@
+object Form1: TForm1
+  Left = 331
+  Height = 155
+  Top = 225
+  Width = 218
+  HorzScrollBar.Page = 217
+  VertScrollBar.Page = 154
+  ActiveControl = Memo1
+  Caption = 'Usage Code Example'
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Position = poScreenCenter
+  object Label1: TLabel
+    Left = 56
+    Height = 13
+    Top = 72
+    Width = 100
+    Caption = 'Available Runs: 0'
+    Color = clNone
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 59
+    Top = 8
+    Width = 197
+    Lines.Strings = (
+      'If you can edit this, your program '
+      'was '
+      'allowed to run'
+    )
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object CloseBtn: TBitBtn
+    Left = 56
+    Height = 33
+    Top = 89
+    Width = 89
+    Kind = bkClose
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object OgUsageCode2: TOgUsageCode
+    OnChecked = OgUsageCode2Checked
+    OnGetKey = OgUsageCode2GetKey
+    OnGetCode = OgUsageCode2GetCode
+    OnChangeCode = OgUsageCode2ChangeCode
+    left = 88
+    top = 160
+  end
+end
