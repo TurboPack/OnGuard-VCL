@@ -30,25 +30,17 @@
 
 {$I onguard.inc}
 
-unit ogutil;
+unit ogutilFmx;
   {-general constants, types, and utility routines}
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, OLE2, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF KYLIX} Libc, {$ENDIF}
-  {$IFDEF FPC}{$IFDEF UNIX} BaseUnix, {$ENDIF}{$ENDIF}
-  {$IFDEF UsingCLX} Types, {$IFNDEF CONSOLE} QDialogs, {$ENDIF} {$ENDIF}
-  {$IFDEF DELPHI15UP} System.AnsiStrings, {$ENDIF}
-  SysUtils,
-  {$IFDEF DELPHI19UP}
-    {$IFDEF POSIX}Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet, ogposix,{$ENDIF}
-    {$IFDEF IOS}iOSApi.UIKit,{$ENDIF}
-    {$IFDEF ANDROID}androidapi.JNI.JavaTypes, androidapi.JNI.Os,{$ENDIF}
-  {$ENDIF}
-  ogconst {$IFNDEF NoOgSrMgr},  ogsrmgr {$ENDIF} {$IFDEF UseOgJcl}, ogjcl{$ENDIF} ;
+  System.SysUtils
+  {$IFDEF MSWINDOWS}, Winapi.Windows {$ENDIF}
+  {$IFDEF POSIX}, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet, ogposixFmx{$ENDIF}
+  {$IFDEF IOS}, iOSApi.UIKit{$ENDIF}
+  {$IFDEF ANDROID}, androidapi.JNI.JavaTypes, androidapi.JNI.Os{$ENDIF};
 
 const
   DefAutoCheck      = True;
@@ -65,36 +57,22 @@ const
 
 const
   {largest structure that can be created}
-  {$IFDEF Win32}
   MaxStructSize = 1024 * 2000000; {2G}
-  {$ELSE}
-  MaxStructSize = 1024 * 64 - 1;  {64K}
-  {$ENDIF}
 
 type
-  {$IFDEF Win16}
-  DWord      = LongInt;
-  PDWord     = ^DWord;
-  TGUID      = GUID;   {Delphi 1.0 defines it as GUID - Delphi 2.0 defines it as TGUID}
-  AnsiChar   = Char;
-  PAnsiChar  = PChar;
-  {$ENDIF}
-
-  {$IFDEF MACOS}
+  {$IFDEF POSIX}
   DWord      = Cardinal;
   PDWord     = ^DWord;
   {$ENDIF}
 
-  {$IFNDEF FPC}
   PByte         = ^Byte;
   PByteArray    = ^TByteArray;
   TByteArray    = array [0..MaxStructSize div SizeOf(Byte) - 1] of Byte;
-  PLongInt      = ^LongInt;
-  {$ENDIF}
-  PLongIntArray = ^TLongIntArray;
-  TLongIntArray = array [0..MaxStructSize div SizeOf(LongInt) - 1] of LongInt;
+  PInteger      = ^Integer;
+  PIntegerArray = ^TIntegerArray;
+  TIntegerArray = array [0..MaxStructSize div SizeOf(Integer) - 1] of Integer;
 
-  TLongIntRec = record
+  TIntegerRec = record
     case Byte of
       1: (Lo: Word;
           Hi: Word);
@@ -127,12 +105,12 @@ type
            EndDate      : Word);
       1 : (Days         : Word;      {for days code}
            LastAccess   : Word);
-      2 : (RegString    : LongInt);  {for reg code}
-      3 : (SerialNumber : LongInt);  {for serial number code}
+      2 : (RegString    : Integer);  {for reg code}
+      3 : (SerialNumber : Integer);  {for serial number code}
       4 : (UsageCount   : Word;      {for usage count code}            {!!.02}
            LastChange   : Word);                                       {!!.02}
-      5 : (Value        : LongInt);  {for specail codes}
-      6 : (NetIndex     : LongInt);  {for net codes}
+      5 : (Value        : Integer);  {for specail codes}
+      6 : (NetIndex     : Integer);  {for net codes}
   end;
 
 type
@@ -152,8 +130,8 @@ type
   TMD5Digest  = array [0..15] of Byte;
 
   {bit mixing types}
-  T128Bit     = array [0..3] of LongInt;
-  T256Bit     = array [0..7] of LongInt;
+  T128Bit     = array [0..3] of Integer;
+  T256Bit     = array [0..7] of Integer;
 
 const
   DefCodeType      = ctDate;
@@ -196,30 +174,30 @@ function GetDateCodeEnd(const Key : TKey; const Code : TCode) : TDateTime;
 procedure InitDaysCode(const Key : TKey; Days : Word; Expires : TDateTime; var Code : TCode);
 function IsDaysCodeValid(const Key : TKey; const Code : TCode) : Boolean;
 procedure DecDaysCode(const Key : TKey; var Code : TCode);
-function GetDaysCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetDaysCodeValue(const Key : TKey; const Code : TCode) : Integer;
 function IsDaysCodeExpired(const Key : TKey; const Code : TCode) : Boolean;
 
-procedure InitRegCode(const Key : TKey; const RegStr : AnsiString; Expires : TDateTime; var Code : TCode);
+procedure InitRegCode(const Key : TKey; const RegStr : string; Expires : TDateTime; var Code : TCode);
 function IsRegCodeValid(const Key : TKey; const Code : TCode) : Boolean;
 function IsRegCodeExpired(const Key : TKey; const Code : TCode) : Boolean;
-function IsRegCodeRegisteredTo(const Key : TKey; const Code : TCode; const RegStr: AnsiString) : Boolean;
+function IsRegCodeRegisteredTo(const Key : TKey; const Code : TCode; const RegStr: string) : Boolean;
 
-procedure InitSerialNumberCode(const Key : TKey;  Serial : LongInt; Expires : TDateTime; var Code : TCode);
+procedure InitSerialNumberCode(const Key : TKey;  Serial : Integer; Expires : TDateTime; var Code : TCode);
 function IsSerialNumberCodeValid(const Key : TKey; const Code : TCode) : Boolean;
-function GetSerialNumberCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetSerialNumberCodeValue(const Key : TKey; const Code : TCode) : Integer;
 function IsSerialNumberCodeExpired(const Key : TKey; const Code : TCode) : Boolean;
-function IsSerialNumberCodeValidFor(const Key : TKey; const Code : TCode; const Serial: LongInt) : Boolean;
+function IsSerialNumberCodeValidFor(const Key : TKey; const Code : TCode; const Serial: Integer) : Boolean;
 
-procedure InitSpecialCode(const Key : TKey; Value : LongInt; Expires : TDateTime; var Code : TCode);
+procedure InitSpecialCode(const Key : TKey; Value : Integer; Expires : TDateTime; var Code : TCode);
 function IsSpecialCodeValid(const Key : TKey; const Code : TCode) : Boolean;
-function GetSpecialCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetSpecialCodeValue(const Key : TKey; const Code : TCode) : Integer;
 function IsSpecialCodeExpired(const Key : TKey; const Code : TCode) : Boolean;
-function IsSpecialCodeValidFor(const Key : TKey; const Code : TCode; const Value: LongInt) : Boolean;
+function IsSpecialCodeValidFor(const Key : TKey; const Code : TCode; const Value: Integer) : Boolean;
 
 procedure InitUsageCode(const Key : TKey; Count : Word; Expires : TDateTime; var Code : TCode);
 function IsUsageCodeValid(const Key : TKey; const Code : TCode) : Boolean;
 procedure DecUsageCode(const Key : TKey; var Code : TCode);
-function GetUsageCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetUsageCodeValue(const Key : TKey; const Code : TCode) : Integer;
 function IsUsageCodeExpired(const Key : TKey; const Code: TCode) : Boolean;
 {$IFDEF OgUsageUnlimited}
 procedure InitUsageCodeUnlimited(const Key : TKey; var Code : TCode);
@@ -227,19 +205,19 @@ procedure InitUsageCodeUnlimited(const Key : TKey; var Code : TCode);
 
 {generate key routines}
 procedure GenerateRandomKeyPrim(var Key; KeySize : Cardinal);
-procedure GenerateTMDKeyPrim(var Key; KeySize : Cardinal; const Str : AnsiString);
-procedure GenerateMD5KeyPrim(var Key: TKey; const Str : AnsiString);
+procedure GenerateTMDKeyPrim(var Key; KeySize : Cardinal; const Str : string);
+procedure GenerateMD5KeyPrim(var Key: TKey; const Str : string);
 
 {modifier routines}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : LongInt;   {!!.05}
-function GenerateStringModifierPrim(const S : AnsiString) : LongInt;
-function GenerateUniqueModifierPrim : LongInt;
-function GenerateMachineModifierPrim : LongInt;
-function GenerateDateModifierPrim(D : TDateTime) : LongInt;
-procedure ApplyModifierToKeyPrim(Modifier : LongInt; var Key; KeySize : Cardinal);
+function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : Integer;   {!!.05}
+function GenerateStringModifierPrim(const S : string) : Integer;
+function GenerateUniqueModifierPrim : Integer;
+function GenerateMachineModifierPrim : Integer;
+function GenerateDateModifierPrim(D : TDateTime) : Integer;
+procedure ApplyModifierToKeyPrim(Modifier : Integer; var Key; KeySize : Cardinal);
 
 {hash routines}
-function StringHashElf(const Str : AnsiString) : LongInt;
+function StringHashElf(const Str : string) : Integer;
 
 {mixing routines}
 procedure MixBlock(const Matrix : T128Bit; var Block; Encrypt : Boolean);
@@ -249,7 +227,7 @@ function ExpandDate(D : Word) : TDateTime;
 function ShrinkDate(D : TDateTime) : Word;
 
 const
-  BaseDate : LongInt = 35065;  //35065 = 1996-Jan-1
+  BaseDate : Integer = 35065;  //35065 = 1996-Jan-1
 
 
 {$ENDREGION}
@@ -257,53 +235,26 @@ const
 
 function BufferToHex(const Buf; BufSize : Cardinal) : string;
 function BufferToHexBytes(const Buf; BufSize : Cardinal) : string;
-{$IFDEF Win16}
-function GetDiskSerialNumber(Drive : AnsiChar) : LongInt;
-{$ENDIF}
-{$IFDEF LINUX}
-function GetDiskSerialNumber(Drive : AnsiChar) : LongInt;
-function MyHashElf(const Buf;  BufSize : LongInt) : LongInt;
-{$ENDIF}
 function HexStringIsZero(const Hex : string) : Boolean;
 function HexToBuffer(const Hex : string; var Buf; BufSize : Cardinal) : Boolean;
-function Max(A, B : LongInt): LongInt;
-function Min(A, B : LongInt) : LongInt;
+function Max(A, B : Integer): Integer;
+function Min(A, B : Integer) : Integer;
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
 function OgFormatDate(Value : TDateTime) : string;                     {!!.09}
 
-
-{$IFDEF KYLIX}
-function GetDriveType(drive:Integer): Integer;
-function HiWord(I: DWORD):Word;
-function CoCreateGuid(out guid: TGUID): HResult;
-function timeGetTime: DWord;
-{$ENDIF}
-{$IFDEF FPC}
-{$IFDEF LINUX}
-function GetDriveType(drive:Integer): Integer;
-function HiWord(I: DWORD):Word;
-function CoCreateGuid(out guid: TGUID): HResult;
-function timeGetTime: Cardinal;
-{$ENDIF}
-{$IFDEF FREEBSD}
-function GetDriveType(drive:Integer): Integer;
-function HiWord(I: DWORD):Word;
-function CoCreateGuid(out guid: TGUID): HResult;
-function timeGetTime: Cardinal;
-{$ENDIF}
-{$ENDIF}
-
-{$IFNDEF NoOgSrMgr}
-var
-  StrRes : TOgStringResource;                                           {!!.08}
-{$ENDIF}
-
 implementation
 
-{$IFDEF MSWINDOWS}
 uses
-  {$IFDEF DELPHI}{$IFDEF DELPHI3UP} ActiveX; {$ELSE} OLE2; {$ENDIF}{$ENDIF}
+{$IFDEF MSWINDOWS}
+  Winapi.ActiveX,
 {$ENDIF}
+{$IFDEF ANDROID}
+  Androidapi.Helpers,
+{$ENDIF}
+{$IFDEF MACOS}
+  Macapi.CoreFoundation,
+{$ENDIF}
+  System.Character;
 
 {first 2048 bits of Pi in hexadecimal, low to high, without the leading "3"}
 const
@@ -329,7 +280,7 @@ const
 {mixing routines}
 procedure Mix128(var X : T128Bit);
 var
-  AA, BB, CC, DD : LongInt;
+  AA, BB, CC, DD : Integer;
 begin
   AA := X[0];  BB := X[1];  CC := X[2];  DD := X[3];
 
@@ -348,17 +299,17 @@ end;
 {quick (block) mixer routine}
 procedure MixBlock(const Matrix : T128bit; var Block; Encrypt : Boolean);
 const
-  CKeyBox : array [False..True, 0..3, 0..2] of LongInt =
+  CKeyBox : array [False..True, 0..3, 0..2] of Integer =
     (((0, 3, 1), (2, 1, 3), (1, 0, 2), (3, 2, 0)),
      ((3, 2, 0), (1, 0, 2), (2, 1, 3), (0, 3, 1)));
 var
-  Blocks  : array [0..1] of LongInt absolute Block;
-  Work    : LongInt;
-  Right   : LongInt;
-  Left    : LongInt;
-  R       : LongInt;
-  AA, BB  : LongInt;
-  CC, DD  : LongInt;
+  Blocks  : array [0..1] of Integer absolute Block;
+  Work    : Integer;
+  Right   : Integer;
+  Left    : Integer;
+  R       : Integer;
+  AA, BB  : Integer;
+  CC, DD  : Integer;
 begin
   Right := Blocks[0];
   Left := Blocks[1];
@@ -389,10 +340,10 @@ begin
   Blocks[1] := Right;
 end;
 
-function HashElf(const Buf;  BufSize : LongInt) : LongInt;
+function HashElf(const Buf;  BufSize : Integer) : Integer;
 var
   Bytes : TByteArray absolute Buf;
-  I, X  : LongInt;
+  I, X  : Integer;
 begin
   Result := 0;
   for I := 0 to BufSize - 1 do begin
@@ -404,9 +355,12 @@ begin
   end;
 end;
 
-function StringHashElf(const Str : AnsiString) : LongInt;
+function StringHashElf(const Str : string) : Integer;
+var
+  pBytes: TBytes;
 begin
-  Result := HashElf(Str[1], Length(Str));
+  pBytes := TEncoding.ANSI.GetBytes(Str);
+  Result := HashElf(pBytes[0], Length(pBytes));
 end;
 
 {$REGION 'MD5 routines'}
@@ -420,44 +374,10 @@ type
 
 {MD5 routines}
 
-
-{$IFDEF OgPUREPASCAL_ROLX}
 function RolX(I,C: DWord): DWord;
 begin
   Result := (I shl C) or (I shr (32-C));
 end;
-{$ELSE}
-{$IFDEF Win32}
-function RolX(I, C : DWord) : DWord; register;                         {!!.07}
-asm
-  mov  ecx, edx         {get count to cl}
-  rol  eax, cl          {rotate eax by cl}
-end;
-{$ENDIF}
-{$IFDEF Win16}
-function RolX(I, C : DWord) : DWord; assembler;                        {!!.07}
-asm
-  db $66
-  mov  ax,word ptr I    {eax = I}
-  db $66
-  mov  cx,word ptr C    {ecx = C}
-  db $66
-  rol  ax, cl           {rotate eax by cl}
-  db $66
-  push ax               {push eax}
-  {set result}
-  pop  ax               {low word to ax}
-  pop  dx               {high word to dx}
-end;
-{$ENDIF}
-{$IFDEF KYLIX}
-function RolX(I, C : DWord) : DWord; register;                         {!!.07}
-asm
-  mov  ecx, edx         {get count to cl}
-  rol  eax, cl          {rotate eax by cl}
-end;
-{$ENDIF}
-{$ENDIF OgPUREPASCAL_ROLX}
 
 {!!.07}
 procedure Transform(var Buffer : array of DWord;  const InBuf : array of DWord);
@@ -604,12 +524,12 @@ begin
   MD5.State[3] := $10325476;
 end;
 
-procedure UpdateMD5(var Context : TMD5Context;  const Buf;  BufSize : LongInt);
+procedure UpdateMD5(var Context : TMD5Context;  const Buf;  BufSize : Integer);
 var
   MD5    : TMD5ContextEx absolute Context;
   Bytes  : TByteArray absolute Buf;
   InBuf  : array [0..15] of DWord;                                     {!!.07}
-  BufOfs : LongInt;
+  BufOfs : Integer;
   MDI    : Word;
   I      : Word;
   II     : Word;
@@ -633,10 +553,10 @@ begin
     if (MDI = $40) then begin
       II := 0;
       for I := 0 to 15 do begin
-        InBuf[I] := LongInt(MD5.Buf[II + 3]) shl 24 or
-          LongInt(MD5.Buf[II + 2]) shl 16 or
-          LongInt(MD5.Buf[II + 1]) shl 8 or
-          LongInt(MD5.Buf[II]);
+        InBuf[I] := Integer(MD5.Buf[II + 3]) shl 24 or
+          Integer(MD5.Buf[II + 2]) shl 16 or
+          Integer(MD5.Buf[II + 1]) shl 8 or
+          Integer(MD5.Buf[II]);
         Inc(II, 4);
       end;
       Transform(MD5.State, InBuf);
@@ -655,7 +575,7 @@ const
 var
   MD5    : TMD5ContextEx absolute Context;
   InBuf  : array [0..15] of DWord;                                     {!!.07}
-  MDI    : LongInt;
+  MDI    : Integer;
   I      : Word;
   II     : Word;
   PadLen : Word;
@@ -677,10 +597,10 @@ begin
   {append length in bits and transform}
   II := 0;
   for I := 0 to 13 do begin
-    InBuf[I] := (LongInt(MD5.Buf[II + 3]) shl 24) or
-      (LongInt(MD5.Buf[II + 2]) shl 16) or
-      (LongInt(MD5.Buf[II + 1]) shl 8) or
-      LongInt(MD5.Buf[II]);
+    InBuf[I] := (Integer(MD5.Buf[II + 3]) shl 24) or
+      (Integer(MD5.Buf[II + 2]) shl 16) or
+      (Integer(MD5.Buf[II + 1]) shl 8) or
+      Integer(MD5.Buf[II]);
     Inc(II, 4);
   end;
   Transform(MD5.State, InBuf);
@@ -697,7 +617,7 @@ begin
   end;
 end;
 
-function HashMD5(const Buf;  BufSize : LongInt) : TMD5Digest;
+function HashMD5(const Buf;  BufSize : Integer) : TMD5Digest;
 var
   Context : TMD5Context;
 begin
@@ -711,11 +631,11 @@ end;
 {message digest routines}
 type
   TMDContextEx = record
-    DigestIndex : LongInt;
+    DigestIndex : Integer;
     Digest      : array [0..255] of Byte;
-    KeyIndex    : LongInt;
+    KeyIndex    : Integer;
     case Byte of
-      0: (KeyInts : array [0..3] of LongInt);
+      0: (KeyInts : array [0..3] of Integer);
       1: (Key     : TKey);
   end;
   TBlock2048 = array [0..255] of Byte;
@@ -734,13 +654,13 @@ begin
   ContextEx.KeyInts[3] := $55555555;
 end;
 
-procedure UpdateTMD(var Context : TTMDContext; const Buf; BufSize : LongInt);
+procedure UpdateTMD(var Context : TTMDContext; const Buf; BufSize : Integer);
 var
   ContextEx : TMDContextEx absolute Context;
   BufBytes  : TByteArray absolute Buf;
-  AA, BB    : LongInt;
-  CC, DD    : LongInt;
-  I, R      : LongInt;
+  AA, BB    : Integer;
+  CC, DD    : Integer;
+  I, R      : Integer;
 begin
   for I := 0 to BufSize - 1 do
     with ContextEx do begin
@@ -782,7 +702,7 @@ begin
     end;
 end;
 
-procedure FinalizeTMD(var Context : TTMDContext; var Digest; DigestSize : LongInt);
+procedure FinalizeTMD(var Context : TTMDContext; var Digest; DigestSize : Integer);
 const
   Padding : array [0..7] of Byte = (1, 0, 0, 0, 0, 0, 0, 0);
 var
@@ -802,7 +722,7 @@ begin
 end;
 
 {message digest hash}
-procedure HashTMD(var Digest; DigestSize : LongInt; const Buf; BufSize : LongInt);
+procedure HashTMD(var Digest; DigestSize : Integer; const Buf; BufSize : Integer);
 var
   Context : TTMDContext;
 begin
@@ -817,9 +737,8 @@ end;
 
 {$REGION 'Win32 + Win64'}
 {$IFDEF MSWINDOWS}
-{$IFNDEF Win16}
 {!!.05} {added}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : LongInt;
+function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : Integer;
 { Obtains information from:
     - Volume sizes (NOT free space)
     - Volume serial numbers
@@ -877,15 +796,8 @@ var
   UserInfoFound : Boolean;                                           {!!.11}
   Buf     : array [0..1023] of Byte;
   // for ticket #8
-  device  : array [0..2] of AnsiChar;                                {!!.15}
-  subst   : array [0..1023] of AnsiChar;                             {!!.15}
-  {$IFDEF FPC}
-  iController, iDrive, maxController : Integer;
-  BufStr : AnsiString;
-  {$ENDIF}
-  {$IFDEF UseOgJcl}
-  myCPUInfo : TCpuInfo;
-  {$ENDIF}
+  device  : array [0..2] of Char;                                {!!.15}
+  subst   : array [0..1023] of Char;                             {!!.15}
 begin
   Result := 0;
   InitTMD(Context);
@@ -977,23 +889,14 @@ begin
 
   if midNetwork in MachineInfo then begin
     {include network ID}
-	  {$IFNDEF FPC}
     CoCreateGuid(GUID1);
     CoCreateGuid(GUID2);
-	  {$ELSE}
-    CreateGuid(GUID1);
-    CreateGuid(GUID2);
-	  {$ENDIF}
 
     {!!.11}
     { use UuidCreateSequential instead of CoCreateGuid if available }
     hRPCTR4 := LoadLibrary('rpcrt4.dll');
     if (hRPCTR4 <> 0) then begin
-      {$IFNDEF FPC}
       @UuidCreateSequential := GetProcAddress(hRPCTR4, 'UuidCreateSequential');
-      {$ELSE}
-      UuidCreateSequential := TUuidCreateSequential(GetProcAddress(hRPCTR4, 'UuidCreateSequential'));
-      {$ENDIF}
       if Assigned(UuidCreateSequential) then begin
         UuidCreateSequential(@GUID1);
         UuidCreateSequential(@GUID2);
@@ -1013,32 +916,18 @@ begin
 
   if midDrives in MachineInfo then begin
     {include drive specific information}
-    {$IFDEF FPC}
-    maxController := 15;
-    if Win32Platform <> VER_PLATFORM_WIN32_NT then
-      maxController := 0;
-    for iController := 0 to maxController do
-    begin
-      for iDrive := 0 to 4 do
-      begin
-        BufStr := '';
-        if GetIdeDiskSerialNumber(iController,iDrive,BufStr) then
-           if BufStr<>'' then UpdateTMD(Context, BufStr[1], 5);
-      end;
-    end;
-    {$ELSE}
     for Drive := 'C' to 'Z' do begin
 
       if (GetDriveType(PChar(Drive + ':\')) = DRIVE_FIXED) then begin
         // detect SUBST drives and ignore - see ticket #8                        {!!.15}
-        device[0] := AnsiChar(Drive);                                            {!!.15}
+        device[0] := Drive;                                           {!!.15}
         device[1] := ':';                                                        {!!.15}
         device[2] := #0;                                                         {!!.15}
         FillChar(subst, SizeOf(subst), 0);                                       {!!.15}
-        QueryDosDeviceA(device, subst, 1024);                                    {!!.15}
-        OutputDebugString(PChar(Format('CreateMachineID:midDrives %s:\ %s', [Drive, {$IFDEF DELPHI15UP}System.AnsiStrings.StrPas(subst){$ELSE}StrPas(subst){$ENDIF}])));
+        QueryDosDevice(device, subst, 1024);                                    {!!.15}
+        OutputDebugString(PChar(Format('CreateMachineID:midDrives %s:\ %s', [Drive, StrPas(subst)])));
         // SUBST drives return a \??\ prefix                                     {!!.15}
-        if(Copy({$IFDEF DELPHI15UP}System.AnsiStrings.StrPas(subst){$ELSE}StrPas(subst){$ENDIF}, 1, 4)) <> '\??\' then begin                        {!!.15}
+        if(Copy(StrPas(subst), 1, 4)) <> '\??\' then begin                        {!!.15}
           FillChar(Buf, Sizeof(Buf), 0);
           Buf[0] := Byte(Drive);
           {!!.15} {removed cluster information}
@@ -1049,7 +938,6 @@ begin
         end;                                                                     {!!.15}
       end;
     end;
-	  {$ENDIF}
   end;
 
   if midBIOS in MachineInfo then
@@ -1217,18 +1105,6 @@ begin
   end;
 
   {!!.15}
-  {$IFDEF UseOgJcl}
-  if midCPUIDJCL in MachineInfo then
-  begin
-    ogjcl.GetCPUInfo(myCPUInfo);
-    if myCPUInfo.CPUType > 0 then
-    begin
-      //[to do]
-    end;
-  end;
-  {$ENDIF}
-
-  {!!.15}
   if midDomain in MachineInfo then
   begin
     if Ansi then
@@ -1267,322 +1143,28 @@ begin
 
   FinalizeTMD(Context, Result, SizeOf(Result));
 end;
-{$ENDIF Win16}
 {$ENDIF MSWINDOWS}
 {$ENDREGION}
 
-{$REGION 'Win16'}
-{$IFDEF Win16}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet) : LongInt;
-var
-  I       : DWord;
-  RegKey  : DWord;
-  GUID1   : TGUID;
-  GUID2   : TGUID;
-  Drive   : Integer;
-  Context : TTMDContext;
-  Buf     : array [0..1023] of Char;
-begin
-  InitTMD(Context);
-
-  {no user (midUser) information under Win16}
-
-  if midSystem in MachineInfo then begin
-    {include system specific information}
-    I := GetWindowsDirectory(@Buf, Length(Buf));
-    UpdateTMD(Context, Buf, I);
-    I := GetSystemDirectory(@Buf, Length(Buf));
-    UpdateTMD(Context, Buf, I);
-
-    PLongInt(@Buf[0])^ := GetWinFlags;
-    PLongInt(@Buf[4])^ := WinProcs.GetVersion;
-    UpdateTMD(Context, Buf, 8);
-  end;
-
-  if midNetwork in MachineInfo then begin
-    {include network ID}
-    CoCreateGuid(GUID1);
-    CoCreateGuid(GUID2);
-    {check to see if "network" ID is available}
-    if (GUID1.Data4[2] = GUID2.Data4[2]) and
-       (GUID1.Data4[3] = GUID2.Data4[3]) and
-       (GUID1.Data4[4] = GUID2.Data4[4]) and
-       (GUID1.Data4[5] = GUID2.Data4[5]) and
-       (GUID1.Data4[6] = GUID2.Data4[6]) and
-       (GUID1.Data4[7] = GUID2.Data4[7]) then
-      UpdateTMD(Context, GUID1.Data4[2], 6);
-  end;
-
-  if midDrives in MachineInfo then begin
-    {include drive specific information}
-    for Drive := 2 {C} to 25 {Z} do begin
-      if GetDriveType(Drive) = DRIVE_FIXED then begin
-        FillChar(Buf, Sizeof(Buf), 0);
-        Buf[0] := Drive;
-        {!!.06} {removed cluster information}
-        PLongInt(@Buf[1])^ := GetDiskSerialNumber(Chr(Drive+Ord('A')));{!!.06}
-        UpdateTMD(Context, Buf, 5);
-      end;
-    end;
-  end;
-
-  FinalizeTMD(Context, Result, SizeOf(Result));
-end;
-{$ENDIF}
-{$ENDREGION}
-
-{$REGION 'Kylix'}
-{$IFDEF KYLIX}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet) : LongInt;
-var
-  I       : DWord;
-  RegKey  : DWord;
-  GUID1   : TGUID;
-  GUID2   : TGUID;
-  Drive   : Integer;
-  Context : TTMDContext;
-  Buf     : array [0..2047] of Byte;
-  iFileHandle : Integer;
-begin
-  InitTMD(Context);
-
-  {include user specific information}
-  if midUser in MachineInfo then
-  begin
-   //[to do] find some organization specific info
-  end;
-
-  if midSystem in MachineInfo then
-  begin
-    {include system specific information}
-    iFileHandle := FileOpen('/proc/cpuinfo', fmopenRead or fmShareDenyNone);
-    I := FileSeek(iFileHandle,0,2);
-    FileSeek(iFileHandle,0,0);
-    if I < 2047 then
-    begin
-     FileRead(iFileHandle, Buf, I);
-     UpdateTMD(Context, Buf, I);
-    end;
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/version', fmopenRead or fmShareDenyNone);
-    I := FileSeek(iFileHandle,0,2);
-    FileSeek(iFileHandle,0,0);
-    if I < 2047 then
-    begin
-     FileRead(iFileHandle, Buf, I);
-     UpdateTMD(Context, Buf, I);
-    end;
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/osrelease', fmopenRead or fmShareDenyNone);
-    I := FileSeek(iFileHandle,0,2);
-    FileSeek(iFileHandle,0,0);
-    if I < 2047 then
-    begin
-     FileRead(iFileHandle, Buf, I);
-     UpdateTMD(Context, Buf, I);
-    end;
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/hostname', fmopenRead or fmShareDenyNone);
-    I := FileSeek(iFileHandle,0,2);
-    FileSeek(iFileHandle,0,0);
-    if I < 2047 then
-    begin
-     FileRead(iFileHandle, Buf, I);
-     UpdateTMD(Context, Buf, I);
-    end;
-    FileClose(iFileHandle);
-  end;
-
-  if midNetwork in MachineInfo then
-  begin
-    {include network ID}
-    CoCreateGuid(GUID1);
-    CoCreateGuid(GUID2);
-    {check to see if "network" ID is available}
-    if (GUID1.D4[2] = GUID2.D4[2]) and
-       (GUID1.D4[3] = GUID2.D4[3]) and
-       (GUID1.D4[4] = GUID2.D4[4]) and
-       (GUID1.D4[5] = GUID2.D4[5]) and
-       (GUID1.D4[6] = GUID2.D4[6]) and
-       (GUID1.D4[7] = GUID2.D4[7]) then
-      UpdateTMD(Context, GUID1.D4[2], 6);
-  end;
-
-  if midDrives in MachineInfo then
-  begin
-    {include drive specific information}
-    for Drive := 2 {C} to 25 {Z} do begin
-      if GetDriveType(Drive) = 3 {DRIVE_FIXED} then begin
-        FillChar(Buf, Sizeof(Buf), 0);
-        Buf[0] := Drive;
-        {!!.06} {removed cluster information}
-        PLongInt(@Buf[1])^ := GetDiskSerialNumber(Chr(Drive+Ord('A')));{!!.06}
-        UpdateTMD(Context, Buf, 5);
-      end;
-    end;
-  end;
-
-  FinalizeTMD(Context, Result, SizeOf(Result));
-end;
-{$ENDIF}
-{$ENDREGION}
-
-{$REGION 'FPC-UNIX'}
-{$IFDEF FPC}
-{$IFDEF UNIX}
-{$NOTE Make sure we have some FreeBSD and MacOSX support too at some point }
-{ We now assume Linux is used }
-function CreateMachineID(MachineInfo : TEsMachineInfoSet) : LongInt;
-var
-  I       : LongInt;
-  RegKey  : DWord;
-  GUID1   : TGUID;
-  GUID2   : TGUID;
-  Drive   : Integer;
-  Context : TTMDContext;
-  Buf     : array [0..2047] of Byte;
-  sl: TStringList;
-  iFileHandle : LongInt;
-  s: string;
-
-  function lGetUnixUserName: string;
-  begin
-    // the first two are used when run from a normal login shell
-    Result := GetEnvironmentVariable('USERNAME');
-    if Result = '' then
-      Result := GetEnvironmentVariable('USER');
-    // Used if program is run from cron jobs
-    if Result = '' then
-      Result := GetEnvironmentVariable('LOGNAME');
-  end;
-
-begin
-  InitTMD(Context);
-
-  {include user specific information}
-  if midUser in MachineInfo then
-  begin
-    // There is no organization specific info, so lets use the user login name
-    s := lGetUnixUserName;
-    I := Length(s);
-    if i > 2048 then
-    begin
-      s := Copy(s, 1, 2048);  // only first 2048 characters
-      i := 2048;
-    end;
-    FillChar(Buf, Sizeof(Buf), 0);
-    Move(s[1], Buf, I);
-    UpdateTMD(Context, Buf, I);
-  end;
-
-  if midSystem in MachineInfo then
-  begin
-    {include system specific information}
-    iFileHandle := FileOpen('/proc/cpuinfo', fmopenRead or fmShareDenyNone);
-    I := FileRead(iFileHandle, Buf,2048);
-    if I > 0 then
-    begin
-      sl := TStringList.Create;
-      try
-        SetLength(s, Length(Buf));
-        Move(Buf, s[1], Length(Buf));
-        sl.Text := s;
-        { two cpu properties change between reboot. Blank them out }
-        for i := 0 to sl.Count-1 do
-        begin
-          if Pos('cpu MHz', sl[i]) > 0 then
-            sl[i] := 'cpu MHz'
-          else if Pos('bogomips', sl[i]) > 0 then
-            sl[i] := 'bogomips';
-        end;
-        s := sl.Text;
-        { place new data into Buf buffer }
-        FillChar(Buf, Sizeof(Buf), 0);
-        Move(s[1], Buf, Length(s));
-        UpdateTMD(Context, Buf, I-1);
-      finally
-        sl.Free;
-      end;
-    end;
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/version', fmopenRead or fmShareDenyNone);
-    I := FileRead(iFileHandle, Buf, 2048);
-    if I > 0 then  UpdateTMD(Context, Buf, I-1);
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/osrelease', fmopenRead or fmShareDenyNone);
-    I := FileRead(iFileHandle, Buf, 2048);
-    if I > 0 then  UpdateTMD(Context, Buf, I-1);
-    FileClose(iFileHandle);
-
-    iFileHandle := FileOpen('/proc/sys/kernel/hostname', fmopenRead or fmShareDenyNone);
-    I := FileRead(iFileHandle, Buf, 2048);
-    if I > 0 then  UpdateTMD(Context, Buf, I-1);
-    FileClose(iFileHandle);
-  end;
-
-  if midNetwork in MachineInfo then
-  begin
-    {include network ID}
-    CreateGuid(GUID1);
-    CreateGuid(GUID2);
-    {check to see if "network" ID is available}
-    if (GUID1.D4[2] = GUID2.D4[2]) and
-       (GUID1.D4[3] = GUID2.D4[3]) and
-       (GUID1.D4[4] = GUID2.D4[4]) and
-       (GUID1.D4[5] = GUID2.D4[5]) and
-       (GUID1.D4[6] = GUID2.D4[6]) and
-       (GUID1.D4[7] = GUID2.D4[7]) then
-      UpdateTMD(Context, GUID1.D4[2], 6);
-  end;
-
-  // TODO: This midDrives code is rubbish and doesn't work with SATA or SCSI drives.
-(*
-  if midDrives in MachineInfo then
-  begin
-    {include drive specific information}
-    for Drive := 2 {C} to 25 {Z} do begin
-      if GetDriveType(Drive) = 3 {DRIVE_FIXED} then begin
-        FillChar(Buf, Sizeof(Buf), 0);
-        Buf[0] := Drive;
-        PLongInt(@Buf[1])^ := GetDiskSerialNumber(Chr(Drive+Ord('A')));
-        UpdateTMD(Context, Buf, 5);
-      end;
-    end;
-  end;
-*)
-
-  FinalizeTMD(Context, Result, SizeOf(Result));
-end;
-
-{$ENDIF}
-{$ENDIF}
-{$ENDREGION}
-
-{$REGION 'Delphi-POSIX: MACOS LINUX IOS ANDROID'}
-{$IFDEF DELPHI19UP}
+{$REGION 'Delphi-POSIX: MACOS IOS ANDROID'}
 {$IFDEF POSIX}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : LongInt;
+function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : Integer;
 var
   Context : TTMDContext;
   Buf     : array [0..2047] of Byte;
 
-  {$IF defined(MACOS) or defined(LINUX)}
+  {$IF defined(MACOS)}
   ifap, Next : pifaddrs;
   sdp : sockaddr_dl;
   {$ENDIF}
 
   {$IFDEF IOS}
   Device : UIDevice;
-  ID : UTF8String absolute Buf;
+  ID : string absolute Buf;
   {$ENDIF}
 
   {$IFDEF ANDROID}
-  ID: String absolute Buf;
+  ID: string absolute Buf;
   {$ENDIF}
 
 
@@ -1607,8 +1189,8 @@ begin
   begin
     {$IFDEF IOS}
     // see https://developer.apple.com/library/ios/documentation/uikit/reference/UIDevice_Class/Reference/UIDevice.html
-    ID := Device.identifierForVendor.UUIDString.UTF8String;
-    UpdateTMD(Contect, Buf, Length(ID));
+    ID := PChar(Device.identifierForVendor.UUIDString.UTF8String);
+    UpdateTMD(Context, Buf, Length(ID));
     {$ENDIF}
 
     {$IFDEF ANDROID}
@@ -1621,7 +1203,7 @@ begin
     ID := JStringToString(TJBuild.JavaClass.DEVICE);
     UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
     ID := JStringToString(TJBuild.JavaClass.DISPLAY);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char))));
+    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
     ID := JStringToString(TJBuild.JavaClass.HARDWARE);
     UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
     ID := JStringToString(TJBuild.JavaClass.HOST);
@@ -1676,7 +1258,7 @@ begin
   if midNetMAC in MachineInfo then
   begin
     // not available in IOS 7 and later
-    {$IF defined(MACOS) or defined(LINUX)}
+    {$IF defined(MACOS)}
 
     if getifaddrs(ifap)=0 then
     begin
@@ -1690,7 +1272,7 @@ begin
                 sdp := psockaddr_dl(Next.ifa_addr)^;
                 if sdp.sdl_type = IFT_ETHER then
                 begin
-                  Move(Pointer(PAnsiChar(@sdp.sdl_data[0]) + sdp.sdl_nlen)^, Buf, 6);
+                  Move(Pointer(Byte(@sdp.sdl_data[0]) + sdp.sdl_nlen)^, Buf, 6);
                   UpdateTMD(Context, Buf, 6);
                 end;
               end;
@@ -1716,7 +1298,6 @@ begin
   FinalizeTMD(Context, Result, SizeOf(Result));
 end;
 {$ENDIF POSIX}
-{$ENDIF DELPHI19UP}
 {$ENDREGION}
 
 
@@ -1734,62 +1315,62 @@ begin
     Bytes[I] := Random(256);
 end;
 
-procedure GenerateTMDKeyPrim(var Key; KeySize: Cardinal; const Str: AnsiString);
+procedure GenerateTMDKeyPrim(var Key; KeySize: Cardinal; const Str: string);
 var
   I  : Integer;
-  S2 : AnsiString;
+  S2 : string;
+  pBytes: TBytes;
 begin
   {strip accented characters from the string}                          {!!.06}
   S2 := Str;                                                           {!!.06}
-  for I := Length(S2) downto 1 do                                      {!!.06}
-    if Ord(S2[I]) > 127 then                                           {!!.06}
-      Delete(S2, I, 1);                                                {!!.06}
+  for I := S2.Length - 1 downto 0 do                                   {!!.06}
+    if Ord(S2.Chars[I]) > 127 then                                     {!!.06}
+      S2.Remove(I, 1);                                                 {!!.06}
 
-  HashTMD(Key, KeySize, S2[1], Length(S2));                            {!!.06}
+  pBytes := TEncoding.ANSI.GetBytes(S2);
+  HashTMD(Key, KeySize, pBytes[0], Length(pBytes));                    {!!.06}
 end;
 
-procedure GenerateMD5KeyPrim(var Key: TKey; const Str: AnsiString);
+procedure GenerateMD5KeyPrim(var Key: TKey; const Str: string);
 var
   D : TMD5Digest;
   I  : Integer;
-  S2 : AnsiString;
+  S2 : string;
+  pBytes: TBytes;
 begin
   {strip accented characters from the string}                          {!!.06}
   S2 := Str;                                                           {!!.06}
-  for I := Length(S2) downto 1 do                                      {!!.06}
-    if Ord(S2[I]) > 127 then                                           {!!.06}
-      Delete(S2, I, 1);                                                {!!.06}
+  for I := S2.Length - 1 downto 0 do                                   {!!.06}
+    if Ord(S2.Chars[I]) > 127 then                                     {!!.06}
+      S2.Remove(I, 1);                                                 {!!.06}
 
-  D := HashMD5(S2[1], Length(S2));                                     {!!.06}
+  pBytes := TEncoding.ANSI.GetBytes(S2);
+  D := HashMD5(pBytes[0], Length(pBytes));                             {!!.06}
   Key := TKey(D);
 end;
 {$ENDREGION}
 
 {$REGION 'modifier routines'}
 {modifier routines}
-function GenerateStringModifierPrim(const S : AnsiString) : LongInt;
+function GenerateStringModifierPrim(const S : string) : Integer;
 var
   I   : Integer;                                                       {!!.06}
-  Sig : array [0..4] of AnsiChar;
-  S2  : AnsiString;                                                        {!!.06}
+  Sig : array [0..4] of Char;
+  S2  : string;                                                        {!!.06}
 begin
   FillChar(Sig, SizeOf(Sig), 0);
 
   {strip accented characters from the string}                          {!!.06}
   S2 := S;                                                             {!!.06}
-  for I := Length(S2) downto 1 do                                      {!!.06}
-    if Ord(S2[I]) > 127 then                                           {!!.06}
-      Delete(S2, I, 1);                                                {!!.06}
+  for I := S2.Length - 1 downto 0 do                                   {!!.06}
+    if Ord(S2.Chars[I]) > 127 then                                     {!!.06}
+      S2.Remove(I, 1);                                                 {!!.06}
 
-  {$IFDEF DELPHI15UP}
-  System.AnsiStrings.StrPLCopy(Sig, AnsiString(System.AnsiStrings.AnsiUpperCase(S2)), Min(4, Length(S2)));               {!!.06}
-  {$ELSE}
-  StrPLCopy(Sig, AnsiString(AnsiUpperCase(S2)), Min(4, Length(S2)));               {!!.06}
-  {$ENDIF}
-  Result := PLongInt(@Sig[0])^;
+  StrPLCopy(Sig, S2.ToUpper, Min(4, S2.Length));                       {!!.06}
+  Result := PInteger(@Sig[0])^;
 end;
 
-function GenerateUniqueModifierPrim : LongInt;
+function GenerateUniqueModifierPrim : Integer;
 var
   ID : TGUID;
 begin
@@ -1799,18 +1380,18 @@ begin
 end;
 
 {!!.05} {revised}
-function GenerateMachineModifierPrim : LongInt;
+function GenerateMachineModifierPrim : Integer;
 begin
   Result := CreateMachineID([midUser, midSystem, {midNetwork,} midDrives]);
 end;
 
-function GenerateDateModifierPrim(D : TDateTime) : LongInt;
+function GenerateDateModifierPrim(D : TDateTime) : Integer;
 begin
   Result := Trunc(D);
-  TLongIntRec(Result).Hi := TLongIntRec(Result).Lo xor $AAAA;
+  TIntegerRec(Result).Hi := TIntegerRec(Result).Lo xor $AAAA;
 end;
 
-procedure ApplyModifierToKeyPrim(Modifier : LongInt; var Key; KeySize : Cardinal);
+procedure ApplyModifierToKeyPrim(Modifier : Integer; var Key; KeySize : Cardinal);
 begin
   if Modifier <> 0 then
     XorMem(Key, Modifier, Min(SizeOf(Modifier), KeySize));
@@ -1847,7 +1428,7 @@ end;
 function ExpandDate(D : Word) : TDateTime;
 begin
   if D > 0 then
-    Result := LongInt(D) + BaseDate
+    Result := Integer(D) + BaseDate
   else
     Result := EncodeDate(9999, 1, 1);
 end;
@@ -2000,7 +1581,7 @@ end;
 
 procedure DecDaysCode(const Key : TKey; var Code : TCode);
 var
-  X : LongInt;
+  X : Integer;
 begin
   MixBlock(T128bit(Key), Code, False);
   X := ShrinkDate(Date);
@@ -2012,7 +1593,7 @@ begin
   MixBlock(T128bit(Key), Code, True);
 end;
 
-function GetDaysCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetDaysCodeValue(const Key : TKey; const Code : TCode) : Integer;
 var
   Work : TCode;
 begin
@@ -2042,19 +1623,19 @@ end;
 {$REGION '*** registration code ***'}
 {*** registration code ***}
 
-procedure InitRegCode(const Key : TKey; const RegStr : AnsiString; Expires : TDateTime; var Code : TCode);
+procedure InitRegCode(const Key : TKey; const RegStr : string; Expires : TDateTime; var Code : TCode);
 var
-  S : AnsiString;                                                          {!!.06}
+  S :string;                                                          {!!.06}
   I : Integer;                                                         {!!.06}
 begin
   Code.CheckValue := RegCheckCode;
   Code.Expiration := ShrinkDate(Expires);
   {strip accented characters from the registration string}             {!!.06}
   S := RegStr;                                                         {!!.06}
-  for I := Length(S) downto 1 do                                       {!!.06}
-    if Ord(S[I]) > 127 then                                            {!!.06}
-      Delete(S, I, 1);                                                 {!!.06}
-  Code.RegString := StringHashElf(AnsiString(AnsiUpperCase(S)));                   {!!.06}
+  for I := S.Length -1 downto 0 do                                     {!!.06}
+    if Ord(S.Chars[I]) > 127 then                                      {!!.06}
+      S.Remove(I, 1);                                                  {!!.06}
+  Code.RegString := StringHashElf(AnsiUpperCase(S));                   {!!.06}
   MixBlock(T128bit(Key), Code, True);
 end;
 
@@ -2076,22 +1657,21 @@ begin
   Result := ExpandDate(Work.Expiration) < Date;
 end;
 
-function IsRegCodeRegisteredTo(const Key : TKey; const Code : TCode; const RegStr: AnsiString) : Boolean;
+function IsRegCodeRegisteredTo(const Key : TKey; const Code : TCode; const RegStr: string) : Boolean;
 var
   Work : TCode;
-  S : AnsiString;
+  S : string;
   I : Integer;
-  v : LongInt;
+  v : Integer;
 begin
-  Result := False;
   Work := Code;
   MixBlock(T128bit(Key), Work, False);
   {strip accented characters from the registration string}             {!!.06}
   S := RegStr;                                                         {!!.06}
-  for I := Length(S) downto 1 do                                       {!!.06}
-    if Ord(S[I]) > 127 then                                            {!!.06}
-      Delete(S, I, 1);                                                 {!!.06}
-  v := StringHashElf(AnsiString(AnsiUpperCase(S)));
+  for I := S.Length - 1 downto 0 do                                    {!!.06}
+    if Ord(S.Chars[I]) > 127 then                                      {!!.06}
+      S.Remove(I, 1);                                                  {!!.06}
+  v := StringHashElf(S.ToUpper);
   Result := v = Work.RegString;
 end;
 {$ENDREGION}
@@ -2099,7 +1679,7 @@ end;
 {$REGION '*** serial number code ***'}
 {*** serial number code ***}
 
-procedure InitSerialNumberCode(const Key : TKey; Serial : LongInt; Expires : TDateTime; var Code : TCode);
+procedure InitSerialNumberCode(const Key : TKey; Serial : Integer; Expires : TDateTime; var Code : TCode);
 begin
   Code.CheckValue := SerialCheckCode;
   Code.Expiration := ShrinkDate(Expires);
@@ -2116,7 +1696,7 @@ begin
   Result := (Work.CheckValue = SerialCheckCode);
 end;
 
-function GetSerialNumberCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetSerialNumberCodeValue(const Key : TKey; const Code : TCode) : Integer;
 var
   Work : TCode;
 begin
@@ -2137,7 +1717,7 @@ begin
   Result := ExpandDate(Work.Expiration) < Date;
 end;
 
-function IsSerialNumberCodeValidFor(const Key : TKey; const Code : TCode; const Serial: LongInt) : Boolean;
+function IsSerialNumberCodeValidFor(const Key : TKey; const Code : TCode; const Serial: Integer) : Boolean;
 var
   Work : TCode;
 begin
@@ -2151,7 +1731,7 @@ end;
 {$REGION '*** special code ***'}
 {*** special code ***}
 
-procedure InitSpecialCode(const Key : TKey; Value : LongInt; Expires : TDateTime; var Code : TCode);
+procedure InitSpecialCode(const Key : TKey; Value : Integer; Expires : TDateTime; var Code : TCode);
 begin
   Code.CheckValue := SpecialCheckCode;
   Code.Expiration := ShrinkDate(Expires);
@@ -2168,7 +1748,7 @@ begin
   Result := (Work.CheckValue = SpecialCheckCode);
 end;
 
-function GetSpecialCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetSpecialCodeValue(const Key : TKey; const Code : TCode) : Integer;
 var
   Work : TCode;
 begin
@@ -2189,7 +1769,7 @@ begin
   Result := ExpandDate(Work.Expiration) < Date;
 end;
 
-function IsSpecialCodeValidFor(const Key : TKey; const Code : TCode; const Value: LongInt) : Boolean;
+function IsSpecialCodeValidFor(const Key : TKey; const Code : TCode; const Value: Integer) : Boolean;
 var
   Work : TCode;
 begin
@@ -2243,7 +1823,7 @@ begin
   MixBlock(T128bit(Key), Code, True);
 end;
 
-function GetUsageCodeValue(const Key : TKey; const Code : TCode) : LongInt;
+function GetUsageCodeValue(const Key : TKey; const Code : TCode) : Integer;
 var
   Work : TCode;
 begin
@@ -2293,7 +1873,7 @@ end;
 function BufferToHex(const Buf; BufSize : Cardinal) : string;
 var
   Bytes : TByteArray absolute Buf;
-  I     : LongInt;
+  I     : Integer;
 begin
   Result := '';
   for I := 0 to BufSize - 1 do
@@ -2303,228 +1883,46 @@ end;
 function BufferToHexBytes(const Buf;  BufSize : Cardinal) : string;
 var
   Bytes  : TByteArray absolute Buf;
-  I      : LongInt;
+  I      : Integer;
   HexStr : string;
 begin
-  {$IFDEF BCB}
-  HexStr := '0x';
-  {$ELSE}
   HexStr := '$';
-  {$ENDIF}
   Result := HexStr + IntToHex(Bytes[0], 2);
   for I := 1 to BufSize - 1 do
     Result := Result + ',' + HexStr + IntToHex(Bytes[I], 2);
 end;
 
-{$REGION 'function GetDiskSerialNumber - multiplatform'}
-{$IFDEF Win16}
-type
-  PMediaIDRec = ^TMediaIDRec;
-  TMediaIDRec = packed record
-    InfoLevel    : Word;                      {reserved for future use}
-    SerialNumber : LongInt;                   {disk serial number}
-    VolumeLabel  : array[0..10] of AnsiChar;  {disk volume label}
-    FileSystemID : array[0..7] of AnsiChar;   {string for internal use by the OS}
-  end;
-
-type
-  DPMIRegisters = record
-    DI : LongInt;
-    SI : LongInt;
-    BP : LongInt;
-    Reserved : LongInt;
-    case integer of
-    1 : ( BX : LongInt;
-          DX : LongInt;
-          CX : LongInt;
-          AX : LongInt;
-          Flags : Word;
-          ES : Word;
-          DS : Word;
-          FS : Word;
-          GS : Word;
-          IP : Word;
-          CS : Word;
-          SP : Word;
-          SS : Word );
-    2 : ( BL, BH : Byte; EBXH : Word;
-          DL, DH : Byte; EDXH : Word;
-          CL, CH : Byte; ECXH : Word;
-          AL, AH : Byte; EAXH : Word );
-  end;
-
-  OS = record
-    O, S : Word;
-  end;
-
-function GetCPUFlags : Byte; assembler;
-asm
-  lahf
-  mov    al,ah
-end;
-
-function SimulateRealModeInt(IntNo : Byte; var Regs : DPMIRegisters) : Word; assembler;
-asm
-  xor     bx,bx
-  mov     bl,IntNo
-  xor     cx,cx       {StackWords = 0}
-  les     di,Regs
-  mov     ax,0300h
-  int     31h
-  jc      @@ExitPoint
-
-  xor     ax,ax
-@@ExitPoint:
-end;
-
-function GetMediaID(Drive : Byte; var MediaIDRec : TMediaIDRec) : Boolean;
-type
-  DoubleWord = record LoWord, HiWord : Word; end;
-var
-  L      : LongInt;
-  RP, PP : PMediaIDRec;
-  Regs   : DPMIRegisters;
-begin
-  Result := False;
-  L := GlobalDosAlloc(SizeOf(TMediaIDRec));
-  if L = 0 then
-    Exit;
-  try
-    RP := Ptr(DoubleWord(L).HiWord, 0);
-    PP := Ptr(DoubleWord(L).LoWord, 0);
-    FillChar(Regs, SizeOf(Regs), 0);
-    with Regs do begin
-      DS := OS(RP).S;
-      DX := OS(RP).O;
-      AX := $440D;
-      BX := Drive;
-      CX := $0866;
-      Flags := GetCPUFlags;
-    end;
-    SimulateRealModeInt($21, Regs);
-    if not Odd(Regs.Flags) then begin
-      MediaIDRec := PP^;
-      Result := True;
-    end;
-  finally
-    GlobalDosFree(OS(PP).S);
-  end;
-end;
-
-function GetDiskSerialNumber(Drive : Char) : LongInt;
-var
-  MR : TMediaIDRec;
-begin
-  if GetMediaID(Ord(UpCase(Drive))-Ord('A')+1 ,MR) then
-    Result := MR.SerialNumber
-  else
-    Result := -1;
-end;
-{$ENDIF}
-
-{$IFDEF LINUX}
-function MyHashElf(const Buf;  BufSize : LongInt) : LongInt;
-var
-  Bytes : TByteArray absolute Buf;
-  I, X  : LongInt;
-begin
-  Result := 0;
-  for I := 0 to BufSize - 1 do begin
-    Result := (Result shl 4) + Bytes[I];
-    X := Result and $F0000000;
-    if (X <> 0) then
-      Result := Result xor (X shr 24);
-    Result := Result and (not X);
-  end;
-end;
-
-function GetDiskSerialNumber(Drive : AnsiChar) : LongInt;
-var
-   boot_partition : String;
-   drive_model : String;
-   iFileHandle : Integer;
-   Buffer : PChar;
-   iFileSize : Integer;
-begin
-    // read /proc/cmdline
-    iFileHandle := FileOpen('/proc/cmdline', fmOpenRead or fmShareDenyNone);
-    iFileSize := FileSeek(iFileHandle,0,2);
-    Buffer := PChar(AllocMem(iFileSize+1));
-    FileSeek(iFileHandle,0,0);
-    FileRead(iFileHandle, Buffer^, iFileSize);
-    boot_partition := StrPas(Buffer);
-    FileClose(iFileHandle);
-    FreeMem(Buffer);
-
-    // get root=/dev/? into boot_partition
-    if Pos('root=/dev/', boot_partition) > 0 then
-    begin
-     Delete(boot_partition, 1, Pos('root=/dev/', boot_partition)-1);
-     if (Pos(' ', boot_partition) > 0) then
-     begin
-      boot_partition := Trim(LeftStr(boot_partition, Pos(' ', boot_partition)));
-      Delete(boot_partition, 1, 10);
-      boot_partition := LeftStr(boot_partition,3);
-     end;
-    end
-    else
-    begin
-     boot_partition := 'hda';
-    end;
-
-    if boot_partition[1] = 'h' then boot_partition := '/ide/' + boot_partition;
-    if boot_partition[1] = 's' then boot_partition := '/scsi/' + boot_partition;
-
-    // read /proc/ide/boot_partition/model
-    iFileHandle := FileOpen('/proc' + boot_partition + '/model', fmOpenRead or fmShareDenyNone);
-    iFileSize := FileSeek(iFileHandle,0,2);
-    Buffer := PChar(AllocMem(iFileSize+1));
-    FileSeek(iFileHandle,0,0);
-    FileRead(iFileHandle, Buffer^, iFileSize);
-    drive_model := StrPas(Buffer);
-    FileClose(iFileHandle);
-    FreeMem(Buffer);
-
-    // create a hash value of the drive_model to return an integer
-    Result := MyHashElf(drive_model[1], Length(drive_model));
-end;
-{$ENDIF}
-
-{$IFDEF FreeBSD}
-function GetDiskSerialNumber(Drive : AnsiChar) : LongInt;
-begin
-  {$NOTE: Still to be implemented }
-  Result := 0;
-end;
-
-function MyHashElf(const Buf;  BufSize : LongInt) : LongInt;
-begin
-  Result := 0;
-end;
-{$ENDIF FreeBSD}
-{$ENDREGION}
-
 function HexStringIsZero(const Hex : string) : Boolean;
 var
-  I   : Integer;
   Str : string;
+  pChars: TArray<Char>;
+  cChar: Char;
+  cBuffer: Char;
 begin
   Result := False;
 
   // check if input is a blank string
   if Hex = '' then Exit;
 
+  pChars := TArray<Char>.Create('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F');
   Str := '';
-  for I := 1 to Length(Hex) do
-    if Upcase(Hex[I]) in ['0'..'9', 'A'..'F'] then
-      Str := Str + Hex[I];
+  for cChar in Hex do
+  begin
+    cBuffer := cChar.ToUpper;
+    if cBuffer.IsInArray(pChars) then
+      Str := Str + cChar;
+  end;
 
   // check if string is blank
-  if Str = '' then Exit;
+  if Str = '' then
+    Exit;
 
-  for I := 1 to Length(Str) do
-    if Str[I] <> '0' then
+  for cChar in Str do
+  begin
+    if cChar <> '0' then
       Exit;
+  end;
 
   Result := True;
 end;
@@ -2535,6 +1933,9 @@ var
   Bytes : TByteArray absolute Buf;
   I, C  : Integer;
   Str   : string;
+  pChars: TArray<Char>;
+  cChar: Char;
+  cBuffer: Char;
 begin
   Result := False;
 
@@ -2542,9 +1943,14 @@ begin
   if Hex = '' then Exit;
 
   Str := '';
-  for I := 1 to Length(Hex) do
-    if Upcase(Hex[I]) in ['0'..'9', 'A'..'F'] then
-      Str := Str + Hex[I];
+  pChars := TArray<Char>.Create('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'A', 'B', 'C', 'D', 'E', 'F');
+  for cChar in Hex do
+  begin
+    cBuffer := cChar.ToUpper;
+    if cBuffer.IsInArray(pChars) then
+      Str := Str + cChar;
+  end;
 
   // check if Str is a blank string
   if Str = '' then Exit;
@@ -2553,7 +1959,7 @@ begin
     Exit;
 
   for I := 0 to BufSize - 1 do begin
-    Val('$' + Copy(Str, (I shl 1) + 1, 2), Bytes[I], C);
+    Val('$' + Copy(Str, (I shl 1) + Low(string), 2), Bytes[I], C);
     if (C <> 0) then
       Exit;
   end;
@@ -2561,158 +1967,22 @@ begin
   Result := True;
 end;
 
-{$REGION 'function Max'}
-{$IFNDEF OgPUREPASCAL_Max}
-{$IFDEF Win32}
-function Max(A, B : LongInt) : LongInt; register;
-asm
-  cmp  eax, edx
-  jge  @Exit
-  mov  eax, edx
-@Exit:
-end;
-{$ENDIF}
-{$ELSE}
-function Max(A, B : LongInt) : LongInt;
+function Max(A, B : Integer) : Integer;
 begin
   if A > B then
     Result := A
   else
     Result := B;
 end;
-{$ENDIF}
-{$ENDREGION}
 
-{$REGION 'function Min'}
-{$IFNDEF OgPUREPASCAL_Min}
-{$IFDEF Win32}
-function Min(A, B : LongInt) : LongInt; register;
-asm
-  cmp  eax, edx
-  jle  @Exit
-  mov  eax, edx
-@Exit:
-end;
-{$ENDIF}
-{$ELSE}
-function Min(A, B : LongInt) : LongInt;
+function Min(A, B : Integer) : Integer;
 begin
   if A < B then
     Result := A
   else
     Result := B;
 end;
-{$ENDIF}
-{$ENDREGION}
 
-{$REGION 'procedure XorMem'}
-{$IFNDEF OgPUREPASCAL_XorMem}
-{$IFDEF MSWINDOWS}
-{$IFNDEF Win16}
-procedure XorMem(var Mem1; const Mem2; Count : Cardinal); register;
-asm
-  push esi
-  push edi
-
-  mov  esi, eax         //esi = Mem1
-  mov  edi, edx         //edi = Mem2
-
-  push ecx              //save byte count
-  shr  ecx, 2           //convert to dwords
-  jz   @Continue
-
-  cld
-@Loop1:                 //xor dwords at a time
-  mov  eax, [edi]
-  xor  [esi], eax
-  add  esi, 4
-  add  edi, 4
-  dec  ecx
-  jnz  @Loop1
-
-@Continue:              //handle remaining bytes (3 or less)
-  pop  ecx
-  and  ecx, 3
-  jz   @Done
-
-@Loop2:                 //xor remaining bytes
-  mov  al, [edi]
-  xor  [esi], al
-  inc  esi
-  inc  edi
-  dec  ecx
-  jnz  @Loop2
-
-@Done:
-  pop  edi
-  pop  esi
-end;
-{$ENDIF}
-{$ENDIF}
-{!!.02} {revised}
-{$IFDEF Win16}
-procedure XorMem(var Mem1; const Mem2; Count : Cardinal); assembler;
-asm
-  push  ds
-  push  es
-  lds   si, Mem2
-  les   di, Mem1
-  mov   cx, Count
-  jz    @Done
-  cld
-@Loop1:
-  mov  al, ds:[si]
-  xor  es:[di], al
-  inc  si
-  inc  di
-  dec  cx
-  jnz  @Loop1
-@Done:
-  pop  es
-  pop  ds
-end;
-{$ENDIF}
-{$IFDEF LINUX}
-procedure XorMem(var Mem1; const Mem2; Count : Cardinal); register;
-asm
-  push esi
-  push edi
-
-  mov  esi, eax         //esi = Mem1
-  mov  edi, edx         //edi = Mem2
-
-  push ecx              //save byte count
-  shr  ecx, 2           //convert to dwords
-  jz   @Continue
-
-  cld
-@Loop1:                 //xor dwords at a time
-  mov  eax, [edi]
-  xor  [esi], eax
-  add  esi, 4
-  add  edi, 4
-  dec  ecx
-  jnz  @Loop1
-
-@Continue:              //handle remaining bytes (3 or less)
-  pop  ecx
-  and  ecx, 3
-  jz   @Done
-
-@Loop2:                 //xor remaining bytes
-  mov  al, [edi]
-  xor  [esi], al
-  inc  esi
-  inc  edi
-  dec  ecx
-  jnz  @Loop2
-
-@Done:
-  pop  edi
-  pop  esi
-end;
-{$ENDIF}
-{$ELSE}
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
 var
   pB1,pB2 : PByte;
@@ -2733,8 +2003,6 @@ begin
     Inc(i);
   end;
 end;
-{$ENDIF OgPUREPASCAL_XorMem}
-{$ENDREGION}
 
 {!!.09}
 function OgFormatDate(Value : TDateTime) : string;
@@ -2742,192 +2010,12 @@ function OgFormatDate(Value : TDateTime) : string;
 var
   S : string;
 begin
-  {$IFNDEF FPC}
-  {$IFDEF DELPHI}
-    {$IFDEF DELPHI15UP}
-      s := FormatSettings.ShortDateFormat;
-    {$ELSE}
-      S := ShortDateFormat;
-    {$ENDIF}
-  {$ENDIF}
+  s := FormatSettings.ShortDateFormat;
   if Pos('yyyy', S) = 0 then
     Insert('yy', S, Pos('yy', S));
   if Pos('MMM', S) > 0 then
     Delete(S, Pos('MMM', S), 1);
   Result := FormatDateTime(S, Value);
-  {$ELSE}
-  ShortDateFormat := 'yyyy-mm-dd';
-  Result := DateToStr(Value);//FormatDateTime(S, Value)
-  {$ENDIF}
 end;
-
-
-
-
-
-
-
-{$IFDEF LINUX}
-function GetDriveType(drive:Integer): Integer;
-const
-  DRIVE_UNKNOWN = 0;
-  DRIVE_NO_ROOT_DIR = 1;
-  DRIVE_REMOVABLE = 2;
-  DRIVE_FIXED = 3;
-  DRIVE_REMOTE = 4;
-  DRIVE_CDROM = 5;
-  DRIVE_RAMDISK = 6;
-var
-   f: TextFile;
-   fn : String;
-   media : String;
-begin
- Result := DRIVE_UNKNOWN;
- // drive = 1-25 (A-Z)
-
- //assuming IDE drives
- //assuming C: = hda
- case drive of
-  1: fn := '';
-  2: fn := '';
-  3: fn := 'hda';
-  4: fn := 'hdb';
-  5: fn := 'hdc';
-  6: fn := 'hdd';
-  7: fn := '';
-  8..25: fn := '';
- end;
-
- if fn = '' then
- begin
-  Result := DRIVE_UNKNOWN;
- end
- else
- begin
- {$I-}
-  if fn[1] = 'h' then AssignFile(f, '/proc/ide/' + fn + '/media');
-  Reset(f);
-  media := '';
-  if IoResult=0 then ReadLn(f, media)
-  else
-  Exit;
- {$I+}
-
-  if media = 'disk' then Result := DRIVE_FIXED;
-  if media = 'cdrom' then Result := DRIVE_CDROM;
-  if media = 'floppy' then Result := DRIVE_REMOVABLE;
-
-  CloseFile(f);
- end;
-end;
-
-function HiWord(I: DWORD):Word;
-begin
- Result := I shl 16;
- Result := I and $FFFF;
-end;
-
-function CoCreateGuid(out guid: TGUID): HResult;
-begin
-  Result := CreateGuid(Guid);
-end;
-
-{$IFNDEF FPC}
-// from MMSystem.pas
-function timeGetTime: DWord;
-var
-  iFileHandle : Integer;
-  iFileLength : Integer;
-  iBytesRead : Integer;
-  Buffer : PChar;
-  sSeconds : String;
-  iSeconds : LongInt;
-  i64Seconds : Int64;
-begin
- iSeconds := -1;
- // returns the milliseconds since the machine was restarted
- // will wrap around to 0 every 2^32 milliseconds (49.7 days)
-
- // read the uptime from /proc/uptime
- try
-  iFileHandle := FileOpen('/proc/uptime', fmOpenRead or fmShareDenyNone);
-  iFileLength := FileSeek(iFileHandle,0,2);
-  FileSeek(iFileHandle,0,0);
-  Buffer := PChar(AllocMem(iFileLength + 1));
-  iBytesRead := FileRead(iFileHandle, Buffer^, iFileLength);
-  FileClose(iFileHandle);
-  // /proc/uptime has 2 values, we want the first one
-  sSeconds := StrPas(Buffer);
-  if Pos(' ', sSeconds) > 0 then
-  begin
-   sSeconds := LeftStr(sSeconds, Pos(' ', sSeconds));
-  end;
-  try
-   i64Seconds := Trunc((StrToFloat(sSeconds) * 1000));
-   Result := iSeconds;
-  finally
-   iSeconds := 0;
-  end;
- finally
-  FreeMem(Buffer);
- end;
- if iSeconds = -1 then Result := 0 else Result := iSeconds;
-end;
-{$ELSE}
-function timeGetTime: Cardinal;
-begin
- Result := Cardinal(Trunc(Now * 24 * 60 * 60 * 1000));
-end;
-{$ENDIF}
-{$ENDIF}
-
-{$IFDEF FPC}
-{$IFDEF FreeBSD}
-function GetDriveType(drive: Integer): Integer;
-begin
-
-end;
-
-function HiWord(I: DWORD): Word;
-begin
-  Result := I shl 16;
-  Result := I and $FFFF;
-end;
-
-function CoCreateGuid(out guid: TGUID): HResult;
-begin
-  Result := CreateGuid(Guid);
-end;
-
-function timeGetTime: Cardinal;
-begin
-  Result := Cardinal(Trunc(Now * 24 * 60 * 60 * 1000));
-end;
-{$ENDIF FreeBSD}
-{$ENDIF}
-
-{$IFNDEF NoOgSrMgr}
-procedure FreeStrRes; far;
-begin
-  StrRes.Free;
-  StrRes := nil;
-end;
-{$ENDIF}
-
-initialization
-  {$IFNDEF NoOgSrMgr}
-  StrRes := TOgStringResource.Create(HInstance, 'ONGUARD_STRINGS_ENGLISH');  {!!.08}
-  {$ENDIF}
-  {record our baseline date}
-  //BaseDate := Trunc(EncodeDate(1996, 1, 1));
-
-{$IFNDEF NoOgSrMgr}
-finalization
-{$IFDEF Win32} FreeStrRes; {$ENDIF}
-{$IFDEF Win16} AddExitProc(FreeStrRes); {$ENDIF}
-{$IFDEF KYLIX} FreeStrRes;{$ENDIF}
-
-{$ENDIF}
-
 
 end.

@@ -30,21 +30,12 @@
 
 {$I onguard.inc}
 
-unit onguard5;
+unit onguard5Fmx;
 
 interface
 
 uses
-  Controls,
-  Forms,
-  onguard,
-{$IFDEF DELPHI6UP}
-  DesignIntf,
-  DesignEditors;
-{$ELSE}
-  dsgnintf;
-{$ENDIF}
-
+  Fmx.Controls, Fmx.Forms, onguardFmx, DesignIntf, DesignEditors;
 
 type
   {property editor for ranges}
@@ -61,9 +52,11 @@ type
 implementation
 
 uses
-  ogconst,
-  ogutil,
-  onguard2;
+  System.UITypes, ogutilFmx, onguard2Fmx;
+
+const
+  {ini file name used to store application keys}
+  OgKeyFile    = 'ONGUARD.INI';
 
 {*** TOgCodeProperty ***}
 
@@ -83,7 +76,6 @@ var
 begin
   with TCodeGenerateFrm.Create(Application) do
     try
-      ShowHint := True;
       KeyFileName := OgKeyFile;
       if ShowModal = mrOK then begin
         Work := Code;

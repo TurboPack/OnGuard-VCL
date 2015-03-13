@@ -1,12 +1,13 @@
 {$I onguard.inc}
 
-unit ogposix;
+unit ogposixFmx;
 
 interface
 
-uses SysUtils
-{$IFDEF DELPHI19UP}{$IFDEF POSIX}, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet{$ENDIF}{$ENDIF}
-;
+{$IFDEF MACOS}
+
+uses
+  System.SysUtils, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet;
 
 type
   u_char = UInt8;
@@ -19,7 +20,7 @@ type
     sdl_nlen : u_char;
     sdl_alen : u_char;
     sdl_slen : u_char;
-    sdl_data : array[0..11] of AnsiChar;
+    sdl_data : array[0..11] of Byte;
   end;
   psockaddr_dl = ^sockaddr_dl;
 
@@ -31,6 +32,8 @@ function getifaddrs(var ifap: Pifaddrs):Integer; cdecl; external libc name _PU +
 
 function freeifaddrs(var ifap: Posix.NetIf.Pifaddrs):Integer; cdecl; external libc name _PU + 'freeifaddrs';
 {$EXTERNALSYM freeifaddrs}
+
+{$ENDIF}
 
 implementation
 

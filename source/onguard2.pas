@@ -30,44 +30,17 @@
 
 {$I onguard.inc}
 
-{$IFDEF DELPHI}
-{$IFDEF Win32}
-  {$J+} {Assignable Typed Constants}                                   {!!.11}
-{$ENDIF}
-{$ENDIF}
-
-unit onguard2;
+unit onguard2Fmx;
   {-Code generation dialog}
 
 interface
 
-{.$DEFINE UseOgFMX}
-
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, ComCtrls, {$ENDIF}
-  {$IFDEF MSWINDOWS}
-  SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Mask,
-  ExtCtrls, Tabnotbk, StdCtrls, Buttons, Messages,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
-  FMX.ExtCtrls, FMX.TabControl, FMX.Layouts, FMX.Edit, FMX.Platform,
-  Fmx.StdCtrls, FMX.Header, FMX.Graphics, FMX.DateTimeCtrls,
-  {$ENDIF}
-
-  ogconst,
-  ognetwrk,
-  ogutil,
-  onguard,
-  onguard3;
-
-{$IFNDEF UseOgFMX}
-const
-  OGM_CHECK = WM_USER + 100;
-  OGM_QUIT  = WM_USER + 101;
-{$ENDIF}
+  System.SysUtils, System.Classes, System.UITypes, System.Types, FMX.Types, FMX.Controls,
+  FMX.Forms, FMX.Dialogs, FMX.Objects, FMX.SpinBox, FMX.ExtCtrls, FMX.TabControl, FMX.Layouts,
+  FMX.Edit, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics, FMX.DateTimeCtrls,
+  FMX.CalendarEdit, FMX.NumberBox, onguardFmx, onguard3fmx, FMX.EditBox,
+  FMX.ComboEdit, FMX.Controls.Presentation, ogutilFmx;
 
 type
   TCodeGenerateFrm = class(TForm)
@@ -99,31 +72,11 @@ type
     Label15: TLabel;
     Label17: TLabel;
     Label19: TLabel;
-    {$IFNDEF UseOgFMX}
-    CodesNbk: TTabbedNotebook;
-    OKBtn: TBitBtn;
-    CancelBtn: TBitBtn;
-    UsageExpiresEd: TEdit;
-    SpecialExpiresEd: TEdit;
-    SerialExpiresEd: TEdit;
-    RegExpiresEd: TEdit;
-    DaysExpiresEd: TEdit;
-    ModDateEd: TEdit;
-    StartDateEd: TEdit;
-    EndDateEd: TEdit;
-    DaysCountEd: TEdit;
-    SerialNumberEd: TEdit;
-    UsageCountEd: TEdit;
-    NetworkSlotsEd: TEdit;
-    SpecialDataEd: TEdit;
-    {$ENDIF}
     RegCodeEd: TEdit;
     RegStrEd: TEdit;
     ModifierEd: TEdit;
     BlockKeyEd: TEdit;
     ModStringEd: TEdit;                                              {!!.11}
-
-    {$IFDEF UseOgFMX}
     OKBtn: TButton;
     CancelBtn: TButton;
     CodesTC: TTabControl;
@@ -134,20 +87,19 @@ type
     TabItem5: TTabItem;
     TabItem6: TTabItem;
     TabItem7: TTabItem;
-    StartDateCalendarEdit: TCalendarEdit;
-    EndDateCalendarEdit: TCalendarEdit;
+    StartDateCalendarEdit: TDateEdit;
+    EndDateCalendarEdit: TDateEdit;
     DaysCountSpinBox: TSpinBox;
-    DaysExpiresCalendarEdit: TCalendarEdit;
-    RegExpiresCalendarEdit: TCalendarEdit;
+    DaysExpiresCalendarEdit: TDateEdit;
+    RegExpiresCalendarEdit: TDateEdit;
     SerialNumberNumberBox: TNumberBox;
-    SerialExpiresCalendarEdit: TCalendarEdit;
+    SerialExpiresCalendarEdit: TDateEdit;
     UsageCountNumberBox: TNumberBox;
-    UsageExpiresCalendarEdit: TCalendarEdit;
+    UsageExpiresCalendarEdit: TDateEdit;
     NetworkSlotsNumberBox: TNumberBox;
     SpecialDataNumberBox: TNumberBox;
-    SpecialExpiresCalendarEdit: TCalendarEdit;
-    ModDateCalendarEdit: TCalendarEdit;                                              {!!.11}
-    {$ENDIF}
+    SpecialExpiresCalendarEdit: TDateEdit;
+    ModDateCalendarEdit: TDateEdit;                                              {!!.11}
 
     procedure FormCreate(Sender: TObject);
     procedure ModifierClick(Sender: TObject);
@@ -158,29 +110,15 @@ type
     procedure ModifierEdKeyPress(Sender: TObject; var Key: Char);
     procedure RegStrCopySbClick(Sender: TObject);
     procedure RegCodeCopySbClick(Sender: TObject);
-    {$IFNDEF UseOgFMX}
-    procedure DateEdKeyPress(Sender: TObject; var Key: Char);
-    procedure NumberEdKeyPress(Sender: TObject; var Key: Char);
-    procedure TabbedNotebook1Change(Sender: TObject; NewTab: Integer;
-      var AllowChange: Boolean);
-    {$ENDIF}
     procedure GenerateKeySbClick(Sender: TObject);
     procedure InfoChanged(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    FBusy        : Boolean;
     FCode        : TCode;
     FCodeType    : TCodeType;
     FKey         : TKey;
     FKeyType     : TKeyType;
     FKeyFileName : string;
-
-    {$IFNDEF UseOgFMX}
-    procedure OGMCheck(var Msg : TMessage);
-      message OGM_CHECK;
-    procedure OGMQuit(var Msg : TMessage);
-      message OGM_QUIT;
-    {$ENDIF}
 
     procedure SetCodeType(Value : TCodeType);
 
@@ -207,36 +145,30 @@ type
 
 implementation
 
-{$IFDEF MSWINDOWS}{$R *.DFM}{$ENDIF}
-{$IFDEF UseOgFMX}{$R *.FMX}{$ENDIF}
+{$R *.fmx}
 
+uses
+  System.Character, ognetwrkFmx;
+
+resourcestring
+  SCInvalidStartDate = 'Invalid start date';
+  SCInvalidKeyOrModifier = 'Invalid key or modifier';
+  SCInvalidExDate = 'Invalid expiration date';
+
+{ TCodeGenerateFrm }
 
 procedure TCodeGenerateFrm.FormCreate(Sender: TObject);
 var
   D : TDateTime;
 begin
-  NoModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := True;
-  {$IFNDEF UseOgFMX}
-  CodesNbk.PageIndex := Ord(FCodeType);
-  {$ELSE}
+  NoModifierCb.IsChecked := True;
   CodesTC.TabIndex := Ord(FCodeType);
-  {$ENDIF}
   BlockKeyEd.Text := BufferToHex(FKey, SizeOf(FKey));
   if HexStringIsZero(BlockKeyEd.Text)then
     BlockKeyEd.Text := '';
 
   {initialize date edits}
   D := EncodeDate(9999,12,31);
-  {$IFNDEF UseOgFMX}
-  StartDateEd.Text      := OgFormatDate(Date);                       {!!.09}
-  EndDateEd.Text        := OgFormatDate(Date);                       {!!.09}
-  ModDateEd.Text        := OgFormatDate(Date);                       {!!.09}
-  UsageExpiresEd.Text   := OgFormatDate(D);                          {!!.09}
-  SpecialExpiresEd.Text := OgFormatDate(D);                          {!!.09}
-  SerialExpiresEd.Text  := OgFormatDate(D);                          {!!.09}
-  RegExpiresEd.Text     := OgFormatDate(D);                          {!!.09}
-  DaysExpiresEd.Text    := OgFormatDate(D);                          {!!.09}
-  {$ELSE}
   StartDateCalendarEdit.Date      := Date();
   EndDateCalendarEdit.Date        := Date();
   ModDateCalendarEdit.Date        := Date();
@@ -245,46 +177,37 @@ begin
   SerialExpiresCalendarEdit.Date  := D;
   UsageExpiresCalendarEdit.Date   := D;
   SpecialExpiresCalendarEdit.Date := D;
-  {$ENDIF}
-  NoModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := True;                                      {!!.11}
+  NoModifierCb.IsChecked := True;                                      {!!.11}
   InfoChanged(Self);
 end;
 
 procedure TCodeGenerateFrm.ModifierClick(Sender: TObject);
-const
-  Busy : Boolean = False;
 var
-  L : LongInt;
+  L : Integer;
   D : TDateTime;
   S : string;                                                        {!!.11}
   i : Integer;                                                       {!!.12}
 begin
-  if Busy then
+  if FBusy then
     Exit;
 
   {set busy flag so that setting "Checked" won't recurse}
-  Busy := True;
+  FBusy := True;
   try
     L := 0;
 
-    if (Sender = NoModifierCb) and NoModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} then begin
-      UniqueModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := False;
-      MachineModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := False;
-      DateModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := False;
-      StringModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := False;                             {!!.11}
-      {$IFNDEF UseOgFMX}
-      ModifierEd.Color := clBtnFace;                                 {!!.11}
-      {$ENDIF}
+    if (Sender = NoModifierCb) and NoModifierCb.IsChecked then begin
+      UniqueModifierCb.IsChecked := False;
+      MachineModifierCb.IsChecked := False;
+      DateModifierCb.IsChecked := False;
+      StringModifierCb.IsChecked := False;                             {!!.11}
       ModifierEd.ReadOnly := True;                                   {!!.11}
     end else begin
-      NoModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} := False;
-      {$IFNDEF UseOgFMX}
-      ModifierEd.Color := clWindow;                                  {!!.11}
-      {$ENDIF}
+      NoModifierCb.IsChecked := False;
       ModifierEd.ReadOnly := False;                                  {!!.11}
     end;
 
-    if MachineModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} then begin
+    if MachineModifierCb.IsChecked then begin
       if L = 0 then
         L := GenerateMachineModifierPrim
       else
@@ -292,41 +215,23 @@ begin
     end;
 
     {set status of string field}                                     {!!.11}
-    ModStringEd.Enabled := StringModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF};                 {!!.11}
-    {$IFNDEF UseOgFMX}
-    if ModStringEd.Enabled then                                      {!!.11}
-      ModStringEd.Color := clWindow                                  {!!.11}
-    else                                                             {!!.11}
-      ModStringEd.Color := clBtnFace;                                {!!.11}
-    {$ENDIF}
+    ModStringEd.Enabled := StringModifierCb.IsChecked;                 {!!.11}
                                                                      {!!.11}
-    if StringModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} then begin                           {!!.11}
+    if StringModifierCb.IsChecked then begin                           {!!.11}
       S := ModStringEd.Text;                                         {!!.11}
       {strip accented characters from the string}                    {!!.12}
-      for i := Length(S) downto 1 do                                 {!!.12}
-        if Ord(S[i]) > 127 then                                      {!!.12}
-          Delete(S, i, 1);                                           {!!.12}
+      for i := S.Length downto 0 do                                  {!!.12}
+        if Ord(S.Chars[i]) > 127 then                                {!!.12}
+          S.Remove(i, 1);                                             {!!.12}
       L := StringHashELF(S);                                         {!!.11}
     end;                                                             {!!.11}
 
     {set status of date field}
-    {$IFNDEF UseOgFMX}
-    ModDateEd.Enabled := DateModifierCb.Checked;
-    if ModDateEd.Enabled then
-      ModDateEd.Color := clWindow
-    else
-      ModDateEd.Color := clBtnFace;
-    {$ELSE}
-    ModDateCalendarEdit.Enabled := DateModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF};
-    {$ENDIF}
+    ModDateCalendarEdit.Enabled := DateModifierCb.IsChecked;
 
-    if DateModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} then begin
+    if DateModifierCb.IsChecked then begin
       try
-        {$IFNDEF UseOgFMX}
-        D := StrToDate(ModDateEd.Text);
-        {$ELSE}
         D := ModDateCalendarEdit.Date;
-        {$ENDIF}
       except
         {ignore errors and don't generate modifier}
         D := 0;
@@ -340,7 +245,7 @@ begin
       end;
     end;
 
-    if UniqueModifierCb.{$IFDEF UseOgFMX}IsChecked{$ELSE}Checked{$ENDIF} then begin
+    if UniqueModifierCb.IsChecked then begin
       if L = 0 then
         L := GenerateUniqueModifierPrim
       else
@@ -352,14 +257,14 @@ begin
     else
       ModifierEd.Text := '$' + BufferToHex(L, 4);
   finally
-    Busy := False;
+    FBusy := False;
   end;
 end;
 
 procedure TCodeGenerateFrm.RegRandomBtnClick(Sender: TObject);
 var
   I     : Integer;
-  L     : LongInt;
+  L     : Integer;
   Bytes : array[0..3] of Byte absolute L;
 begin
   Randomize;
@@ -370,54 +275,36 @@ end;
 
 procedure TCodeGenerateFrm.GenerateBtnClick(Sender: TObject);
 var
-  I        : LongInt;
+  I        : Integer;
   Work     : TCode;
   K        : TKey;
-  Modifier : LongInt;
+  Modifier : Integer;
   D1, D2   : TDateTime;
 begin
   Modifier := 0;
-  if ((ModifierEd.Text = '') or HexToBuffer(ModifierEd.Text, Modifier, SizeOf(LongInt))) then begin
+  if ((ModifierEd.Text = '') or HexToBuffer(ModifierEd.Text, Modifier, SizeOf(Integer))) then begin
     K := FKey;
     ApplyModifierToKeyPrim(Modifier, K, SizeOf(K));
 
-    case {$IFNDEF UseOgFMX}CodesNbk.PageIndex{$ELSE}CodesTC.TabIndex{$ENDIF} of
+    case CodesTC.TabIndex of
       0 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(StartDateEd.Text);
-              {$ELSE}
               D1 := StartDateCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidStartDate]{$ELSE}SCInvalidStartDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                StartDateEd.SetFocus;
-                {$ENDIF}
-                {$IFDEF UseOgFMX}
+                ShowMessage(SCInvalidStartDate);
                 StartDateCalendarEdit.SetFocus;
-                {$ENDIF}
                 Exit;
               end else
                 raise;
             end;
 
             try
-              {$IFNDEF UseOgFMX}
-              D2 := StrToDate(EndDateEd.Text);
-              {$ELSE}
               D2 := EndDateCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidStartDate]{$ELSE}SCInvalidStartDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                EndDateEd.SetFocus;
-                {$ENDIF}
-                {$IFDEF UseOgFMX}
+                ShowMessage(SCInvalidStartDate);
                 EndDateCalendarEdit.SetFocus;
-                {$ENDIF}
                 Exit;
               end else
                 raise;
@@ -428,46 +315,27 @@ begin
             MixBlock(T128bit(K), Work, False);
 
             {sanity check}
-            {$IFNDEF UseOgFMX}
-            StartDateEd.Text := OgFormatDate(Work.FirstDate+BaseDate);  {!!.09}
-            EndDateEd.Text := OgFormatDate(Work.EndDate+BaseDate);      {!!.09}
-            {$ELSE}
             StartDateCalendarEdit.Date := Work.FirstDate+BaseDate;
             EndDateCalendarEdit.Date := Work.EndDate+BaseDate;
-            {$ENDIF}
           end;
       1 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(DaysExpiresEd.Text);
-              {$ELSE}
               D1 := DaysExpiresCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidExDate]{$ELSE}SCInvalidExDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                DaysExpiresEd.SetFocus;
-                {$ENDIF}
+                ShowMessage(SCInvalidExDate);
                 Exit;
               end else
                 raise;
             end;
-            InitDaysCode(K, {$IFNDEF UseOgFMX}StrToIntDef(DaysCountEd.Text, 0){$ELSE}Trunc(DaysCountSpinBox.Value){$ENDIF}, D1, FCode);
+            InitDaysCode(K, Trunc(DaysCountSpinBox.Value), D1, FCode);
           end;
       2 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(RegExpiresEd.Text);
-              {$ELSE}
               D1 := RegExpiresCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidExDate]{$ELSE}SCInvalidExDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                RegExpiresEd.SetFocus;
-                {$ENDIF}
+                ShowMessage(SCInvalidExDate);
                 Exit;
               end else
                 raise;
@@ -476,93 +344,61 @@ begin
           end;
       3 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(SerialExpiresEd.Text);
-              {$ELSE}
               D1 := SerialExpiresCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidExDate]{$ELSE}SCInvalidExDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                SerialExpiresEd.SetFocus;
-                {$ENDIF}
+                ShowMessage(SCInvalidExDate);
                 Exit;
               end else
                 raise;
             end;
-            InitSerialNumberCode(K, {$IFNDEF UseOgFMX}StrToIntDef(SerialNumberEd.Text, 0){$ELSE}Trunc(SerialNumberNumberBox.Value){$ENDIF}, D1, FCode);
+            InitSerialNumberCode(K, Trunc(SerialNumberNumberBox.Value), D1, FCode);
           end;
       4 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(UsageExpiresEd.Text);
-              {$ELSE}
               D1 := UsageExpiresCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidExDate]{$ELSE}SCInvalidExDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                UsageExpiresEd.SetFocus;
-                {$ENDIF}
+                ShowMessage(SCInvalidExDate);
                 Exit;
               end else
                 raise;
             end;
-            InitUsageCode(K, {$IFNDEF UseOgFMX}StrToIntDef(UsageCountEd.Text, 0){$ELSE}Trunc(UsageCountNumberBox.Value){$ENDIF}, D1, FCode);
+            InitUsageCode(K, Trunc(UsageCountNumberBox.Value), D1, FCode);
           end;
       5 : begin
-            {$IFNDEF UseOgFMX}
-            I := StrToIntDef(NetworkSlotsEd.Text, 2);
-            if I < 1 then                                            {!!.08}
-              I := 1;                                                {!!.08}
-            NetworkSlotsEd.Text := IntToStr(I);
-            {$ELSE}
             I := Trunc(NetworkSlotsNumberBox.Value);
-            {$ENDIF}
             EncodeNAFCountCode(K, I, FCode);
           end;
       6 : begin
             try
-              {$IFNDEF UseOgFMX}
-              D1 := StrToDate(SpecialExpiresEd.Text);
-              {$ELSE}
               D1 := SpecialExpiresCalendarEdit.Date;
-              {$ENDIF}
             except
               on EConvertError do begin
-                ShowMessage({$IFNDEF NoOgSrMgr}StrRes[SCInvalidExDate]{$ELSE}SCInvalidExDate{$ENDIF});
-                {$IFDEF MSWINDOWS}
-                SpecialExpiresEd.SetFocus;
-                {$ENDIF}
+                ShowMessage(SCInvalidExDate);
                 Exit;
               end else
                 raise;
             end;
-            InitSpecialCode(K, {$IFNDEF UseOgFMX}StrToIntDef(SpecialDataEd.Text, 0){$ELSE}Trunc(SpecialDataNumberBox.Value){$ENDIF}, D1, FCode);
+            InitSpecialCode(K, Trunc(SpecialDataNumberBox.Value), D1, FCode);
           end;
     end;
 
     RegCodeEd.Text := BufferToHex(FCode, SizeOf(FCode));
   end else
-    MessageDlg({$IFNDEF NoOgSrMgr}StrRes[SCInvalidKeyOrModifier]{$ELSE}SCInvalidKeyOrModifier{$ENDIF}, {$IFDEF UseOgFMX}TMsgDlgType.{$ENDIF}mtError, [TMsgDlgBtn.mbOK], 0);
+    MessageDlg(SCInvalidKeyOrModifier, TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
 end;
 
 procedure TCodeGenerateFrm.SerRandomBtnClick(Sender: TObject);
 var
   I     : Integer;
-  L     : LongInt;
+  L     : Integer;
   Bytes : array[0..3] of Byte absolute L;
 begin
   Randomize;
   for I := 0 to 3 do
     Bytes[I] := Random(256);
-  {$IFNDEF UseOgFMX}
-  SerialNumberEd.Text := IntToStr(Abs(L));
-  {$ELSE}
   SerialNumberNumberBox.Value := Abs(L);
-  {$ENDIF}
 end;
 
 procedure TCodeGenerateFrm.ParametersChanged(Sender: TObject);
@@ -586,35 +422,14 @@ begin
   end;
 end;
 
-{!!.04}
-{$IFNDEF UseOgFMX}
-procedure TCodeGenerateFrm.DateEdKeyPress(Sender: TObject; var Key: Char);
-begin
-  if (not (Key in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', {$IFDEF DELPHI15UP}FormatSettings.DateSeparator{$ELSE}DateSeparator{$ENDIF}])) and (not (Key < #32)) then begin
-    MessageBeep(0);
-    Key := #0;
-  end;
-end;
-{$ENDIF}
-
-{$IFNDEF UseOgFMX}
-procedure TCodeGenerateFrm.NumberEdKeyPress(Sender: TObject; var Key: Char);
-const
-  CIntChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-begin
-  if (not (Key in CIntChars)) and (not (Key < #32)) then begin
-    MessageBeep(0);
-    Key := #0;
-  end;
-end;
-{$ENDIF}
-
 procedure TCodeGenerateFrm.ModifierEdKeyPress(Sender: TObject; var Key: Char);
-const
-  CHexChars = ['$', 'A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var
+  pChars: TArray<Char>;
+  cBuffer: Char;
 begin
-  if (not (Key in CHexChars)) and (not (Key < #32)) then begin
-    {$IFDEF MSWINDOWS}MessageBeep(0);{$ENDIF}
+  pChars := TArray<Char>.Create('$', 'A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+  cBuffer := Key.ToUpper;
+  if (not cBuffer.IsInArray(pChars)) and (not (Key < #32)) then begin
     Key := #0;
   end;
 end;
@@ -635,18 +450,6 @@ begin
   end;
 end;
 
-{$IFNDEF UseOgFMX}
-procedure TCodeGenerateFrm.TabbedNotebook1Change(Sender: TObject; NewTab: Integer;
-  var AllowChange: Boolean);
-begin
-  AllowChange := True;
-
-  RegCodeEd.Text := '';
-  NoModifierCb.Checked := True;
-  ModifierEd.Text := '';
-end;
-{$ENDIF}
-
 procedure TCodeGenerateFrm.GenerateKeySbClick(Sender: TObject);
 var
   F    : TKeyMaintFrm;
@@ -656,9 +459,6 @@ begin
     F.SetKey(FKey);
     F.KeyType := FKeyType;
     F.KeyFileName := FKeyFileName;
-    {$IFDEF MSWINDOWS}
-    F.ShowHint := ShowHint;
-    {$ENDIF}
     if F.ShowModal = mrOK then begin
       F.GetKey(FKey);
       BlockKeyEd.Text := BufferToHex(FKey, SizeOf(FKey));
@@ -675,17 +475,10 @@ end;
 
 procedure TCodeGenerateFrm.SetCodeType(Value : TCodeType);
 begin
-  {$IFNDEF UseOgFMX}
-  if Value <> TCodeType(CodesNbk.PageIndex) then begin
-    FCodeType := Value;
-    CodesNbk.PageIndex := Ord(FCodeType);
-  end;
-  {$ELSE}
   if Value <> TCodeType(CodesTC.TabIndex) then begin
     FCodeType := Value;
     CodesTC.TabIndex := Ord(FCodeType);
   end;
-  {$ENDIF}
 end;
 
 procedure TCodeGenerateFrm.SetKey(Value : TKey);
@@ -702,50 +495,10 @@ begin
   OKBtn.Enabled := Length(RegCodeEd.Text) > 0;
 end;
 
-{$IFNDEF UseOgFMX}
-procedure TCodeGenerateFrm.OGMCheck(var Msg : TMessage);
-var
-  F    : TKeyMaintFrm;
-begin
-  if not HexToBuffer(BlockKeyEd.Text, FKey, SizeOf(FKey)) then begin
-    {get a key}
-    F := TKeyMaintFrm.Create(Self);
-    try
-      F.SetKey(FKey);
-      F.KeyType := ktRandom;
-      F.KeyFileName := FKeyFileName;
-      F.ShowHint := ShowHint;
-      if F.ShowModal = mrOK then begin
-        F.GetKey(FKey);
-        BlockKeyEd.Text := BufferToHex(FKey, SizeOf(FKey));
-        if HexStringIsZero(BlockKeyEd.Text)then
-          BlockKeyEd.Text := '';
-        FKeyFileName := F.KeyFileName;
-        InfoChanged(Self);
-      end else
-        PostMessage(Handle, OGM_QUIT, 0, 0);
-    finally
-      F.Free;
-    end;
-  end;
-end;
-
-procedure TCodeGenerateFrm.OGMQuit(var Msg : TMessage);
-begin
-  ModalResult := mrCancel;
-end;
-{$ENDIF}
-
-procedure TCodeGenerateFrm.FormShow(Sender: TObject);
-begin
-  {$IFNDEF UseOgFMX}
-  PostMessage(Handle, OGM_CHECK, 0, 0);
-  {$ENDIF}
-end;
-
 procedure TCodeGenerateFrm.GetKey(var Value : TKey);
 begin
   Value := FKey;
 end;
 
 end.
+

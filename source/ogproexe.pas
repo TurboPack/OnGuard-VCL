@@ -40,22 +40,13 @@
 
 {$I onguard.inc}
 
-
-{$IFDEF FPC}
-{$mode delphi}{$H+}
-{$ASMMODE INTEL}
-{$ENDIF}
-unit ogproexe;
+unit ogproexeFmx;
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF LINUX} Libc, {$ENDIF}                                    {AH.01}
-  {$IFDEF UsingCLX} Types, {$ENDIF}                                {AH.01}
-  Classes, {$IFDEF MSWINDOWS}MMSystem, {$ENDIF} SysUtils,
-  ogconst, ogutil;
+  Winapi.Windows, System.Classes, WinApi.MMSystem, System.SysUtils,
+  ogutilFmx;
 
 type
   {exe signature record}
@@ -85,7 +76,7 @@ type
     procedure(Sender : TObject; Status : TExeStatus)
     of object;
 
-  TOgProtectExe = class(TComponent)
+  TOgProtectExeFmx = class(TComponent)
   protected {private}
     {property variables}
     FAutoCheck  : Boolean;
@@ -146,17 +137,9 @@ function UnprotectExe(const FileName : string) : Boolean;
   {-writes uninitialized signature record. marker must not have been erased}
 
 {checksum/CRC routines}
-procedure UpdateChecksum(var Sum : LongInt;  const Buf;  BufSize : LongInt);
-{$IFDEF Win32}
+procedure UpdateChecksum(var Sum : Integer;  const Buf;  BufSize : Integer);
 function FileCRC32(const FileName : string) : DWord;                     {!!.07}
-{$ELSE}
-{$IFDEF FPC}
-function FileCRC32(const FileName : string) : DWord;                     {!!.BB}
-{$ELSE}
-function FileCRC32(const FileName : string) : LongInt;
-{$ENDIF}
-{$ENDIF}
-procedure UpdateCRC32(var CRC : DWord;  const Buf;  BufSize : LongInt);  {!!.07}
+procedure UpdateCRC32(var CRC : DWord;  const Buf;  BufSize : Integer);  {!!.07}
 
 
 implementation
@@ -206,9 +189,9 @@ const
     $b3667a2e, $c4614ab8, $5d681b02, $2a6f2b94, $b40bbe37, $c30c8ea1, $5a05df1b, $2d02ef8d);
 
 
-{*** TOgProtectExe ***}
+{*** TOgProtectExeFmx ***}
 
-constructor TOgProtectExe.Create(AOwner : TComponent);
+constructor TOgProtectExeFmx.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -216,7 +199,7 @@ begin
   FCheckSize := DefCheckSize;
 end;
 
-function TOgProtectExe.CheckExe(Report : Boolean) : TExeStatus;
+function TOgProtectExeFmx.CheckExe(Report : Boolean) : TExeStatus;
 begin
   Result := IsExeTampered(FCheckSize);
 
@@ -224,18 +207,18 @@ begin
     DoOnChecked(Result);
 end;
 
-procedure TOgProtectExe.DoOnChecked(Status : TExeStatus);
+procedure TOgProtectExeFmx.DoOnChecked(Status : TExeStatus);
 begin
   if Assigned(FOnChecked) then
     FOnChecked(Self, Status);
 end;
 
-function TOgProtectExe.GetAbout : string;                            {!!.08}
+function TOgProtectExeFmx.GetAbout : string;                            {!!.08}
 begin
   Result := OgVersionStr;
 end;
 
-procedure TOgProtectExe.Loaded;
+procedure TOgProtectExeFmx.Loaded;
 begin
   inherited Loaded;
 
@@ -243,23 +226,21 @@ begin
     CheckExe(True);
 end;
 
-procedure TOgProtectExe.SetAbout(const AValue : string);              {!!.08}
+procedure TOgProtectExeFmx.SetAbout(const AValue : string);              {!!.08}
 begin
   // do nothing
 end;
 
-function TOgProtectExe.StampExe(const FileName : string ;  EraseMarker : Boolean) : Boolean;
+function TOgProtectExeFmx.StampExe(const FileName : string ;  EraseMarker : Boolean) : Boolean;
 begin
   Result := ProtectExe(FileName,  EraseMarker);
 end;
 
-function TOgProtectExe.UnStampExe(const FileName : string) : Boolean;
+function TOgProtectExeFmx.UnStampExe(const FileName : string) : Boolean;
 begin
   Result := UnprotectExe(FileName);
 end;
 
-
-{$IFDEF Win32}
 function IsExeTampered(CheckSize : Boolean) : TExeStatus;
   {-return one of the possible TExeResult states}
 var
@@ -278,11 +259,11 @@ begin
     Exit;
   end;
 
-  Windows.GetModuleFileName(HInstance, Buf, SizeOf(Buf));
+  Winapi.Windows.GetModuleFileName(HInstance, Buf, SizeOf(Buf));
   Fh := CreateFile(Buf, GENERIC_READ, FILE_SHARE_READ or FILE_SHARE_WRITE,
     nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
   if (Fh <> INVALID_HANDLE_VALUE) then begin                         {!!.07}
-    if CheckSize and (StoredSignature.Size <> Windows.GetFileSize(Fh, nil)) then
+    if CheckSize and (StoredSignature.Size <> Winapi.Windows.GetFileSize(Fh, nil)) then
       Result := exeSizeError
     else begin
       FileMap := CreateFileMapping(Fh, nil, PAGE_READONLY, 0, 0, nil);
@@ -306,93 +287,14 @@ begin
       Result := exeAccessDenied;                                       {!!.05}
   end;                                                                 {!!.05}
 end;
-{$ELSE}
-function IsExeTampered(CheckSize : Boolean) : TExeStatus;
-  {-return one of the possible TExeResult states}
-const
-  BufSize = 4096;
-var
-  Fh          : Integer;
-  TotalRead   : LongInt;
-  BytesToRead : LongInt;
-  BytesRead   : LongInt;
-  Size        : LongInt;
-  Buf         : PAnsiChar;
-  CRC         : {$IFDEF FPC}DWORD;{$ELSE}LongInt;{$ENDIF}
-begin
-  Result := exeIntegrityError;
 
-  {check if exe has been stamped}
-  if (StoredSignature.Offset = 1) and (StoredSignature.Size = 2) and   {!!.07}
-     (StoredSignature.CRC = 3) then begin                              {!!.07}
-    Result := exeNotStamped;
-    Exit;
-  end;
-
-  Buf := StrAlloc(BufSize);
-  try
-    {$IFNDEF FPC}
-    GetModuleFileName(HInstance, Buf, BufSize-1);
-    Fh := FileOpen(StrPas(Buf), fmOpenRead or fmShareDenyWrite);
-	  {$ELSE}
-    Fh := FileOpen(ParamStr(0), fmOpenRead or fmShareDenyWrite);
-	  {$ENDIF}
-    if (Fh >= 0 {HFILE_ERROR}) then begin
-      Size := FileSeek(Fh, 0, 2); {get file size}
-      FileSeek(Fh, 0, 0);  {reset to beginning of file}
-      if CheckSize and (StoredSignature.Size <> Size) then
-        Result := exeSizeError
-      else begin
-        CRC := $FFF00FFF;    {special CRC init}
-        TotalRead := 0;
-        {read and compute crc up to the signature record}
-        while (TotalRead < StoredSignature.Offset) do begin
-          if (TotalRead + BufSize <= StoredSignature.Offset) then
-            BytesToRead := BufSize
-          else
-            BytesToRead := (StoredSignature.Offset - TotalRead);
-          BytesRead := FileRead(Fh, Buf^, BytesToRead);
-          Inc(TotalRead, BytesRead);
-		  {$IFNDEF FPC}
-          UpdateCRC32(CRC, Buf^, BytesRead);
-		  {$ELSE}
-          UpdateCRC32(DWord(CRC), Buf^, BytesRead);
-		  {$ENDIF}
-        end;
-        {jump past signature record}
-        FileSeek(Fh, SizeOf(StoredSignature), 1);
-        repeat
-          BytesRead := FileRead(Fh, Buf^, BufSize);
-          Inc(TotalRead, BytesRead);
-		  {$IFNDEF FPC}
-          UpdateCRC32(CRC, Buf^, BytesRead);
-		  {$ELSE}
-          UpdateCRC32(DWord(CRC), Buf^, BytesRead);
-		  {$ENDIF}
-        until (BytesRead < BufSize);
-        if (StoredSignature.CRC = not CRC) then
-          Result := exeSuccess;
-      end;
-      FileClose(Fh);
-    end else begin                                                     {!!.05}
-      if Fh = -5 then                                                  {!!.05}
-        Result := exeAccessDenied;                                     {!!.05}
-    end;                                                               {!!.05}
-
-  finally
-    StrDispose(Buf);
-  end;
-end;
-{$ENDIF}
-
-{$IFDEF Win32}
 function ProtectExe(const FileName : string;  EraseMarker : Boolean) : Boolean;
   {-stamp exe with crc and file size. optionally erase search markers}
 var
   Fh      : THandle;
   FileMap : THandle;
   Memory  : PByteArray;
-  I, Size : LongInt;
+  I, Size : Integer;
   Sig     : PSignatureRec;
 begin
   Result := False;
@@ -400,28 +302,19 @@ begin
   Fh := CreateFile(PChar(FileName), GENERIC_READ or GENERIC_WRITE, 0,
     nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
   if (Fh <> INVALID_HANDLE_VALUE) then begin
-    Size := Windows.GetFileSize(Fh, nil);
+    Size := Winapi.Windows.GetFileSize(Fh, nil);
 
     FileMap := CreateFileMapping(Fh, nil, PAGE_READWRITE, 0, 0, nil);
     if (FileMap <> 0) then begin
       Memory := MapViewOfFile(FileMap, FILE_MAP_WRITE, 0, 0, 0);
       if (Memory <> nil) then begin
         for I := 0 to (Size - SizeOf(TSignatureRec)) - 1 do begin
-		  {$IFNDEF FPC}
           if (PSignatureRec(@Memory[I])^.Sig1 = $407E7E21) and
              (PSignatureRec(@Memory[I])^.Sig2 = $33435243) and
              (PSignatureRec(@Memory[I])^.Sig3 = $7E7E4032) and
              (PSignatureRec(@Memory[I])^.Sig4 = $407E7E21) and
              (PSignatureRec(@Memory[I])^.Sig5 = $33435243) and
              (PSignatureRec(@Memory[I])^.Sig6 = $7E7E4032) then begin
-		  {$ELSE} 
-          if (PSignatureRec(@Memory[I]).Sig1 = $407E7E21) and
-             (PSignatureRec(@Memory[I]).Sig2 = $33435243) and
-             (PSignatureRec(@Memory[I]).Sig3 = $7E7E4032) and
-             (PSignatureRec(@Memory[I]).Sig4 = $407E7E21) and
-             (PSignatureRec(@Memory[I]).Sig5 = $33435243) and
-             (PSignatureRec(@Memory[I]).Sig6 = $7E7E4032) then begin
-		  {$ENDIF}
             {found it}
             Sig := @Memory^[I];
 
@@ -455,119 +348,14 @@ begin
     CloseHandle(Fh);
   end;
 end;
-{$ELSE}
-function ProtectExe(const FileName : string;  EraseMarker : Boolean) : Boolean;
-  {-stamp exe with crc and file size. optionally erase search markers}
-const
-  BufSize = 4096; {must be larger than the size of the signature record}
-var
-  Fh        : THandle;
-  I, Size   : LongInt;
-  Sig       : TSignatureRec;
-  Buf       : PAnsiChar;
-  CRC       : {$IFNDEF FPC}LongInt;{$ELSE}DWord;{$ENDIF}
-  TotalRead : LongInt;
-  BytesRead : LongInt;
-begin
-  Result := False;
 
-  Buf := StrAlloc(BufSize);
-  try
-    Fh := FileOpen(FileName, fmOpenReadWrite or fmShareDenyWrite);
-    if (Fh >= 0 {HFILE_ERROR}) then begin
-      Size := FileSeek(Fh, 0, 2);
-      FileSeek(Fh, 0, 0);  {reset to beginning of file}
-      CRC := $FFF00FFF;    {special CRC init}
-      TotalRead := 0;
-      repeat
-        BytesRead := FileRead(Fh, Buf^, BufSize);
-
-        {search if not found}
-        if not Result then begin
-          for I := 0 to BytesRead - SizeOf(TSignatureRec) - 1 do begin
-            if (PSignatureRec(@Buf[I])^.Sig1 = $407E7E21) and
-               (PSignatureRec(@Buf[I])^.Sig2 = $33435243) and
-               (PSignatureRec(@Buf[I])^.Sig3 = $7E7E4032) and
-               (PSignatureRec(@Buf[I])^.Sig4 = $407E7E21) and
-               (PSignatureRec(@Buf[I])^.Sig5 = $33435243) and
-               (PSignatureRec(@Buf[I])^.Sig6 = $7E7E4032) then begin
-
-              Result := True;  {found it}
-
-              Sig := PSignatureRec(@Buf[I])^;
-              if EraseMarker then begin
-                Sig.Sig1 := Sig.Sig1 xor timeGetTime;
-                Sig.Sig2 := Sig.Sig2 xor timeGetTime;
-                Sig.Sig3 := Sig.Sig3 xor timeGetTime;
-                Sig.Sig4 := Sig.Sig4 xor timeGetTime;
-                Sig.Sig5 := Sig.Sig5 xor timeGetTime;
-                Sig.Sig6 := Sig.Sig6 xor timeGetTime;
-              end;
-
-              Sig.Offset := TotalRead + I;
-              Sig.Size := Size;
-
-              {update crc up to the start of the signature record}
-			  {$IFNDEF FPC}
-              UpdateCRC32(CRC, Buf^, I);
-			  {$ELSE}
-              UpdateCRC32(DWord(CRC), Buf^, I);
-			  {$ENDIF}
-              {update crc for the remaing potion of the buffer (after the signature record)}
-              UpdateCRC32(CRC, Buf[I+SizeOf(TSignatureRec)],
-                          BytesRead-(I+SizeOf(TSignatureRec)));
-            end;
-          end;
-        end;
-
-        if not Result then begin
-		  {$IFNDEF FPC}
-          UpdateCRC32(CRC, Buf^, BytesRead-SizeOf(TSignatureRec));
-		  {$ELSE}
-          UpdateCRC32(DWord(CRC), Buf^, BytesRead-SizeOf(TSignatureRec));
-		  {$ENDIF}
-          {back up by size of TSignatureRec to insure that split record is found}
-          FileSeek(Fh, -SizeOf(TSignatureRec), 1);
-          Inc(TotalRead, BytesRead-SizeOf(TSignatureRec));
-        end;
-      until (BytesRead < BufSize) or Result;
-
-      {scan remaining portion of file}
-      if Result then begin
-        repeat
-          BytesRead := FileRead(Fh, Buf^, BufSize);
-		  {$IFNDEF FPC}
-          UpdateCRC32(CRC, Buf^, BytesRead);
-		  {$ELSE}
-          UpdateCRC32(DWord(CRC), Buf^, BytesRead);
-		  {$ENDIF}
-        until (BytesRead < BufSize);
-      end;
-
-      {save signature record back to the exe file}
-      if Result then begin
-        Sig.CRC := not CRC;
-        FileSeek(Fh, Sig.Offset, 0);
-        FileWrite(Fh, Sig, SizeOf(TSignatureRec))
-      end;
-
-      FileClose(Fh);
-    end;
-  finally
-    StrDispose(Buf);
-  end;
-end;
-{$ENDIF}
-
-
-{$IFDEF Win32}
 function UnprotectExe(const FileName : string) : Boolean;
   {-writes uninitialized signature record. marker must not have been erased}
 var
   Fh      : THandle;
   FileMap : THandle;
   Memory  : PByteArray;
-  I, Size : LongInt;
+  I, Size : Integer;
   Sig     : PSignatureRec;
 begin
   Result := False;
@@ -575,41 +363,26 @@ begin
   Fh := CreateFile(PChar(FileName), GENERIC_READ or GENERIC_WRITE, 0,
     nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
   if (Fh <> INVALID_HANDLE_VALUE) then begin
-    Size := Windows.GetFileSize(Fh, nil);
+    Size := Winapi.Windows.GetFileSize(Fh, nil);
 
     FileMap := CreateFileMapping(Fh, nil, PAGE_READWRITE, 0, 0, nil);
     if (FileMap <> 0) then begin
       Memory := MapViewOfFile(FileMap, FILE_MAP_WRITE, 0, 0, 0);
       if (Memory <> nil) then begin
         for I := 0 to (Size - SizeOf(TSignatureRec)) - 1 do begin
-		  {$IFNDEF FPC}
           if (PSignatureRec(@Memory[I])^.Sig1 = $407E7E21) and
              (PSignatureRec(@Memory[I])^.Sig2 = $33435243) and
              (PSignatureRec(@Memory[I])^.Sig3 = $7E7E4032) and
              (PSignatureRec(@Memory[I])^.Sig4 = $407E7E21) and
              (PSignatureRec(@Memory[I])^.Sig5 = $33435243) and
              (PSignatureRec(@Memory[I])^.Sig6 = $7E7E4032) then begin
-		  {$ELSE}
-          if (PSignatureRec(@Memory[I]).Sig1 = $407E7E21) and
-             (PSignatureRec(@Memory[I]).Sig2 = $33435243) and
-             (PSignatureRec(@Memory[I]).Sig3 = $7E7E4032) and
-             (PSignatureRec(@Memory[I]).Sig4 = $407E7E21) and
-             (PSignatureRec(@Memory[I]).Sig5 = $33435243) and
-             (PSignatureRec(@Memory[I]).Sig6 = $7E7E4032) then begin
-		  {$ENDIF}
             {found it}
             Sig := @Memory^[I];
 
             {restore to uninitialized state}
-			{$IFNDEF FPC}
             Sig.Offset := 1;                                         {!!.08}
             Sig.Size := 2;                                           {!!.08}
             Sig.CRC := 3;                                            {!!.08}
-			{$ELSE}
-            Sig^.Offset := 1;                                         {!!.08}
-            Sig^.Size := 2;                                           {!!.08}
-            Sig^.CRC := 3;                                            {!!.08}
-			{$ENDIF}
             Result := True;
             Break;
           end;
@@ -621,84 +394,13 @@ begin
     CloseHandle(Fh);
   end;
 end;
-{$ELSE}
-function UnprotectExe(const FileName : string) : Boolean;
-  {-writes uninitialized signature record. marker must not have been erased}
-const
-  BufSize = 4096; {must be larger than the size of the signature record}
-var
-  Fh        : THandle;
-  I         : LongInt;
-  Sig       : TSignatureRec;
-  Buf       : PAnsiChar;
-  Offset    : LongInt;
-  BytesRead : LongInt;
-  TotalRead : LongInt;
-begin
-  Result := False;
-
-  Buf := StrAlloc(BufSize);
-  try
-    Fh := FileOpen(FileName, fmOpenReadWrite or fmShareDenyWrite);
-    if (Fh >= 0 {HFILE_ERROR}) then begin
-      FileSeek(Fh, 0, 0);  {reset to beginning of file}
-      TotalRead := 0;
-      repeat
-        BytesRead := FileRead(Fh, Buf^, BufSize);
-
-        {search if not found}
-        if not Result then begin
-          for I := 0 to BytesRead - SizeOf(TSignatureRec) - 1 do begin
-            if (PSignatureRec(@Buf[I])^.Sig1 = $407E7E21) and
-               (PSignatureRec(@Buf[I])^.Sig2 = $33435243) and
-               (PSignatureRec(@Buf[I])^.Sig3 = $7E7E4032) and
-               (PSignatureRec(@Buf[I])^.Sig4 = $407E7E21) and
-               (PSignatureRec(@Buf[I])^.Sig5 = $33435243) and
-               (PSignatureRec(@Buf[I])^.Sig6 = $7E7E4032) then begin
-
-              {found it}
-              Sig := PSignatureRec(@Buf[I])^;
-
-              {save position in file}
-              Offset := TotalRead + I;
-              Result := True;
-            end;
-          end;
-        end;
-
-        if not Result then begin
-          {back up by size of TSignatureRec to insure that split record is found}
-          FileSeek(Fh, -SizeOf(TSignatureRec), 1);
-          Inc(TotalRead, BytesRead-SizeOf(TSignatureRec));
-        end;
-      until (BytesRead < BufSize) or Result;
-
-      {save signature record back to the exe file}
-      if Result then begin
-        {restore to uninitialized state}
-        Sig.Offset := 1;                                             {!!.08}
-        Sig.Size := 2;                                               {!!.08}
-        Sig.CRC := 3;                                                {!!.08}
-
-        FileSeek(Fh, Offset, 0);
-        FileWrite(Fh, Sig, SizeOf(TSignatureRec))
-      end;
-
-      FileClose(Fh);
-    end;
-  finally
-    StrDispose(Buf);
-  end;
-end;
-{$ENDIF}
-
 
 {checksum/CRC routines}
 
-procedure UpdateChecksum(var Sum : LongInt;  const Buf;  BufSize : LongInt);
+procedure UpdateChecksum(var Sum : Integer;  const Buf;  BufSize : Integer);
 var
   Bytes : TByteArray absolute Buf;
-  I     : LongInt;
+  I     : Integer;
 begin
   for I := 0 to BufSize - 1 do
     Sum := Sum + Bytes[I];
@@ -709,7 +411,7 @@ function FileCRC32(const FileName : string) : DWord;                 {!!.07}
 var
   Fh      : THandle;
   FileMap : THandle;
-  Size    : LongInt;
+  Size    : Integer;
   Memory  : PByteArray;
   Buf     : array [0..MAX_PATH - 1] of Char;
 begin
@@ -718,7 +420,7 @@ begin
   Fh := CreateFile(Buf, GENERIC_READ, FILE_SHARE_READ or FILE_SHARE_WRITE,
     nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
   if (Fh <> INVALID_HANDLE_VALUE) then begin                         {!!.07}
-    Size := Windows.GetFileSize(Fh, nil);
+    Size := Winapi.Windows.GetFileSize(Fh, nil);
     FileMap := CreateFileMapping(Fh, nil, PAGE_READONLY, 0, 0, nil);
     if (FileMap <> 0) then begin
       Memory := MapViewOfFile(FileMap, FILE_MAP_READ, 0, 0, 0);
@@ -733,12 +435,12 @@ begin
   end;
 end;
 {$ELSE}
-function FileCRC32(const FileName : string) : {$IFNDEF FPC}LongInt;{$ELSE}DWord;{$ENDIF}
+function FileCRC32(const FileName : string) : Integer;
 const
   BufSize = 4096;
 var
   Fh        : Integer;
-  BytesRead : LongInt;
+  BytesRead : Integer;
   Buf       : PAnsiChar;
 begin
   Buf := StrAlloc(BufSize);
@@ -749,11 +451,7 @@ begin
       Result := $FFF00FFF;  {special CRC init}
       repeat
         BytesRead := FileRead(Fh, Buf^, BufSize);
-		{$IFNDEF FPC}
         UpdateCRC32(Result, Buf^, BytesRead);
-		{$ELSE}
-        UpdateCRC32(DWord(Result), Buf^, BytesRead);
-		{$ENDIF}
       until (BytesRead < BufSize);
       FileClose(Fh);
     end;
@@ -763,14 +461,14 @@ begin
 end;
 {$ENDIF}
 
-procedure UpdateCRC32(var CRC : DWord;  const Buf;  BufSize : LongInt); {!!.07}
+procedure UpdateCRC32(var CRC : DWord;  const Buf;  BufSize : Integer); {!!.07}
 var
   Bytes : TByteArray absolute Buf;
-  I     : LongInt;
+  I     : Integer;
   B     : Byte;
 begin
   for I := 0 to BufSize - 1 do begin
-    B := TLongIntRec(CRC).LoLo xor Bytes[I];
+    B := TIntegerRec(CRC).LoLo xor Bytes[I];
     CRC := (CRC shr 8) xor CRC32Table[B];
   end;
 end;

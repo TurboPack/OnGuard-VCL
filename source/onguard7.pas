@@ -30,25 +30,13 @@
 
 {$I onguard.inc}
 
-unit onguard7;
+unit onguard7Fmx;
   {-File name property editor}
 
 interface
 
 uses
-  {$IFDEF MSWINDOWS}
-  Dialogs, Forms,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  FMX.Dialogs, FMX.Forms,
-  {$ENDIF}
-
-{$IFDEF DELPHI6UP}                                                      {!!.13}
-  DesignIntf,
-  DesignEditors;
-{$ELSE}
-  dsgnintf;
-{$ENDIF}
+  Fmx.Dialogs, Fmx.Forms, DesignIntf, DesignEditors;
 
 
 type
@@ -66,6 +54,8 @@ type
 
 implementation
 
+uses
+  System.UITypes;
 
 {*** TOgFileNameProperty ***}
 
@@ -88,7 +78,7 @@ begin
     D.DefaultExt := '*.ini';
     D.Filter := 'Ini Files (*.ini)|*.ini|Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
     D.FilterIndex := 0;
-    D.Options := [ofHideReadOnly];
+    D.Options := [TOpenOption.ofHideReadOnly];
     D.Title := 'Select File Name';
     D.FileName := Value;
     if D.Execute then

@@ -30,29 +30,13 @@
 
 {$I onguard.inc}
 
-unit ogabout0;
+unit ogabout0Fmx;
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF MSWINDOWS}
-  Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, ShellAPI,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Objects,
-  FMX.ExtCtrls, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  {$ENDIF}
-  OgUtil,
-{$IFDEF DELPHI6UP}                                                      {!!.13}
-  DesignIntf,
-  DesignEditors;
-{$ELSE}
-  dsgnintf;
-{$ENDIF}
+  ogutilFmx, DesignIntf, DesignEditors, FMX.Objects, FMX.Types, FMX.Controls.Presentation,
+  FMX.StdCtrls, System.Classes, FMX.Controls, FMX.Forms;
 
 
 type
@@ -65,22 +49,15 @@ type
     NewsLbl: TLabel;
     procedure btnOKClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    {$IFNDEF UseOgFMX}
     procedure WebLblMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+      Y: Single);
     procedure NewsLblMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+      Y: Single);
     procedure Panel2MouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
-    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+      Y: Single);
     procedure WebLblClick(Sender: TObject);
     procedure NewsLblClick(Sender: TObject);
-    {$ENDIF}
-  private
-    { Private declarations }
-  public
-    { Public declarations }
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
   end;
 
   TOgAboutProperty = class(TStringProperty)                          {!!.08}
@@ -93,9 +70,10 @@ type
 
 implementation
 
-{$IFDEF MSWINDOWS}{$R *.DFM}{$ENDIF}
-{$IFDEF UseOgFMX}{$R *.fmx}{$ENDIF}
+{$R *.fmx}
 
+uses
+  System.UITypes, Winapi.Windows, Winapi.ShellAPI, Fmx.Dialogs;
 
 {*** TOgVersionProperty ***}
 
@@ -127,54 +105,47 @@ procedure TOgAboutForm.FormCreate(Sender: TObject);
 begin
   Top := (Screen.Height - Height) div 3;
   Left := (Screen.Width - Width) div 2;
-  {$IFNDEF UseOgFMX}
-  lblVersion.Caption := 'Version ' + OgVersionStr;
-  {$ELSE}
   lblVersion.Text := 'Version ' + OgVersionStr;
-  {$ENDIF}
 end;
 
-{$IFNDEF UseOgFMX}
 procedure TOgAboutForm.WebLblMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
+  X, Y: Single);
 begin
-  WebLbl.Font.Color := clRed;
+  WebLbl.FontColor := TColorRec.Red;
 end;
 
 procedure TOgAboutForm.NewsLblMouseMove(Sender: TObject;
-  Shift: TShiftState; X, Y: Integer);
+  Shift: TShiftState; X, Y: Single);
 begin
-  NewsLbl.Font.Color := clRed;
+  NewsLbl.FontColor := TColorRec.Red;
 end;
 
 procedure TOgAboutForm.Panel2MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
+  X, Y: Single);
 begin
-  NewsLbl.Font.Color := clNavy;
+  NewsLbl.FontColor := TColorRec.Navy;
 end;
 
-procedure TOgAboutForm.FormMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
+procedure TOgAboutForm.FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
 begin
-  WebLbl.Font.Color := clNavy;
-  NewsLbl.Font.Color := clNavy;
+  WebLbl.FontColor := TColorRec.Navy;
+  NewsLbl.FontColor := TColorRec.Navy;
 end;
 
 procedure TOgAboutForm.WebLblClick(Sender: TObject);
 begin
-  if ShellExecute(0, 'open', 'http://sourceforge.net/projects/tponguard',
+  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard',
                   '', '', SW_SHOWNORMAL) <= 32 then
     ShowMessage('Unable to start web browser');
-  WebLbl.Font.Color := clNavy;
+  WebLbl.FontColor := TColorRec.Navy;
 end;
 
 procedure TOgAboutForm.NewsLblClick(Sender: TObject);
 begin
-  if ShellExecute(0, 'open', 'https://sourceforge.net/forum/?group_id=71010',
+  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard',
                   '', '', SW_SHOWNORMAL) <= 32 then
     ShowMessage('Unable to start news reader');
-  NewsLbl.Font.Color := clNavy;
+  NewsLbl.FontColor := TColorRec.Navy;
 end;
-{$ENDIF}
 
 end.

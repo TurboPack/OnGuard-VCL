@@ -30,26 +30,16 @@
 
 {$I onguard.inc}
 
-unit onguard4;
+unit onguard4Fmx;
   {-Product description dialog}
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF MSWINDOWS}
-  StdCtrls, Buttons, ExtCtrls, Controls, Classes, Forms,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Objects, FMX.ExtCtrls,
-  FMX.Layouts, FMX.Edit, FMX.Platform,
-  Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  {$ENDIF}
-  ogutil,
-  onguard,
-  onguard1;
+  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}  ogutilFmx, onguardFmx, System.SysUtils,
+  System.Types, System.UITypes, System.Classes, FMX.Types, FMX.Controls, FMX.Forms,
+  FMX.Objects, FMX.ExtCtrls, FMX.Layouts, FMX.Edit, FMX.Platform,  Fmx.StdCtrls,
+  FMX.Header, FMX.Graphics, FMX.Controls.Presentation;
 
 type
   TEditProductFrm = class(TForm)
@@ -91,8 +81,12 @@ type
 
 implementation
 
-{$IFDEF MSWINDOWS}{$R *.DFM}{$ENDIF}
-{$IFDEF UseOgFMX}{$R *.FMX}{$ENDIF}
+{$R *.fmx}
+
+uses
+  onguard1Fmx;
+
+{ TEditProductFrm }
 
 procedure TEditProductFrm.FormCreate(Sender: TObject);
 begin
@@ -120,9 +114,6 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
-    {$IFDEF MSWINDOWS}
-    F.ShowHint := GetShowHints;
-    {$ENDIF}
     if F.ShowModal = mrOK then begin
       F.GetKey(FKey);
       FKeyType := F.KeyType;
@@ -142,16 +133,10 @@ end;
 function TEditProductFrm.GetShowHints : Boolean;
 begin
   Result := False;
-  {$IFDEF MSWINDOWS}
-  Result := ShowHint;
-  {$ENDIF}
 end;
 
 procedure TEditProductFrm.SetShowHints(Value : Boolean);
 begin
-  {$IFDEF MSWINDOWS}
-  ShowHint := Value;
-  {$ENDIF}
 end;
 
 procedure TEditProductFrm.GetKey(var Value : TKey);

@@ -5,73 +5,99 @@ object EditProductFrm: TEditProductFrm
   Caption = 'Description and Key'
   ClientHeight = 110
   ClientWidth = 464
-  Position = poScreenCenter
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
   OnCreate = FormCreate
+  Left = 299
+  Top = 201
+  DesignerMasterStyle = 0
   object OKBtn: TButton
-Position.Point = '(305,80)'
-    Width = 75
-    Height = 25
-    Text = 'OK'
     Default = True
     ModalResult = 1
+    Position.X = 305.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
+    Text = 'OK'
   end
   object CancelBtn: TButton
-Position.Point = '(385,80)'
-    Width = 75
-    Height = 25
     Cancel = True
-    Text = 'Cancel'
     ModalResult = 2
+    Position.X = 385.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 75.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
+    Text = 'Cancel'
   end
   object Panel1: TPanel
-Position.Point = '(4,5)'
-    Width = 456
-    Height = 68
+    Position.X = 4.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 456.000000000000000000
+    Size.Height = 68.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 2
     object Label1: TLabel
-Position.Point = '(12,12)'
-      Width = 56
-      Height = 13
+      AutoSize = True
+      Position.X = 12.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 67.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
       Text = 'Description:'
-WordWrap = False
-AutoSize = True
     end
     object Label2: TLabel
-Position.Point = '(12,40)'
-      Width = 21
-      Height = 13
+      AutoSize = True
+      Position.X = 12.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 26.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
       Text = 'Key:'
-WordWrap = False
-AutoSize = True
     end
     object GenerateKeySb: TSpeedButton
-Position.Point = '(426,37)'
-      Width = 23
-      Height = 23
+      Position.X = 426.000000000000000000
+      Position.Y = 37.000000000000000000
+      Size.Width = 23.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = True
       OnClick = GenerateKeySbClick
-WordWrap = True
     end
     object KeyPasteSb: TSpeedButton
-Position.Point = '(400,37)'
-      Width = 23
-      Height = 23
+      Position.X = 400.000000000000000000
+      Position.Y = 37.000000000000000000
+      Size.Width = 23.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = True
       OnClick = KeyPasteSbClick
-WordWrap = True
     end
     object ProductEd: TEdit
-Position.Point = '(80,8)'
-      Width = 318
-      Height = 21
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 0
+      Position.X = 80.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 318.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
       OnChange = InfoChanged
     end
     object KeyEd: TEdit
-Position.Point = '(80,38)'
-      Width = 318
-      Height = 21
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 1
+      Position.X = 80.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 318.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
       OnChange = InfoChanged
     end
   end

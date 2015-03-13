@@ -34,21 +34,15 @@
 
 {$I onguard.inc}
 
-unit ognetwrk;
+unit ognetwrkFmx;
   {-network file routines}
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, OLE2, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF KYLIX} Libc, {$ENDIF}
-  {$IFDEF UsingCLX} Types, {$ENDIF}
+  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
   {$IFDEF MACOS}Posix.Unistd, {$ENDIF}
-  Classes, SysUtils,
-  ogconst,
-  ogutil,
-  onguard;
+  System.Classes, System.SysUtils, ogutilFmx, onguardFmx;
 
 type
   TNetAccess = packed record
@@ -69,7 +63,7 @@ type
     procedure(Sender : TObject; var Value : string)                    {!!.02}
     of object;                                                         {!!.02}
 
-  TOgNetCode = class(TOgCodeBase)
+  TOgNetCodeFmx = class(TOgCodeBaseFmx)
   protected {private}
     {property variables}
     FFileName        : string;
@@ -82,9 +76,9 @@ type
     nacNetAccessInfo : TNetAccessInfo;
 
     {property methods}
-    function GetActiveUsers : LongInt;
-    function GetInvalidUsers : LongInt;
-    function GetMaxUsers : LongInt;
+    function GetActiveUsers : Integer;
+    function GetInvalidUsers : Integer;
+    function GetMaxUsers : Integer;
 
   protected
     procedure Loaded;
@@ -108,13 +102,13 @@ type
     function ResetAccessFile : Boolean;
       {-rewrites the net access file, returning True if successful}
 
-    property ActiveUsers : LongInt
+    property ActiveUsers : Integer
       read GetActiveUsers;
 
-    property InvalidUsers : LongInt
+    property InvalidUsers : Integer
       read GetInvalidUsers;
 
-    property MaxUsers : LongInt
+    property MaxUsers : Integer
       read GetMaxUsers;
 
   published
@@ -143,7 +137,7 @@ function CreateNetAccessFile(const FileName : string; const Key : TKey; Count : 
 function CreateNetAccessFileEx(const FileName : string; const Key : TKey;
          const Code : TCode) : Boolean;
   {-creates the net access file getting the user count from a previously encoded Code block}
-function DecodeNAFCountCode(const Key : TKey; const Code : TCode) : LongInt;
+function DecodeNAFCountCode(const Key : TKey; const Code : TCode) : Integer;
   {-returns the user count from a previously encoded Code block}
 procedure EncodeNAFCountCode(const Key : TKey; Count : Cardinal;  var Code : TCode);
   {-creates an encoded Code block for Count users}
@@ -163,7 +157,13 @@ function UnlockNetAccessFile(var NetAccess : TNetAccess) : Boolean;
 implementation
 
 uses
-  ogfile;
+{$IFDEF ANDROID}
+  Posix.Unistd,
+{$ENDIF}
+  ogfileFmx;
+
+resourcestring
+  SCNoOnGetFileName = 'FileName is empty and OnGetFileName is not assigned';
 
 {$IFDEF MACOS}
 function HiWord(L: DWORD): Word;
@@ -172,9 +172,16 @@ begin
 end;
 {$ENDIF}
 
-{*** TOgNetCode ***}
+{$IFDEF ANDROID}
+function HiWord(L: DWORD): Word;
+begin
+  Result := L shr 16;
+end;
+{$ENDIF}
 
-function TOgNetCode.CheckCode(Report : Boolean) : TCodeStatus;
+{*** TOgNetCodeFmx ***}
+
+function TOgNetCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
 var
   Key      : TKey;
 begin
@@ -203,18 +210,18 @@ begin
 end;
 
 {!!.01}
-constructor TOgNetCode.Create(AOwner : TComponent);
+constructor TOgNetCodeFmx.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
   nacNetAccess.Fh := -1;
 end;
 
-function TOgNetCode.CreateAccessFile : Boolean;
+function TOgNetCodeFmx.CreateAccessFile : Boolean;
 var
   ACode     : TCode;
   Key      : TKey;
-  AModifier : LongInt;
+  AModifier : Integer;
 begin
   DoOnGetKey(Key);
   ACode := DoOnGetCode;
@@ -223,7 +230,7 @@ begin
   Result := CreateNetAccessFileEx(FFileName, Key, ACode);
 end;
 
-destructor TOgNetCode.Destroy;
+destructor TOgNetCodeFmx.Destroy;
 begin
   UnlockNetAccessFile(nacNetAccess);
 
@@ -231,19 +238,19 @@ begin
 end;
 
 {!!.02}
-function TOgNetCode.DoOnGetFileName : string;
+function TOgNetCodeFmx.DoOnGetFileName : string;
 begin
   Result := '';
   if not Assigned(FOnGetFileName) then
-    raise EOnGuardException.Create({$IFNDEF NoOgSrMgr}StrRes[SCNoOnGetFileName]{$ELSE}SCNoOnGetFileName{$ENDIF});
+    raise EOnGuardException.Create(SCNoOnGetFileName);
 
   FOnGetFileName(Self, Result);
 end;
 
-function TOgNetCode.GetActiveUsers : LongInt;
+function TOgNetCodeFmx.GetActiveUsers : Integer;
 var
   Key           : TKey;
-  AModifier      : LongInt;
+  AModifier      : Integer;
   NetAccessInfo : TNetAccessInfo;
 begin
   DoOnGetKey(Key);
@@ -255,10 +262,10 @@ begin
     Result := -1;
 end;
 
-function TOgNetCode.GetInvalidUsers : LongInt;
+function TOgNetCodeFmx.GetInvalidUsers : Integer;
 var
   Key           : TKey;
-  AModifier      : LongInt;
+  AModifier      : Integer;
   {NetAccessInfo : TNetAccessInfo;}                                  {!!.08}
 begin
   DoOnGetKey(Key);
@@ -270,10 +277,10 @@ begin
     Result := -1;
 end;
 
-function TOgNetCode.GetMaxUsers : LongInt;
+function TOgNetCodeFmx.GetMaxUsers : Integer;
 var
   Key      : TKey;
-  AModifier : LongInt;
+  AModifier : Integer;
 begin
   DoOnGetKey(Key);
   AModifier := DoOnGetModifier;
@@ -284,16 +291,16 @@ begin
     Result := -1;
 end;
 
-function TOgNetCode.IsRemoteDrive(const ExePath : string) : Boolean;
+function TOgNetCodeFmx.IsRemoteDrive(const ExePath : string) : Boolean;
 begin
   Result := IsAppOnNetwork(ExePath);
 end;
 
-procedure TOgNetCode.Loaded;
+procedure TOgNetCodeFmx.Loaded;
 var
   Key      : TKey;
   ACode     : TCode;
-  AModifier : LongInt;
+  AModifier : Integer;
 begin
   if FAutoCheck and not (csDesigning in ComponentState) then begin   {!!.08}
     ACode := DoOnGetCode;
@@ -319,10 +326,10 @@ begin
   inherited Loaded;
 end;
 
-function TOgNetCode.ResetAccessFile : Boolean;
+function TOgNetCodeFmx.ResetAccessFile : Boolean;
 var
   Key      : TKey;
-  AModifier : LongInt;
+  AModifier : Integer;
 begin
   DoOnGetKey(Key);
   AModifier := DoOnGetModifier;
@@ -350,14 +357,16 @@ end;
 function CreateNetAccessFile(const FileName : string; const Key : TKey; Count : Word) : Boolean;
 var
   Fh   : Integer;
-  I    : LongInt;
+  I    : Integer;
   Code : TCode;
 begin
   Result := False;
 
   Fh := FileCreate(FileName);
-  if (Fh > -1) then begin
-    for I := 0 to Count - 1 do begin
+  if (Fh > -1) then
+  begin
+    for I := 0 to Count - 1 do
+    begin
       Code.CheckValue := NetCheckCode;
       Code.Expiration := 0; {not used}
       Code.NetIndex := I;
@@ -365,19 +374,15 @@ begin
       FileWrite(Fh, Code, SizeOf(Code));
     end;
 
-    {$IFNDEF FPC}
-	FlushFileBuffers(Fh);
+	  FlushFileBuffers(Fh);
     Result := GetFileSize(Fh) = (Count * SizeOf(Code));
-	{$ELSE}
-    Result := ( GetFileSize(Fh) = (Count * SizeOf(Code)));
-	{$ENDIF}
     FileClose(Fh);
   end;
 end;
 
 function CreateNetAccessFileEx(const FileName : string; const Key : TKey; const Code : TCode) : Boolean;
 var
-  L : LongInt;
+  L : Integer;
 begin
   L := DecodeNAFCountCode(Key, Code);
   if L > 0 then
@@ -386,7 +391,7 @@ begin
     Result := False;
 end;
 
-function DecodeNAFCountCode(const Key : TKey; const Code : TCode) : LongInt;
+function DecodeNAFCountCode(const Key : TKey; const Code : TCode) : Integer;
 var
   Work : TCode;
 begin
@@ -410,7 +415,7 @@ function GetNetAccessFileInfo(const FileName : string; const Key : TKey;
          var NetAccessInfo : TNetAccessInfo) : Boolean;
 var
   Fh   : Integer;
-  I    : LongInt;
+  I    : Integer;
   Code : TCode;
 begin
   Result := False;
@@ -451,14 +456,6 @@ begin
   Result := (GetDriveType(PChar(ExtractFileDrive(ExpandUNCFilename(ExePath)) + '\')) = DRIVE_REMOTE);
 end;
 {$ENDIF}
-{$IFDEF Win16}
-var
-  D : Integer;
-begin
-  D := Ord(UpCase(ExePath[1])) - Ord('A');                             {!!.07}
-  Result := GetDriveType(D) = DRIVE_REMOTE;
-end;
-{$ENDIF}
 {$IFDEF UNIX}
 begin
   Result := False;
@@ -475,7 +472,7 @@ function LockNetAccessFile(const FileName : string; const Key : TKey;
 var
   Fh    : Integer;
   Count : Cardinal;
-  I     : LongInt;
+  I     : Integer;
   Code  : TCode;
 begin
   Result := False;
@@ -520,7 +517,7 @@ function ResetNetAccessFile(const FileName : string; const Key : TKey) : Boolean
 var
   Fh    : Integer;
   Count : Cardinal;
-  I     : LongInt;
+  I     : Integer;
   Code  : TCode;
 begin
   Result := False;

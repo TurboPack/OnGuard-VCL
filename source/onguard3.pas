@@ -30,30 +30,18 @@
 
 {$I onguard.inc}
 
-unit onguard3;
+unit onguard3Fmx;
   {-Key selection and maintenance}
 
 interface
 
 uses
-
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, {$ENDIF}
-  {$IFDEF MSWINDOWS}
-  SysUtils, Messages, Classes, Graphics, Controls, Clipbrd, IniFiles,
-  StdCtrls, Buttons, Forms, Dialogs,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.IniFiles,
+  System.UITypes, ogutilFmx, onguardFmx, onguard1Fmx, onguard4Fmx,
+  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
+  System.SysUtils, System.Types, System.Classes, System.IniFiles,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
   FMX.ExtCtrls, FMX.ListBox, FMX.Layouts, FMX.Edit, FMX.Platform,
-  Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  {$ENDIF}
-  ogconst,
-  ogutil,
-  onguard,
-  onguard1,
-  onguard4;
+  Fmx.StdCtrls, FMX.Header, FMX.Graphics, FMX.Controls.Presentation;
 
 type
   TKeyMaintFrm = class(TForm)
@@ -62,16 +50,9 @@ type
     AddBtn: TButton;
     DeleteBtn: TButton;
     EditBtn: TButton;
-    {$IFNDEF UseOgFMX}
-    OKBtn: TBitBtn;
-    CancelBtn: TBitBtn;
-    OpenBtn: TBitBtn;
-    {$ENDIF}
-    {$IFDEF UseOgFMX}
     OKBtn: TButton;
     CancelBtn: TButton;
     OpenBtn: TButton;
-    {$ENDIF}
     OpenDialog1: TOpenDialog;
     FileNameGb: TGroupBox;
     FileNameEd: TEdit;
@@ -121,8 +102,16 @@ type
 
 implementation
 
-{$IFDEF MSWINDOWS}{$R *.DFM}{$ENDIF}
-{$IFDEF UseOgFMX}{$R *.FMX}{$ENDIF}
+{$R *.fmx}
+
+const
+  {name of section that stores application keys}
+  OgKeySection = 'Keys';
+
+resourcestring
+  SCDeleteQuery = 'Are you sure you want to delete this item?';
+
+{ TKeyMaintFrm }
 
 {!! This function is required to get round a bug in Delphi 4}        {!!.07}
 function TKeyMaintFrm.GetListBoxItemIndex : integer;                 {!!.07}
@@ -204,9 +193,6 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
-    {$IFDEF MSWINDOWS}
-    F.ShowHint := ShowHint;
-    {$ENDIF}
     if F.ShowModal = mrOK then begin
       IniFile := TIniFile.Create(KeyFileName);
       try
@@ -233,9 +219,6 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
-    {$IFDEF MSWINDOWS}
-    F.ShowHint := ShowHint;
-    {$ENDIF}
     IniFile := TIniFile.Create(KeyFileName);
     try
       F.ProductEd.Text := ProductsLb.Items[GetListBoxItemIndex];     {!!.07}
@@ -254,31 +237,21 @@ end;
 
 procedure TKeyMaintFrm.DeleteBtnClick(Sender: TObject);
 var
+{$IFDEF MSWINDOWS}
   IniFile : TIniFile;
+{$ENDIF}
   I       : Integer;
-  {$IFDEF Win16}
-  Buf1    : array[0..255] of Char;
-  Buf2    : array[0..255] of Char;
-  {$ENDIF}
 begin
   I := GetListBoxItemIndex;                                          {!!.07}
   if (I > -1) then                                                   {!!.07}
-    if MessageDlg({$IFNDEF NoOgSrMgr}StrRes[SCDeleteQuery]{$ELSE}SCDeleteQuery{$ENDIF},
-                  {$IFDEF UseOgFMX}TMsgDlgType.{$ENDIF}mtConfirmation,
-                  {$IFDEF UseOgFMX}mbYesNo{$ELSE}[mbYes, mbNo]{$ENDIF}, 0) = mrYes then begin
+    if MessageDlg(SCDeleteQuery, TMsgDlgType.mtConfirmation, mbYesNo, 0) = mrYes then begin
       {$IFDEF MSWINDOWS}
-      {$IFNDEF Win16}
       IniFile := TIniFile.Create(KeyFileName);
       try
         IniFile.DeleteKey(OgKeySection, ProductsLb.Items[I]);        {!!.07}
       finally
         IniFile.Free;
       end;
-      {$ELSE}
-      StrPLCopy(Buf1, ProductsLb.Items[I], 255);                     {!!.07}
-      StrPLCopy(Buf2, KeyFileName, 255);
-      WritePrivateProfileString(OgKeySection, Buf1, nil, Buf2);
-      {$ENDIF}
       {$ENDIF}
       BlockKeyEd.Text := '';
       BytesKeyEd.Text := '';

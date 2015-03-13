@@ -2,141 +2,148 @@ object OgAboutForm: TOgAboutForm
   Left = 478
   Top = 124
   BorderIcons = [biSystemMenu]
-  BorderStyle = bsSingle
+  BorderStyle = Single
   Caption = 'About TurboPower OnGuard'
   ClientHeight = 304
   ClientWidth = 412
-  Position = poScreenCenter
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
-  FormFactor.Devices = [dkDesktop, dkiPhone, dkiPad]
+  FormFactor.Devices = [Desktop, iPhone, iPad]
   OnCreate = FormCreate
   OnMouseMove = FormMouseMove
   Left = 478
   Top = 124
-  DesignerMobile = False
-  DesignerWidth = 0
-  DesignerHeight = 0
-  DesignerDeviceName = ''
-  DesignerOrientation = 0
-  DesignerOSVersion = ''
+  DesignerMasterStyle = 0
   object TLabel
     AutoSize = True
-    Font.Size = 14.000000000000000000
-    Font.Style = [fsBold]
-    StyledSettings = [ssFamily, ssStyle, ssFontColor]
-    Height = 23.000000000000000000
+    StyledSettings = [Family, Style, FontColor]
     Position.X = 152.000000000000000000
     Position.Y = 8.000000000000000000
+    Size.Width = 60.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.Style = [fsBold]
+    TextSettings.WordWrap = False
     Text = 'OnGuard'
-    Width = 60.000000000000000000
-    WordWrap = False
     Left = 152
     Top = 8
   end
   object lblVersion: TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 152.000000000000000000
     Position.Y = 25.000000000000000000
+    Size.Width = 69.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'Version 1.00'
-    Width = 64.000000000000000000
-    WordWrap = False
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 152.000000000000000000
     Position.Y = 56.000000000000000000
+    Size.Width = 118.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'OnGuard home page:'
-    Width = 109.000000000000000000
-    WordWrap = False
     Left = 153
     Top = 53
   end
   object WebLbl: TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 161.000000000000000000
     Position.Y = 69.000000000000000000
+    Size.Width = 228.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'http://sourceforge.net/projects/tponguard'
-    Width = 210.000000000000000000
-    WordWrap = False
     OnClick = WebLblClick
     OnMouseMove = WebLblMouseMove
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 152.000000000000000000
     Position.Y = 88.000000000000000000
+    Size.Width = 206.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'Released under the Mozilla License 1.1'
-    Width = 191.000000000000000000
-    WordWrap = False
     Left = 153
     Top = 93
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 168.000000000000000000
     Position.Y = 104.000000000000000000
+    Size.Width = 53.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = '(MPL 1.1)'
-    Width = 49.000000000000000000
-    WordWrap = False
     Left = 161
     Top = 108
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 8.000000000000000000
     Position.Y = 264.000000000000000000
+    Size.Width = 310.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'Copyright (C) 1997-2002, TurboPower Software Company.'
-    Width = 285.000000000000000000
-    WordWrap = False
     Left = 7
     Top = 273
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 8.000000000000000000
     Position.Y = 280.000000000000000000
+    Size.Width = 102.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'All rights reserved.'
-    Width = 94.000000000000000000
-    WordWrap = False
     Left = 7
     Top = 289
   end
   object TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 152.000000000000000000
     Position.Y = 128.000000000000000000
+    Size.Width = 106.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'Online newsgroups'
-    Width = 98.000000000000000000
-    WordWrap = False
     Left = 153
     Top = 131
   end
   object NewsLbl: TLabel
     AutoSize = True
-    Height = 19.000000000000000000
     Position.X = 161.000000000000000000
     Position.Y = 147.000000000000000000
+    Size.Width = 260.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.WordWrap = False
     Text = 'https://sourceforge.net/forum/?group_id=71010'
-    Width = 239.000000000000000000
-    WordWrap = False
     OnClick = NewsLblClick
     OnMouseMove = NewsLblMouseMove
   end
   object Panel1: TPanel
-    Height = 251.000000000000000000
     Position.X = 6.000000000000000000
     Position.Y = 6.000000000000000000
-    Width = 139.000000000000000000
+    Size.Width = 139.000000000000000000
+    Size.Height = 251.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
+    OnMouseMove = Panel2MouseMove
     object Image1: TImage
       MultiResBitmap.Height = 249
       MultiResBitmap.Width = 137
@@ -1176,20 +1183,22 @@ object OgAboutForm: TOgAboutForm
             F825FFF2E1FF039E51341075E78A600000000049454E44AE426082}
           FileName = 'C:\projects\components\tp\onguard\OnGuard\source\onguard.bmp'
         end>
-      Align = alClient
-      Height = 251.000000000000000000
-      Width = 139.000000000000000000
+      Align = Client
+      Size.Width = 139.000000000000000000
+      Size.Height = 251.000000000000000000
+      Size.PlatformDefault = False
     end
   end
   object btnOK: TButton
     Cancel = True
-    Height = 25.000000000000000000
     ModalResult = 2
     Position.X = 322.000000000000000000
     Position.Y = 277.000000000000000000
+    Size.Width = 88.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
     Text = 'OK'
-    Width = 88.000000000000000000
     OnClick = btnOKClick
   end
 end

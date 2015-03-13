@@ -30,65 +30,37 @@
 
 {$I onguard.inc}
 
-unit onguard6;
+unit onguard6Fmx;
   {-Code generation dialog}
 
 interface
 
 uses
-  {$IFDEF Win16} WinTypes, WinProcs, {$ENDIF}
-  {$IFDEF Win32} Windows, ComCtrls, {$ENDIF}
-  {$IFDEF MSWINDOWS}
-  SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Mask,
-  ExtCtrls, Tabnotbk, StdCtrls, Buttons, Messages,
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.ExtCtrls,
-  FMX.Layouts, FMX.Edit, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  FMX.DateTimeCtrls,
-  {$ENDIF}
-  OgConst, OgUtil, OnGuard,
-{$IFDEF DELPHI6UP}                                                      {!!.13}
-  DesignIntf,
-  DesignEditors;
-{$ELSE}
-  dsgnintf;
-{$ENDIF}
+  OgUtilFmx, OnGuardFmx, DesignIntf, DesignEditors, FMX.ComboEdit, FMX.Edit, FMX.Types,
+  FMX.Controls.Presentation, FMX.Forms, FMX.StdCtrls, System.Classes, FMX.Controls,
+  FMX.DateTimeCtrls;
 
 
 type
   TModifierFrm = class(TForm)
-    {$IFDEF MSWINDOWS}
-    OKBtn: TBitBtn;
-    CancelBtn: TBitBtn;
-    {$ENDIF}
-    {$IFDEF UseOgFMX}
     OKBtn: TButton;
     CancelBtn: TButton;
-    {$ENDIF}
     GroupBox1: TGroupBox;
     UniqueModifierCb: TCheckBox;
     MachineModifierCb: TCheckBox;
     DateModifierCb: TCheckBox;
     NoModifierCb: TCheckBox;
     ModifierEd: TEdit;
-    {$IFDEF MSWINDOWS}
-    ModDateEd: TEdit;
-    {$ENDIF}
-    {$IFDEF UseOgFMX}
-    ModDateCalendarEdit: TCalendarEdit;
-    {$ENDIF}
+    ModDateEdit: TDateEdit;
     procedure FormCreate(Sender: TObject);
     procedure ModifierClick(Sender: TObject);
-    {$IFDEF MSWINDOWS}
     procedure ModifierEdKeyPress(Sender: TObject; var Key: Char);
     procedure DateEdKeyPress(Sender: TObject; var Key: Char);
-    {$ENDIF}
     procedure InfoChanged(Sender: TObject);
   private
+    FBusy: Boolean;
   public
-    Modifier : LongInt;
+    Modifier : Integer;
   end;
 
 
@@ -107,49 +79,42 @@ type
 
 implementation
 
-{$IFDEF MSWINDOWS}{$R *.DFM}{$ENDIF}
-{$IFDEF UseOgFMX}{$R *.FMX}{$ENDIF}
+{$R *.fmx}
+
+uses
+  System.UITypes, System.SysUtils, Winapi.Windows;
 
 procedure TModifierFrm.FormCreate(Sender: TObject);
 begin
-  NoModifierCb.Checked := True;
-  {$IFDEF MSWINDOWS}
-  ModDateEd.Text := OgFormatDate(Date);                              {!!.09}
-  {$ENDIF}
-  {$IFDEF UseOgFMX}
-  ModDateCalendarEdit.Date := Date();
-  {$ENDIF}
   InfoChanged(nil);
 end;
 
 procedure TModifierFrm.ModifierClick(Sender: TObject);
-const
-  Busy : Boolean = False;
 var
-  L : LongInt;
+  L : Integer;
   D : TDateTime;
 begin
-  if Busy then
+  if FBusy then
     Exit;
 
   {set busy flag so that setting "Checked" won't recurse}
-  Busy := True;
+  FBusy := True;
   try
     L := 0;
 
-    if (Sender = NoModifierCb) and NoModifierCb.Checked then begin
-      UniqueModifierCb.Checked := False;
-      MachineModifierCb.Checked := False;
-      DateModifierCb.Checked := False;
+    if (Sender = NoModifierCb) and NoModifierCb.IsChecked then begin
+      UniqueModifierCb.IsChecked := False;
+      MachineModifierCb.IsChecked := False;
+      DateModifierCb.IsChecked := False;
     end else
-      NoModifierCb.Checked := False;
+      NoModifierCb.IsChecked := False;
 
-    if not UniqueModifierCb.Checked and
-       not MachineModifierCb.Checked and
-       not DateModifierCb.Checked then
-      NoModifierCb.Checked := True;
+    if not UniqueModifierCb.IsChecked and
+       not MachineModifierCb.IsChecked and
+       not DateModifierCb.IsChecked then
+      NoModifierCb.IsChecked := True;
 
-    if MachineModifierCb.Checked then begin
+    if MachineModifierCb.IsChecked then begin
       if L = 0 then
         L := GenerateMachineModifierPrim
       else
@@ -157,22 +122,10 @@ begin
     end;
 
     {set status of date field}
-    ModDateEd.Enabled := DateModifierCb.Checked;
-    {$IFDEF MSWINDOWS}
-    if ModDateEd.Enabled then
-      ModDateEd.Color := clWindow
-    else
-      ModDateEd.Color := clBtnFace;
-    {$ENDIF}
-
-    if DateModifierCb.Checked then begin
+    ModDateEdit.Enabled := DateModifierCb.IsChecked;
+    if DateModifierCb.IsChecked then begin
       try
-        {$IFDEF MSWINDOWS}
-        D := StrToDate(ModDateEd.Text);
-        {$ENDIF}
-        {$IFDEF UseOgFMX}
-        D := ModDateCalendarEdit.Date;
-        {$ENDIF}
+        D := StrToDate(ModDateEdit.Text);
       except
         {ignore errors and don't generate modifier}
         D := 0;
@@ -186,7 +139,7 @@ begin
       end;
     end;
 
-    if UniqueModifierCb.Checked then begin
+    if UniqueModifierCb.IsChecked then begin
       if L = 0 then
         L := GenerateUniqueModifierPrim
       else
@@ -200,33 +153,29 @@ begin
 
     InfoChanged(nil);
   finally
-    Busy := False;
+    FBusy := False;
   end;
 end;
 
-{$IFDEF MSWINDOWS}
 procedure TModifierFrm.DateEdKeyPress(Sender: TObject; var Key: Char);
 const
   CIntChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/'];
 begin
-  if (not (Key in CIntChars)) and (not (Key < #32)) then begin
+  if (not CharInSet(Key, CIntChars)) and (not (Key < #32)) then begin
     MessageBeep(0);
     Key := #0;
   end;
 end;
-{$ENDIF}
 
-{$IFDEF MSWINDOWS}
 procedure TModifierFrm.ModifierEdKeyPress(Sender: TObject; var Key: Char);
 const
   CHexChars = ['$', 'A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 begin
-  if (not (Key in CHexChars)) and (not (Key < #32)) then begin
+  if (not CharInSet(Key, CHexChars)) and (not (Key < #32)) then begin
     MessageBeep(0);
     Key := #0;
   end;
 end;
-{$ENDIF}
 
 procedure TModifierFrm.InfoChanged(Sender: TObject);
 begin
