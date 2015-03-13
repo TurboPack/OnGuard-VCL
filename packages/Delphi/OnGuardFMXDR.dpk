@@ -1,0 +1,48 @@
+package OnGuardFMXDR;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'TurboPack OnGuard FireMonkey Delphi Runtime package'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  fmx;
+
+contains
+  ogposix in '..\..\source\ogposix.pas',
+  onguard2Fmx in '..\..\source\onguard2Fmx.pas' {CodeGenerateFrm},
+  onguard3Fmx in '..\..\source\onguard3Fmx.pas' {KeyMaintFrm},
+  onguard4Fmx in '..\..\source\onguard4Fmx.pas' {EditProductFrm},
+  ogfileFmx in '..\..\source\ogfileFmx.pas',
+  ogfirstFmx in '..\..\source\ogfirstFmx.pas',
+  onguard1Fmx in '..\..\source\onguard1Fmx.pas' {KeyGenerateFrm},
+  onguardFmx in '..\..\source\onguardFmx.pas',
+  ognetwrkFmx in '..\..\source\ognetwrkFmx.pas',
+  ogutilFmx in '..\..\source\ogutilFmx.pas';
+
+end.
