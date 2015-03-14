@@ -190,25 +190,25 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="..\..\source\ogposix.pas"/>
-        <DCCReference Include="..\..\source\ogfile.pas"/>
-        <DCCReference Include="..\..\source\ogfirst.pas"/>
-        <DCCReference Include="..\..\source\ognetwrk.pas"/>
-        <DCCReference Include="..\..\source\ogutil.pas"/>
-        <DCCReference Include="..\..\source\onguard.pas"/>
-        <DCCReference Include="..\..\source\onguard1.pas">
+        <DCCReference Include="..\..\source\FMX.ogfile.pas"/>
+        <DCCReference Include="..\..\source\FMX.ogfirst.pas"/>
+        <DCCReference Include="..\..\source\FMX.ognetwrk.pas"/>
+        <DCCReference Include="..\..\source\FMX.ogposix.pas"/>
+        <DCCReference Include="..\..\source\FMX.ogutil.pas"/>
+        <DCCReference Include="..\..\source\FMX.onguard.pas"/>
+        <DCCReference Include="..\..\source\FMX.onguard1.pas">
             <Form>KeyGenerateFrm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\source\onguard2.pas">
+        <DCCReference Include="..\..\source\FMX.onguard2.pas">
             <Form>CodeGenerateFrm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\source\onguard3.pas">
+        <DCCReference Include="..\..\source\FMX.onguard3.pas">
             <Form>KeyMaintFrm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\source\onguard4.pas">
+        <DCCReference Include="..\..\source\FMX.onguard4.pas">
             <Form>EditProductFrm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
@@ -593,8 +593,8 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>

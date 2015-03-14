@@ -245,6 +245,9 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <ItemGroup>
+        <PackageImport Include="designide.bpi">
+            <BuildOrder>20</BuildOrder>
+        </PackageImport>
         <PackageImport Include="fmx.bpi">
             <BuildOrder>15</BuildOrder>
         </PackageImport>
@@ -254,48 +257,48 @@
         <PackageImport Include="rtl.bpi">
             <BuildOrder>1</BuildOrder>
         </PackageImport>
-        <DelphiCompile Include="..\..\source\ogfile.pas">
-            <BuildOrder>12</BuildOrder>
-        </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ogfirst.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogfile.pas">
             <BuildOrder>13</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ognetwrk.pas">
-            <BuildOrder>13</BuildOrder>
-        </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ogposix.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogfirst.pas">
             <BuildOrder>14</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ogutil.pas">
+        <DelphiCompile Include="..\..\source\FMX.ognetwrk.pas">
             <BuildOrder>15</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard.pas">
-            <BuildOrder>9</BuildOrder>
+        <DelphiCompile Include="..\..\source\FMX.ogposix.pas">
+            <BuildOrder>16</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard1.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogutil.pas">
+            <BuildOrder>17</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\..\source\FMX.onguard.pas">
+            <BuildOrder>18</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\..\source\FMX.onguard1.pas">
             <Form>KeyGenerateFrm</Form>
             <FormType>fmx</FormType>
-            <BuildOrder>10</BuildOrder>
+            <BuildOrder>16</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard2.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard2.pas">
             <Form>CodeGenerateFrm</Form>
             <FormType>fmx</FormType>
-            <BuildOrder>11</BuildOrder>
+            <BuildOrder>17</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard3.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard3.pas">
             <Form>KeyMaintFrm</Form>
             <FormType>fmx</FormType>
-            <BuildOrder>12</BuildOrder>
+            <BuildOrder>18</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard4.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard4.pas">
             <Form>EditProductFrm</Form>
             <FormType>fmx</FormType>
-            <BuildOrder>13</BuildOrder>
+            <BuildOrder>19</BuildOrder>
         </DelphiCompile>
-        <FormResources Include="..\..\source\onguard1.fmx"/>
-        <FormResources Include="..\..\source\onguard4.fmx"/>
-        <FormResources Include="..\..\source\onguard3.fmx"/>
-        <FormResources Include="..\..\source\onguard2.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard3.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard4.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard1.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard2.fmx"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -755,8 +758,8 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>

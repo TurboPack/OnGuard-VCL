@@ -166,18 +166,18 @@
         <DCCReference Include="designide.dcp"/>
         <DCCReference Include="OnGuardFMXDR.dcp"/>
         <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="..\..\source\ogabout0.pas">
+        <DCCReference Include="..\..\source\FMX.ogabout0.pas">
             <Form>OgAboutForm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\source\ogproexe.pas"/>
-        <DCCReference Include="..\..\source\ogreg.pas"/>
-        <DCCReference Include="..\..\source\onguard5.pas"/>
-        <DCCReference Include="..\..\source\onguard6.pas">
+        <DCCReference Include="..\..\source\FMX.ogproexe.pas"/>
+        <DCCReference Include="..\..\source\FMX.ogreg.pas"/>
+        <DCCReference Include="..\..\source\FMX.onguard5.pas"/>
+        <DCCReference Include="..\..\source\FMX.onguard6.pas">
             <Form>ModifierFrm</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\source\onguard7.pas"/>
+        <DCCReference Include="..\..\source\FMX.onguard7.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -557,13 +557,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

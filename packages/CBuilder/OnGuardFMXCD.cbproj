@@ -160,45 +160,30 @@
         <PackageImport Include="rtl.bpi">
             <BuildOrder>1</BuildOrder>
         </PackageImport>
-        <PackageImport Include="vcl.bpi">
-            <BuildOrder>11</BuildOrder>
-        </PackageImport>
-        <PackageImport Include="vclactnband.bpi">
-            <BuildOrder>13</BuildOrder>
-        </PackageImport>
-        <PackageImport Include="vclimg.bpi">
-            <BuildOrder>10</BuildOrder>
-        </PackageImport>
-        <PackageImport Include="vclx.bpi">
-            <BuildOrder>14</BuildOrder>
-        </PackageImport>
-        <PackageImport Include="xmlrtl.bpi">
-            <BuildOrder>12</BuildOrder>
-        </PackageImport>
-        <DelphiCompile Include="..\..\source\ogabout0.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogabout0.pas">
             <Form>OgAboutForm</Form>
             <FormType>fmx</FormType>
             <BuildOrder>15</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ogproexe.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogproexe.pas">
             <BuildOrder>16</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\ogreg.pas">
+        <DelphiCompile Include="..\..\source\FMX.ogreg.pas">
             <BuildOrder>17</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard5.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard5.pas">
             <BuildOrder>13</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard6.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard6.pas">
             <Form>ModifierFrm</Form>
             <FormType>fmx</FormType>
             <BuildOrder>14</BuildOrder>
         </DelphiCompile>
-        <DelphiCompile Include="..\..\source\onguard7.pas">
+        <DelphiCompile Include="..\..\source\FMX.onguard7.pas">
             <BuildOrder>15</BuildOrder>
         </DelphiCompile>
-        <FormResources Include="..\..\source\ogabout0.fmx"/>
-        <FormResources Include="..\..\source\onguard6.fmx"/>
+        <FormResources Include="..\..\source\FMX.ogabout0.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard6.fmx"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -622,13 +607,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Android">False</Platform>

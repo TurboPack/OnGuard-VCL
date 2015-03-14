@@ -14,16 +14,16 @@
 #pragma pack(push,8)
 #include <System.hpp>	// (rtl)
 #include <SysInit.hpp>
-#include <ogposix.hpp>
-#include <ogfile.hpp>
-#include <ogfirst.hpp>
-#include <ognetwrk.hpp>
-#include <ogutil.hpp>
-#include <onguard.hpp>
-#include <onguard1.hpp>
-#include <onguard2.hpp>
-#include <onguard3.hpp>
-#include <onguard4.hpp>
+#include <FMX.ogfile.hpp>
+#include <FMX.ogfirst.hpp>
+#include <FMX.ognetwrk.hpp>
+#include <FMX.ogposix.hpp>
+#include <FMX.ogutil.hpp>
+#include <FMX.onguard.hpp>
+#include <FMX.onguard1.hpp>
+#include <FMX.onguard2.hpp>
+#include <FMX.onguard3.hpp>
+#include <FMX.onguard4.hpp>
 #include <Winapi.Windows.hpp>	// (rtl)
 #include <System.Internal.ExcUtils.hpp>	// (rtl)
 #include <System.SysUtils.hpp>	// (rtl)

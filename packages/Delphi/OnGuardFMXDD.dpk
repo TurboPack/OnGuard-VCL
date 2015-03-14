@@ -59,11 +59,11 @@ requires
   fmx;
 
 contains
-  ogabout0 in '..\..\source\ogabout0.pas' {OgAboutForm},
-  ogproexe in '..\..\source\ogproexe.pas',
-  ogreg in '..\..\source\ogreg.pas',
-  onguard5 in '..\..\source\onguard5.pas',
-  onguard6 in '..\..\source\onguard6.pas' {ModifierFrm},
-  onguard7 in '..\..\source\onguard7.pas';
+  FMX.ogabout0 in '..\..\source\FMX.ogabout0.pas' {OgAboutForm},
+  FMX.ogproexe in '..\..\source\FMX.ogproexe.pas',
+  FMX.ogreg in '..\..\source\FMX.ogreg.pas',
+  FMX.onguard5 in '..\..\source\FMX.onguard5.pas',
+  FMX.onguard6 in '..\..\source\FMX.onguard6.pas' {ModifierFrm},
+  FMX.onguard7 in '..\..\source\FMX.onguard7.pas';
 
 end.
