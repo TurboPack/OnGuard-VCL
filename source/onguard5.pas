@@ -30,12 +30,12 @@
 
 {$I onguard.inc}
 
-unit onguard5Fmx;
+unit onguard5;
 
 interface
 
 uses
-  Fmx.Controls, Fmx.Forms, onguardFmx, DesignIntf, DesignEditors;
+  Fmx.Controls, Fmx.Forms, onguard, DesignIntf, DesignEditors;
 
 type
   {property editor for ranges}
@@ -52,7 +52,7 @@ type
 implementation
 
 uses
-  System.UITypes, ogutilFmx, onguard2Fmx;
+  System.UITypes, ogutil, onguard2;
 
 const
   {ini file name used to store application keys}

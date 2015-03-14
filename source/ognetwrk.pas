@@ -34,7 +34,7 @@
 
 {$I onguard.inc}
 
-unit ognetwrkFmx;
+unit ognetwrk;
   {-network file routines}
 
 interface
@@ -42,7 +42,7 @@ interface
 uses
   {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
   {$IFDEF MACOS}Posix.Unistd, {$ENDIF}
-  System.Classes, System.SysUtils, ogutilFmx, onguardFmx;
+  System.Classes, System.SysUtils, ogutil, onguard;
 
 type
   TNetAccess = packed record
@@ -63,7 +63,7 @@ type
     procedure(Sender : TObject; var Value : string)                    {!!.02}
     of object;                                                         {!!.02}
 
-  TOgNetCodeFmx = class(TOgCodeBaseFmx)
+  TOgNetCode = class(TOgCodeBase)
   protected {private}
     {property variables}
     FFileName        : string;
@@ -160,7 +160,7 @@ uses
 {$IFDEF ANDROID}
   Posix.Unistd,
 {$ENDIF}
-  ogfileFmx;
+  ogfile;
 
 resourcestring
   SCNoOnGetFileName = 'FileName is empty and OnGetFileName is not assigned';
@@ -179,9 +179,9 @@ begin
 end;
 {$ENDIF}
 
-{*** TOgNetCodeFmx ***}
+{*** TOgNetCode ***}
 
-function TOgNetCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgNetCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   Key      : TKey;
 begin
@@ -210,14 +210,14 @@ begin
 end;
 
 {!!.01}
-constructor TOgNetCodeFmx.Create(AOwner : TComponent);
+constructor TOgNetCode.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
   nacNetAccess.Fh := -1;
 end;
 
-function TOgNetCodeFmx.CreateAccessFile : Boolean;
+function TOgNetCode.CreateAccessFile : Boolean;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -230,7 +230,7 @@ begin
   Result := CreateNetAccessFileEx(FFileName, Key, ACode);
 end;
 
-destructor TOgNetCodeFmx.Destroy;
+destructor TOgNetCode.Destroy;
 begin
   UnlockNetAccessFile(nacNetAccess);
 
@@ -238,7 +238,7 @@ begin
 end;
 
 {!!.02}
-function TOgNetCodeFmx.DoOnGetFileName : string;
+function TOgNetCode.DoOnGetFileName : string;
 begin
   Result := '';
   if not Assigned(FOnGetFileName) then
@@ -247,7 +247,7 @@ begin
   FOnGetFileName(Self, Result);
 end;
 
-function TOgNetCodeFmx.GetActiveUsers : Integer;
+function TOgNetCode.GetActiveUsers : Integer;
 var
   Key           : TKey;
   AModifier      : Integer;
@@ -262,7 +262,7 @@ begin
     Result := -1;
 end;
 
-function TOgNetCodeFmx.GetInvalidUsers : Integer;
+function TOgNetCode.GetInvalidUsers : Integer;
 var
   Key           : TKey;
   AModifier      : Integer;
@@ -277,7 +277,7 @@ begin
     Result := -1;
 end;
 
-function TOgNetCodeFmx.GetMaxUsers : Integer;
+function TOgNetCode.GetMaxUsers : Integer;
 var
   Key      : TKey;
   AModifier : Integer;
@@ -291,12 +291,12 @@ begin
     Result := -1;
 end;
 
-function TOgNetCodeFmx.IsRemoteDrive(const ExePath : string) : Boolean;
+function TOgNetCode.IsRemoteDrive(const ExePath : string) : Boolean;
 begin
   Result := IsAppOnNetwork(ExePath);
 end;
 
-procedure TOgNetCodeFmx.Loaded;
+procedure TOgNetCode.Loaded;
 var
   Key      : TKey;
   ACode     : TCode;
@@ -326,7 +326,7 @@ begin
   inherited Loaded;
 end;
 
-function TOgNetCodeFmx.ResetAccessFile : Boolean;
+function TOgNetCode.ResetAccessFile : Boolean;
 var
   Key      : TKey;
   AModifier : Integer;

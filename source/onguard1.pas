@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit onguard1Fmx;
+unit onguard1;
   {-Key generation dialog}
 
 interface
@@ -39,7 +39,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects, FMX.ExtCtrls,
   FMX.Memo, FMX.Edit, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  FMX.ListBox, FMX.Controls.Presentation, FMX.Layouts, ogutilFmx, onguardFmx,
+  FMX.ListBox, FMX.Controls.Presentation, FMX.Layouts, ogutil, onguard,
   FMX.ScrollBox;
 
 type

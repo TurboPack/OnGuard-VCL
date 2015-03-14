@@ -34,13 +34,13 @@
 
 {$I onguard.inc}
 
-unit onguardFmx;
+unit onguard;
   {-code and key classes and routines}
 
 interface
 
 uses
-  System.Classes, System.SysUtils, System.UITypes, ogutilFmx;
+  System.Classes, System.SysUtils, System.UITypes, ogutil;
 
 {$REGION 'Component declarations'}
 type
@@ -64,7 +64,7 @@ type
     of object;
 
   {base regisration code component}
-  TOgCodeBaseFmx = class(TComponent)
+  TOgCodeBase = class(TComponent)
   protected {private}
     {property variables}
     FAutoCheck     : Boolean;          {true to test code when loaded}
@@ -158,7 +158,7 @@ type
       write FOnGetModifier;
   end;
 
-  TOgMakeCodesFmx = class(TComponent)
+  TOgMakeCodes = class(TComponent)
   protected {private}
     {property variables}
     FCode        : TCode;
@@ -209,7 +209,7 @@ type
   end;
 
 type
-  TOgMakeKeysFmx = class(TComponent)
+  TOgMakeKeys = class(TComponent)
   protected {private}
     {property variables}
     FKeyFileName : string;
@@ -266,7 +266,7 @@ type
       default False;
   end;
 
-  TOgDateCodeFmx = class(TOgCodeBaseFmx)
+  TOgDateCode = class(TOgCodeBase)
   public
     function CheckCode(Report : Boolean) : TCodeStatus;
       override;
@@ -282,7 +282,7 @@ type
       default DefStoreCode;
   end;
 
-  TOgDaysCodeFmx = class(TOgCodeBaseFmx)
+  TOgDaysCode = class(TOgCodeBase)
   protected {private}
     {property variables}
     FAutoDecrease : Boolean;
@@ -320,7 +320,7 @@ type
       write FOnChangeCode;
   end;
 
-  TOgRegistrationCodeFmx = class(TOgCodeBaseFmx)
+  TOgRegistrationCode = class(TOgCodeBase)
   protected {private}
     {property variables}
     FRegString      : string;
@@ -364,7 +364,7 @@ type
       write FOnGetRegString;
   end;
 
-  TOgSerialNumberCodeFmx = class(TOgCodeBaseFmx)
+  TOgSerialNumberCode = class(TOgCodeBase)
   public
     function CheckCode(Report : Boolean) : TCodeStatus;
       override;
@@ -381,7 +381,7 @@ type
 
   end;
 
-  TOgSpecialCodeFmx = class(TOgCodeBaseFmx)
+  TOgSpecialCode = class(TOgCodeBase)
     function CheckCode(Report : Boolean) : TCodeStatus;
       override;
     function GetValue : Integer;
@@ -396,7 +396,7 @@ type
       default DefStoreCode;
   end;
 
-  TOgUsageCodeFmx = class(TOgCodeBaseFmx)
+  TOgUsageCode = class(TOgCodeBase)
   protected {private}
     {property variables}
     FAutoDecrease : Boolean;
@@ -444,7 +444,7 @@ uses
 {$IFDEF MSWINDOWS}
   Winapi.ActiveX,
 {$ENDIF}
-  {$IFNDEF NoMakeCodesSupport}onguard2Fmx{$IFNDEF NoMakeKeysSupport},onguard3Fmx{$ENDIF}{$ENDIF}
+  {$IFNDEF NoMakeCodesSupport}onguard2{$IFNDEF NoMakeKeysSupport},onguard3{$ENDIF}{$ENDIF}
   ;
 {$ENDIF}
 
@@ -454,10 +454,10 @@ resourcestring
   SCNoOnGetKey = '%s has no OnGetKey event handler assigned';
   SCNoOnChangeCode = '%s has no OnChangeCode event handler assigned';
 
-{$REGION '*** TOgCodeBaseFmx ***'}
-{*** TOgCodeBaseFmx ***}
+{$REGION '*** TOgCodeBase ***'}
+{*** TOgCodeBase ***}
 
-constructor TOgCodeBaseFmx.Create(AOwner : TComponent);
+constructor TOgCodeBase.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -467,7 +467,7 @@ begin
 
 end;
 
-procedure TOgCodeBaseFmx.DoOnChecked(Value : TCodeStatus);
+procedure TOgCodeBase.DoOnChecked(Value : TCodeStatus);
 begin
   if Assigned(FOnChecked) then
     FOnChecked(Self, Value)
@@ -475,7 +475,7 @@ begin
     raise EOnGuardException.CreateFmt(SCNoOnCheck, [Self.ClassName]);
 end;
 
-function TOgCodeBaseFmx.DoOnGetCode : TCode;
+function TOgCodeBase.DoOnGetCode : TCode;
 begin
   FillChar(Result, SizeOf(Result), 0);
   if FStoreCode then
@@ -491,7 +491,7 @@ begin
   FCode := Result;                                                     {!!.02}
 end;
 
-procedure TOgCodeBaseFmx.DoOnGetKey(var Key : TKey);
+procedure TOgCodeBase.DoOnGetKey(var Key : TKey);
 begin
   FillChar(Key, SizeOf(TKey), 0);
   if Assigned(FOnGetKey) then
@@ -501,7 +501,7 @@ begin
 end;
 
 {!!.02} {revised}
-function TOgCodeBaseFmx.DoOnGetModifier : Integer;
+function TOgCodeBase.DoOnGetModifier : Integer;
 var
   L : Integer;
 begin
@@ -524,7 +524,7 @@ begin
   FModifier := Result;                                                 {!!.02}
 end;
 
-function TOgCodeBaseFmx.GetCode : string;
+function TOgCodeBase.GetCode : string;
 var
   Work : TCode;
 begin
@@ -536,7 +536,7 @@ begin
     Result := '';
 end;
 
-function TOgCodeBaseFmx.GetModifier : string;
+function TOgCodeBase.GetModifier : string;
 var
   Work : Integer;
 begin
@@ -548,17 +548,17 @@ begin
     Result := '';
 end;
 
-function TOgCodeBaseFmx.GetAbout : string;                              {!!.08}
+function TOgCodeBase.GetAbout : string;                              {!!.08}
 begin
   Result := OgVersionStr;
 end;
 
-function TOgCodeBaseFmx.IsCodeValid : Boolean;
+function TOgCodeBase.IsCodeValid : Boolean;
 begin
   Result := (CheckCode(False) = ogValidCode);
 end;
 
-procedure TOgCodeBaseFmx.Loaded;
+procedure TOgCodeBase.Loaded;
 begin
   inherited Loaded;
 
@@ -566,28 +566,28 @@ begin
     CheckCode(True);
 end;
 
-procedure TOgCodeBaseFmx.SetCode(const Value : string);
+procedure TOgCodeBase.SetCode(const Value : string);
 begin
   if not HexToBuffer(Value, FCode, SizeOf(FCode)) then
     FillChar(FCode, SizeOf(FCode), 0);
 end;
 
-procedure TOgCodeBaseFmx.SetModifier(const Value : string);
+procedure TOgCodeBase.SetModifier(const Value : string);
 begin
   if not HexToBuffer(Value, FModifier, SizeOf(FModifier)) then
     FModifier := 0;
 end;
 
-procedure TOgCodeBaseFmx.SetAbout(const Value : string);                {!!.08}
+procedure TOgCodeBase.SetAbout(const Value : string);                {!!.08}
 begin
 end;
 
 {$ENDREGION}
 
-{$REGION '*** TOgDateCodeFmx ***'}
-{*** TOgDateCodeFmx ***}
+{$REGION '*** TOgDateCode ***'}
+{*** TOgDateCode ***}
 
-function TOgDateCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgDateCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   Code     : TCode;
   Key      : TKey;
@@ -610,7 +610,7 @@ begin
     DoOnChecked(Result);
 end;
 
-function TOgDateCodeFmx.GetValue : TDateTime;
+function TOgDateCode.GetValue : TDateTime;
 var
   Code     : TCode;
   Key      : TKey;
@@ -625,10 +625,10 @@ begin
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgDaysCodeFmx ***'}
-{*** TOgDaysCodeFmx ***}
+{$REGION '*** TOgDaysCode ***'}
+{*** TOgDaysCode ***}
 
-function TOgDaysCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgDaysCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   Code     : TCode;
   Key      : TKey;
@@ -654,14 +654,14 @@ begin
     DoOnChecked(Result);
 end;
 
-constructor TOgDaysCodeFmx.Create(AOwner : TComponent);
+constructor TOgDaysCode.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
   FAutoDecrease := DefAutoDecrease;
 end;
 
-procedure TOgDaysCodeFmx.Decrease;
+procedure TOgDaysCode.Decrease;
 var
   Code     : TCode;
   Work     : TCode;
@@ -682,7 +682,7 @@ begin
     DoOnChangeCode(Work);
 end;
 
-procedure TOgDaysCodeFmx.DoOnChangeCode(Value : TCode);
+procedure TOgDaysCode.DoOnChangeCode(Value : TCode);
 begin
   if Assigned(FOnChangeCode) then
     FOnChangeCode(Self, Value)
@@ -690,7 +690,7 @@ begin
     raise EOnGuardException.CreateFmt(SCNoOnChangeCode, [Self.ClassName]);
 end;
 
-function TOgDaysCodeFmx.GetValue : Integer;
+function TOgDaysCode.GetValue : Integer;
 var
   Code     : TCode;
   Key      : TKey;
@@ -704,7 +704,7 @@ begin
   Result := GetDaysCodeValue(Key, Code);
 end;
 
-procedure TOgDaysCodeFmx.Loaded;
+procedure TOgDaysCode.Loaded;
 begin
   inherited Loaded;
 
@@ -713,10 +713,10 @@ begin
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgMakeCodesFmx ***'}
-{*** TOgMakeCodesFmx ***}
+{$REGION '*** TOgMakeCodes ***'}
+{*** TOgMakeCodes ***}
 
-constructor TOgMakeCodesFmx.Create(AOwner : TComponent);
+constructor TOgMakeCodes.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -724,7 +724,7 @@ begin
   FShowHints := False;
 end;
 
-function TOgMakeCodesFmx.Execute : Boolean;
+function TOgMakeCodes.Execute : Boolean;
 {$IFNDEF NoMakeCodesSupport}                                         {!!.10}
 var
   F : TCodeGenerateFrm;
@@ -752,40 +752,40 @@ begin
 {$ENDIF}                                                             {!!.10}
 end;
 
-function TOgMakeCodesFmx.GetAbout : string;                             {!!.08}
+function TOgMakeCodes.GetAbout : string;                             {!!.08}
 begin
   Result := OgVersionStr;
 end;
 
-procedure TOgMakeCodesFmx.SetAbout(const Value : string);               {!!.08}
+procedure TOgMakeCodes.SetAbout(const Value : string);               {!!.08}
 begin
 end;
 
-procedure TOgMakeCodesFmx.GetCode(var Value : TCode);                   {!!.08}
+procedure TOgMakeCodes.GetCode(var Value : TCode);                   {!!.08}
 begin
   Value := FCode;
 end;
 
-procedure TOgMakeCodesFmx.SetCode(Value : TCode);                       {!!.08}
+procedure TOgMakeCodes.SetCode(Value : TCode);                       {!!.08}
 begin
   FCode := Value;
 end;
 
-procedure TOgMakeCodesFmx.GetKey(var Value : TKey);                     {!!.08}
+procedure TOgMakeCodes.GetKey(var Value : TKey);                     {!!.08}
 begin
   Value := FKey;
 end;
 
-procedure TOgMakeCodesFmx.SetKey(Value : TKey);                         {!!.08}
+procedure TOgMakeCodes.SetKey(Value : TKey);                         {!!.08}
 begin
   FKey := Value;
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgMakeKeysFmx ***'}
-{*** TOgMakeKeysFmx ***}
+{$REGION '*** TOgMakeKeys ***'}
+{*** TOgMakeKeys ***}
 
-constructor TOgMakeKeysFmx.Create(AOwner : TComponent);
+constructor TOgMakeKeys.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -793,7 +793,7 @@ begin
   FShowHints := False;
 end;
 
-function TOgMakeKeysFmx.Execute : Boolean;
+function TOgMakeKeys.Execute : Boolean;
 {$IFNDEF NoMakeCodesSupport}                                         {!!.10}
 var
   F : TKeyMaintFrm;
@@ -819,65 +819,65 @@ begin
 {$ENDIF}                                                             {!!.10}
 end;
 
-procedure TOgMakeKeysFmx.ApplyModifierToKey(Modifier : Integer; var Key; KeySize : Cardinal);
+procedure TOgMakeKeys.ApplyModifierToKey(Modifier : Integer; var Key; KeySize : Cardinal);
 begin
   ApplyModifierToKeyPrim(Modifier, Key, KeySize);
 end;
 
-function TOgMakeKeysFmx.GenerateDateModifier(D : TDateTime) : Integer;
+function TOgMakeKeys.GenerateDateModifier(D : TDateTime) : Integer;
 begin
   Result := GenerateDateModifierPrim(D);
 end;
 
-function TOgMakeKeysFmx.GenerateMachineModifier : Integer;
+function TOgMakeKeys.GenerateMachineModifier : Integer;
 begin
   Result := GenerateMachineModifierPrim;
 end;
 
-procedure TOgMakeKeysFmx.GenerateMDKey(var Key; KeySize : Cardinal; const Str : string);
+procedure TOgMakeKeys.GenerateMDKey(var Key; KeySize : Cardinal; const Str : string);
 begin
   GenerateTMDKeyPrim(Key, KeySize, Str);
 end;
 
-procedure TOgMakeKeysFmx.GenerateRandomKey(var Key; KeySize : Cardinal);
+procedure TOgMakeKeys.GenerateRandomKey(var Key; KeySize : Cardinal);
 begin
   GenerateRandomKeyPrim(Key, KeySize);
 end;
 
-function TOgMakeKeysFmx.GenerateUniqueModifier : Integer;
+function TOgMakeKeys.GenerateUniqueModifier : Integer;
 begin
   Result := GenerateUniqueModifierPrim;
 end;
 
-function TOgMakeKeysFmx.GenerateStringModifier(const S : string) : Integer;
+function TOgMakeKeys.GenerateStringModifier(const S : string) : Integer;
 begin
   Result := GenerateStringModifierPrim(S);
 end;
 
-function TOgMakeKeysFmx.GetAbout : string;                              {!!.08}
+function TOgMakeKeys.GetAbout : string;                              {!!.08}
 begin
   Result := OgVersionStr;
 end;
 
-procedure TOgMakeKeysFmx.SetAbout(const Value : string);                {!!.08}
+procedure TOgMakeKeys.SetAbout(const Value : string);                {!!.08}
 begin
 end;
 
-procedure TOgMakeKeysFmx.GetKey(var Value : TKey);                      {!!.08}
+procedure TOgMakeKeys.GetKey(var Value : TKey);                      {!!.08}
 begin
   Value := FKey;
 end;
 
-procedure TOgMakeKeysFmx.SetKey(Value : TKey);                          {!!.08}
+procedure TOgMakeKeys.SetKey(Value : TKey);                          {!!.08}
 begin
   FKey := Value;
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgRegistrationCodeFmx ***'}
-{*** TOgRegistrationCodeFmx ***}
+{$REGION '*** TOgRegistrationCode ***'}
+{*** TOgRegistrationCode ***}
 
-function TOgRegistrationCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgRegistrationCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -901,7 +901,7 @@ begin
     DoOnChecked(Result);
 end;
 
-constructor TOgRegistrationCodeFmx.Create(AOwner : TComponent);
+constructor TOgRegistrationCode.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -909,7 +909,7 @@ begin
   FStoreRegString := DefStoreRegString;
 end;
 
-function TOgRegistrationCodeFmx.DoOnGetRegString : string;
+function TOgRegistrationCode.DoOnGetRegString : string;
 begin
   Result := '';
   if FStoreRegString then
@@ -919,10 +919,10 @@ begin
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgSerialNumberCodeFmx ***'}
-{*** TOgSerialNumberCodeFmx ***}
+{$REGION '*** TOgSerialNumberCode ***'}
+{*** TOgSerialNumberCode ***}
 
-function TOgSerialNumberCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgSerialNumberCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -944,7 +944,7 @@ begin
     DoOnChecked(Result);
 end;
 
-function TOgSerialNumberCodeFmx.GetValue : Integer;
+function TOgSerialNumberCode.GetValue : Integer;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -959,10 +959,10 @@ begin
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgSpecialCodeFmx ***'}
-{*** TOgSpecialCodeFmx ***}
+{$REGION '*** TOgSpecialCode ***'}
+{*** TOgSpecialCode ***}
 
-function TOgSpecialCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgSpecialCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -984,7 +984,7 @@ begin
     DoOnChecked(Result);
 end;
 
-function TOgSpecialCodeFmx.GetValue : Integer;
+function TOgSpecialCode.GetValue : Integer;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -999,10 +999,10 @@ begin
 end;
 {$ENDREGION}
 
-{$REGION '*** TOgUsageCodeFmx ***'}
-{*** TOgUsageCodeFmx ***}
+{$REGION '*** TOgUsageCode ***'}
+{*** TOgUsageCode ***}
 
-function TOgUsageCodeFmx.CheckCode(Report : Boolean) : TCodeStatus;
+function TOgUsageCode.CheckCode(Report : Boolean) : TCodeStatus;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -1028,14 +1028,14 @@ begin
     DoOnChecked(Result);
 end;
 
-constructor TOgUsageCodeFmx.Create(AOwner : TComponent);
+constructor TOgUsageCode.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
   FAutoDecrease := DefAutoDecrease;
 end;
 
-procedure TOgUsageCodeFmx.Decrease;
+procedure TOgUsageCode.Decrease;
 var
   ACode     : TCode;
   Work     : TCode;
@@ -1054,7 +1054,7 @@ begin
   DoOnChangeCode(Work);
 end;
 
-procedure TOgUsageCodeFmx.DoOnChangeCode(Value : TCode);
+procedure TOgUsageCode.DoOnChangeCode(Value : TCode);
 begin
   if Assigned(FOnChangeCode) then
     FOnChangeCode(Self, Value)
@@ -1062,7 +1062,7 @@ begin
     raise EOnGuardException.CreateFmt(SCNoOnChangeCode, [Self.ClassName]);
 end;
 
-function TOgUsageCodeFmx.GetValue : Integer;
+function TOgUsageCode.GetValue : Integer;
 var
   ACode     : TCode;
   Key      : TKey;
@@ -1076,7 +1076,7 @@ begin
   Result := GetUsageCodeValue(Key, ACode);
 end;
 
-procedure TOgUsageCodeFmx.Loaded;
+procedure TOgUsageCode.Loaded;
 begin
   inherited Loaded;
 

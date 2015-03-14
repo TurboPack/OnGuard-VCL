@@ -2,8 +2,8 @@
 
 #include <System.hpp>
 #pragma hdrstop
-USEFORMNS("..\..\source\ogabout0Fmx.pas", Ogabout0fmx, OgAboutForm);
-USEFORMNS("..\..\source\onguard6Fmx.pas", Onguard6fmx, ModifierFrm);
+USEFORMNS("..\..\source\ogabout0.pas", Ogabout0, OgAboutForm);
+USEFORMNS("..\..\source\onguard6.pas", Onguard6, ModifierFrm);
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------

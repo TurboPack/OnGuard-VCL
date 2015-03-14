@@ -1,6 +1,6 @@
 {$I onguard.inc}
 
-unit ogposixFmx;
+unit ogposix;
 
 interface
 

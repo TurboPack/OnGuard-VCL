@@ -35,14 +35,14 @@ requires
 
 contains
   ogposix in '..\..\source\ogposix.pas',
-  onguard2Fmx in '..\..\source\onguard2Fmx.pas' {CodeGenerateFrm},
-  onguard3Fmx in '..\..\source\onguard3Fmx.pas' {KeyMaintFrm},
-  onguard4Fmx in '..\..\source\onguard4Fmx.pas' {EditProductFrm},
-  ogfileFmx in '..\..\source\ogfileFmx.pas',
-  ogfirstFmx in '..\..\source\ogfirstFmx.pas',
-  onguard1Fmx in '..\..\source\onguard1Fmx.pas' {KeyGenerateFrm},
-  onguardFmx in '..\..\source\onguardFmx.pas',
-  ognetwrkFmx in '..\..\source\ognetwrkFmx.pas',
-  ogutilFmx in '..\..\source\ogutilFmx.pas';
+  ogfile in '..\..\source\ogfile.pas',
+  ogfirst in '..\..\source\ogfirst.pas',
+  ognetwrk in '..\..\source\ognetwrk.pas',
+  ogutil in '..\..\source\ogutil.pas',
+  onguard in '..\..\source\onguard.pas',
+  onguard1 in '..\..\source\onguard1.pas' {KeyGenerateFrm},
+  onguard2 in '..\..\source\onguard2.pas' {CodeGenerateFrm},
+  onguard3 in '..\..\source\onguard3.pas' {KeyMaintFrm},
+  onguard4 in '..\..\source\onguard4.pas' {EditProductFrm};
 
 end.

@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit onguard7Fmx;
+unit onguard7;
   {-File name property editor}
 
 interface

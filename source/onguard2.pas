@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit onguard2Fmx;
+unit onguard2;
   {-Code generation dialog}
 
 interface
@@ -39,8 +39,8 @@ uses
   System.SysUtils, System.Classes, System.UITypes, System.Types, FMX.Types, FMX.Controls,
   FMX.Forms, FMX.Dialogs, FMX.Objects, FMX.SpinBox, FMX.ExtCtrls, FMX.TabControl, FMX.Layouts,
   FMX.Edit, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics, FMX.DateTimeCtrls,
-  FMX.CalendarEdit, FMX.NumberBox, onguardFmx, onguard3fmx, FMX.EditBox,
-  FMX.ComboEdit, FMX.Controls.Presentation, ogutilFmx;
+  FMX.CalendarEdit, FMX.NumberBox, onguard, onguard3, FMX.EditBox,
+  FMX.ComboEdit, FMX.Controls.Presentation, ogutil;
 
 type
   TCodeGenerateFrm = class(TForm)
@@ -148,7 +148,7 @@ implementation
 {$R *.fmx}
 
 uses
-  System.Character, ognetwrkFmx;
+  System.Character, ognetwrk;
 
 resourcestring
   SCInvalidStartDate = 'Invalid start date';

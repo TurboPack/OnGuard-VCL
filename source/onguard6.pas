@@ -30,13 +30,13 @@
 
 {$I onguard.inc}
 
-unit onguard6Fmx;
+unit onguard6;
   {-Code generation dialog}
 
 interface
 
 uses
-  OgUtilFmx, OnGuardFmx, DesignIntf, DesignEditors, FMX.ComboEdit, FMX.Edit, FMX.Types,
+  OgUtil, OnGuard, DesignIntf, DesignEditors, FMX.ComboEdit, FMX.Edit, FMX.Types,
   FMX.Controls.Presentation, FMX.Forms, FMX.StdCtrls, System.Classes, FMX.Controls,
   FMX.DateTimeCtrls;
 

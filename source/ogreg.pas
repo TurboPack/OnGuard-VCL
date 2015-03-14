@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit ogregFmx;
+unit ogreg;
 
 {$R ogreg.r32}
 
@@ -41,8 +41,8 @@ procedure Register;
 implementation
 
 uses
-  System.Classes, Fmx.Forms, ogabout0Fmx, ogfileFmx, ognetwrkFmx, ogproexeFmx, ogfirstFmx,
-  onguardFmx, OnGuard2Fmx, OnGuard3Fmx, OnGuard5Fmx, OnGuard6Fmx, OnGuard7Fmx, ogutilFmx,
+  System.Classes, Fmx.Types, Fmx.Forms, ogabout0, ogfile, ognetwrk, ogproexe,
+  ogfirst, onguard, OnGuard2, OnGuard3, OnGuard5, OnGuard6, OnGuard7, ogutil,
   DesignIntf, DesignEditors;
 
 const
@@ -50,7 +50,7 @@ const
   OgKeyFile    = 'ONGUARD.INI';
 
 type
-  {component editor for TOgCodeBaseFmx components}
+  {component editor for TOgCodeBase components}
   TOgCodeGenEditor = class(TDefaultEditor)
   public
     procedure ExecuteVerb(Index : Integer);
@@ -70,19 +70,19 @@ begin
     with TCodeGenerateFrm.Create(Application) do
       try
         KeyFileName := OgKeyFile;
-        if Component is TOgDateCodeFmx then
+        if Component is TOgDateCode then
           CodeType := ctDate
-        else if Component is TOgDaysCodeFmx then
+        else if Component is TOgDaysCode then
           CodeType := ctDays
-        else if Component is TOgNetCodeFmx then
+        else if Component is TOgNetCode then
           CodeType := ctNetwork
-        else if Component is TOgRegistrationCodeFmx then
+        else if Component is TOgRegistrationCode then
           CodeType := ctRegistration
-        else if Component is TOgSerialNumberCodeFmx then
+        else if Component is TOgSerialNumberCode then
           CodeType := ctSerialNumber
-        else if Component is TOgSpecialCodeFmx then
+        else if Component is TOgSpecialCode then
           CodeType := ctSpecial
-        else if Component is TOgUsageCodeFmx then
+        else if Component is TOgUsageCode then
           CodeType := ctUsage;
         ShowModal;
       finally
@@ -119,38 +119,42 @@ end;
 {component registration}
 procedure Register;
 begin
-  RegisterComponentEditor(TOgCodeBaseFmx, TOgCodeGenEditor);
+  RegisterFmxClasses([onguard.TOgCodeBase, onguard.TOgMakeKeys, onguard.TOgMakeCodes,
+    onguard.TOgDateCode, onguard.TOgDaysCode, ognetwrk.TOgNetCode, onguard.TOgRegistrationCode,
+    onguard.TOgSerialNumberCode, onguard.TOgSpecialCode, onguard.TOgUsageCode, ogproexe.TOgProtectExe]);
+
+  RegisterComponentEditor(TOgCodeBase, TOgCodeGenEditor);
 
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeKeysFmx, 'KeyFileName', TOgFileNameProperty);
+    TypeInfo(string), TOgMakeKeys, 'KeyFileName', TOgFileNameProperty);
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeCodesFmx, 'KeyFileName', TOgFileNameProperty);
+    TypeInfo(string), TOgMakeCodes, 'KeyFileName', TOgFileNameProperty);
 {  RegisterPropertyEditor( }                                          {!!.09}
-{    TypeInfo(string), TOgCodeBaseFmx, 'Expires', TOgExpiresProperty);}  {!!.09}
+{    TypeInfo(string), TOgCodeBase, 'Expires', TOgExpiresProperty);}  {!!.09}
   RegisterPropertyEditor(
-    TypeInfo(string), TOgCodeBaseFmx, 'Code', TOgCodeProperty);
+    TypeInfo(string), TOgCodeBase, 'Code', TOgCodeProperty);
   RegisterPropertyEditor(
-    TypeInfo(string), TOgCodeBaseFmx, 'Modifier', TOgModifierProperty);
+    TypeInfo(string), TOgCodeBase, 'Modifier', TOgModifierProperty);
   RegisterPropertyEditor(
-    TypeInfo(string), TOgCodeBaseFmx, 'About', TOgAboutProperty);       {!!.08}
+    TypeInfo(string), TOgCodeBase, 'About', TOgAboutProperty);       {!!.08}
   RegisterPropertyEditor(
-    TypeInfo(string), TOgProtectExeFmx, 'About', TOgAboutProperty);     {!!.08}
+    TypeInfo(string), TOgProtectExe, 'About', TOgAboutProperty);     {!!.08}
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeCodesFmx, 'About', TOgAboutProperty);      {!!.08}
+    TypeInfo(string), TOgMakeCodes, 'About', TOgAboutProperty);      {!!.08}
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeKeysFmx, 'About', TOgAboutProperty);       {!!.08}
+    TypeInfo(string), TOgMakeKeys, 'About', TOgAboutProperty);       {!!.08}
 
-  RegisterComponents('OnGuardFmx', [
-    TOgMakeKeysFmx,
-    TOgMakeCodesFmx,
-    TOgDateCodeFmx,
-    TOgDaysCodeFmx,
-    TOgNetCodeFmx,
-    TOgRegistrationCodeFmx,
-    TOgSerialNumberCodeFmx,
-    TOgSpecialCodeFmx,
-    TOgUsageCodeFmx,
-    TOgProtectExeFmx]);
+  RegisterComponents('OnGuard', [
+    TOgMakeKeys,
+    TOgMakeCodes,
+    TOgDateCode,
+    TOgDaysCode,
+    TOgNetCode,
+    TOgRegistrationCode,
+    TOgSerialNumberCode,
+    TOgSpecialCode,
+    TOgUsageCode,
+    TOgProtectExe]);
 end;
 
 end.

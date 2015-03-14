@@ -37,7 +37,7 @@
 
 {$I onguard.inc}
 
-unit ogfirstFmx;
+unit ogfirst;
   {-limit instance routines}
 
 interface

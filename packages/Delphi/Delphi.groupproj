@@ -3,12 +3,6 @@
         <ProjectGuid>{793FE4EF-8248-4BDA-AF6D-00608A0255CB}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="OnGuardDR.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="OnGuardDD.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="OnGuardFMXDR.dproj">
             <Dependencies/>
         </Projects>
@@ -23,24 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="OnGuardDR">
-        <MSBuild Projects="OnGuardDR.dproj"/>
-    </Target>
-    <Target Name="OnGuardDR:Clean">
-        <MSBuild Projects="OnGuardDR.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="OnGuardDR:Make">
-        <MSBuild Projects="OnGuardDR.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="OnGuardDD">
-        <MSBuild Projects="OnGuardDD.dproj"/>
-    </Target>
-    <Target Name="OnGuardDD:Clean">
-        <MSBuild Projects="OnGuardDD.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="OnGuardDD:Make">
-        <MSBuild Projects="OnGuardDD.dproj" Targets="Make"/>
-    </Target>
     <Target Name="OnGuardFMXDR">
         <MSBuild Projects="OnGuardFMXDR.dproj"/>
     </Target>
@@ -60,13 +36,13 @@
         <MSBuild Projects="OnGuardFMXDD.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="OnGuardDR;OnGuardDD;OnGuardFMXDR;OnGuardFMXDD"/>
+        <CallTarget Targets="OnGuardFMXDR;OnGuardFMXDD"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="OnGuardDR:Clean;OnGuardDD:Clean;OnGuardFMXDR:Clean;OnGuardFMXDD:Clean"/>
+        <CallTarget Targets="OnGuardFMXDR:Clean;OnGuardFMXDD:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="OnGuardDR:Make;OnGuardDD:Make;OnGuardFMXDR:Make;OnGuardFMXDD:Make"/>
+        <CallTarget Targets="OnGuardFMXDR:Make;OnGuardFMXDD:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

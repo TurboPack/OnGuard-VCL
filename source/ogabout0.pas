@@ -30,12 +30,12 @@
 
 {$I onguard.inc}
 
-unit ogabout0Fmx;
+unit ogabout0;
 
 interface
 
 uses
-  ogutilFmx, DesignIntf, DesignEditors, FMX.Objects, FMX.Types, FMX.Controls.Presentation,
+  ogutil, DesignIntf, DesignEditors, FMX.Objects, FMX.Types, FMX.Controls.Presentation,
   FMX.StdCtrls, System.Classes, FMX.Controls, FMX.Forms;
 
 

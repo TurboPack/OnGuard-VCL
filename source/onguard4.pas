@@ -30,13 +30,13 @@
 
 {$I onguard.inc}
 
-unit onguard4Fmx;
+unit onguard4;
   {-Product description dialog}
 
 interface
 
 uses
-  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}  ogutilFmx, onguardFmx, System.SysUtils,
+  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}  ogutil, onguard, System.SysUtils,
   System.Types, System.UITypes, System.Classes, FMX.Types, FMX.Controls, FMX.Forms,
   FMX.Objects, FMX.ExtCtrls, FMX.Layouts, FMX.Edit, FMX.Platform,  Fmx.StdCtrls,
   FMX.Header, FMX.Graphics, FMX.Controls.Presentation;
@@ -84,7 +84,7 @@ implementation
 {$R *.fmx}
 
 uses
-  onguard1Fmx;
+  onguard1;
 
 { TEditProductFrm }
 

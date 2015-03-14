@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit ogutilFmx;
+unit ogutil;
   {-general constants, types, and utility routines}
 
 interface
@@ -38,7 +38,7 @@ interface
 uses
   System.SysUtils
   {$IFDEF MSWINDOWS}, Winapi.Windows {$ENDIF}
-  {$IFDEF POSIX}, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet, ogposixFmx{$ENDIF}
+  {$IFDEF POSIX}, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet, ogposix{$ENDIF}
   {$IFDEF IOS}, iOSApi.UIKit{$ENDIF}
   {$IFDEF ANDROID}, androidapi.JNI.JavaTypes, androidapi.JNI.Os{$ENDIF};
 

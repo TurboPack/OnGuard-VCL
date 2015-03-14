@@ -30,13 +30,13 @@
 
 {$I onguard.inc}
 
-unit onguard3Fmx;
+unit onguard3;
   {-Key selection and maintenance}
 
 interface
 
 uses
-  System.UITypes, ogutilFmx, onguardFmx, onguard1Fmx, onguard4Fmx,
+  System.UITypes, ogutil, onguard, onguard1, onguard4,
   {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
   System.SysUtils, System.Types, System.Classes, System.IniFiles,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,

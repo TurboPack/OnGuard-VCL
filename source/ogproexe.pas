@@ -40,13 +40,13 @@
 
 {$I onguard.inc}
 
-unit ogproexeFmx;
+unit ogproexe;
 
 interface
 
 uses
   Winapi.Windows, System.Classes, WinApi.MMSystem, System.SysUtils,
-  ogutilFmx;
+  ogutil;
 
 type
   {exe signature record}
@@ -76,7 +76,7 @@ type
     procedure(Sender : TObject; Status : TExeStatus)
     of object;
 
-  TOgProtectExeFmx = class(TComponent)
+  TOgProtectExe = class(TComponent)
   protected {private}
     {property variables}
     FAutoCheck  : Boolean;
@@ -189,9 +189,9 @@ const
     $b3667a2e, $c4614ab8, $5d681b02, $2a6f2b94, $b40bbe37, $c30c8ea1, $5a05df1b, $2d02ef8d);
 
 
-{*** TOgProtectExeFmx ***}
+{*** TOgProtectExe ***}
 
-constructor TOgProtectExeFmx.Create(AOwner : TComponent);
+constructor TOgProtectExe.Create(AOwner : TComponent);
 begin
   inherited Create(AOwner);
 
@@ -199,7 +199,7 @@ begin
   FCheckSize := DefCheckSize;
 end;
 
-function TOgProtectExeFmx.CheckExe(Report : Boolean) : TExeStatus;
+function TOgProtectExe.CheckExe(Report : Boolean) : TExeStatus;
 begin
   Result := IsExeTampered(FCheckSize);
 
@@ -207,18 +207,18 @@ begin
     DoOnChecked(Result);
 end;
 
-procedure TOgProtectExeFmx.DoOnChecked(Status : TExeStatus);
+procedure TOgProtectExe.DoOnChecked(Status : TExeStatus);
 begin
   if Assigned(FOnChecked) then
     FOnChecked(Self, Status);
 end;
 
-function TOgProtectExeFmx.GetAbout : string;                            {!!.08}
+function TOgProtectExe.GetAbout : string;                            {!!.08}
 begin
   Result := OgVersionStr;
 end;
 
-procedure TOgProtectExeFmx.Loaded;
+procedure TOgProtectExe.Loaded;
 begin
   inherited Loaded;
 
@@ -226,17 +226,17 @@ begin
     CheckExe(True);
 end;
 
-procedure TOgProtectExeFmx.SetAbout(const AValue : string);              {!!.08}
+procedure TOgProtectExe.SetAbout(const AValue : string);              {!!.08}
 begin
   // do nothing
 end;
 
-function TOgProtectExeFmx.StampExe(const FileName : string ;  EraseMarker : Boolean) : Boolean;
+function TOgProtectExe.StampExe(const FileName : string ;  EraseMarker : Boolean) : Boolean;
 begin
   Result := ProtectExe(FileName,  EraseMarker);
 end;
 
-function TOgProtectExeFmx.UnStampExe(const FileName : string) : Boolean;
+function TOgProtectExe.UnStampExe(const FileName : string) : Boolean;
 begin
   Result := UnprotectExe(FileName);
 end;
