@@ -145,16 +145,16 @@ begin
     TypeInfo(string), TOgMakeKeys, 'About', TOgAboutProperty);       {!!.08}
 
   RegisterComponents('OnGuard', [
-    TOgMakeKeys,
-    TOgMakeCodes,
-    TOgDateCode,
-    TOgDaysCode,
-    TOgNetCode,
-    TOgRegistrationCode,
-    TOgSerialNumberCode,
-    TOgSpecialCode,
-    TOgUsageCode,
-    TOgProtectExe]);
+    onguard.TOgMakeKeys,
+    onguard.TOgMakeCodes,
+    onguard.TOgDateCode,
+    onguard.TOgDaysCode,
+    ognetwrk.TOgNetCode,
+    onguard.TOgRegistrationCode,
+    onguard.TOgSerialNumberCode,
+    onguard.TOgSpecialCode,
+    onguard.TOgUsageCode,
+    ogproexe.TOgProtectExe]);
 end;
 
 end.
