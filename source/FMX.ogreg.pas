@@ -41,7 +41,7 @@ procedure Register;
 implementation
 
 uses
-  System.Classes, Fmx.Types, Fmx.Forms, FMX.ogabout0, FMX.ogfile, FMX.ognetwrk,
+  System.Classes, Fmx.Types, FMX.Controls, Fmx.Forms, FMX.ogabout0, FMX.ogfile, FMX.ognetwrk,
   FMX.ogproexe, FMX.ogfirst, FMX.onguard, FMX.OnGuard2, FMX.OnGuard3, FMX.OnGuard5,
   FMX.OnGuard6, FMX.OnGuard7, FMX.ogutil, DesignIntf, DesignEditors;
 
@@ -119,9 +119,21 @@ end;
 {component registration}
 procedure Register;
 begin
-  RegisterFmxClasses([FMX.onguard.TOgCodeBase, FMX.onguard.TOgMakeKeys, FMX.onguard.TOgMakeCodes,
-    FMX.onguard.TOgDateCode, FMX.onguard.TOgDaysCode, FMX.ognetwrk.TOgNetCode, FMX.onguard.TOgRegistrationCode,
-    FMX.onguard.TOgSerialNumberCode, FMX.onguard.TOgSpecialCode, FMX.onguard.TOgUsageCode, FMX.ogproexe.TOgProtectExe]);
+  GroupDescendentsWith(TOgCodeBase, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgMakeKeys, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgMakeCodes, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgDateCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgDaysCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgNetCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgRegistrationCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgSerialNumberCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgSpecialCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgUsageCode, FMX.Controls.TControl);
+  GroupDescendentsWith(TOgProtectExe, FMX.Controls.TControl);
+
+  RegisterFmxClasses([TOgCodeBase, TOgMakeKeys, TOgMakeCodes, TOgDateCode,
+    TOgDaysCode, TOgNetCode, TOgRegistrationCode, TOgSerialNumberCode,
+    TOgSpecialCode, TOgUsageCode, TOgProtectExe]);
 
   RegisterComponentEditor(TOgCodeBase, TOgCodeGenEditor);
 
@@ -144,7 +156,7 @@ begin
   RegisterPropertyEditor(
     TypeInfo(string), TOgMakeKeys, 'About', TOgAboutProperty);       {!!.08}
 
-  RegisterComponents('OnGuard', [
+  RegisterComponents('OnGuard FMX', [
     FMX.onguard.TOgMakeKeys,
     FMX.onguard.TOgMakeCodes,
     FMX.onguard.TOgDateCode,
