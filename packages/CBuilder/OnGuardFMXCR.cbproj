@@ -245,9 +245,6 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <ItemGroup>
-        <PackageImport Include="designide.bpi">
-            <BuildOrder>20</BuildOrder>
-        </PackageImport>
         <PackageImport Include="fmx.bpi">
             <BuildOrder>15</BuildOrder>
         </PackageImport>
@@ -295,9 +292,9 @@
             <FormType>fmx</FormType>
             <BuildOrder>19</BuildOrder>
         </DelphiCompile>
-        <FormResources Include="..\..\source\FMX.onguard3.fmx"/>
-        <FormResources Include="..\..\source\FMX.onguard4.fmx"/>
         <FormResources Include="..\..\source\FMX.onguard1.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard4.fmx"/>
+        <FormResources Include="..\..\source\FMX.onguard3.fmx"/>
         <FormResources Include="..\..\source\FMX.onguard2.fmx"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -361,6 +358,12 @@
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\16.0\Bpl\Win64\OnGuardFMXCR.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>OnGuardFMXCR.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -754,13 +757,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Android">True</Platform>
