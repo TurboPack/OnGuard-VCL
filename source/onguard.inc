@@ -70,6 +70,8 @@
 
 {====General defines=================================================}
 
+{$Q-} {Overflow Checking}
+
 {!!.10}
 {Activate the following define to prevent the TOgMakeCodes Form being
  compiled into the exe. }
