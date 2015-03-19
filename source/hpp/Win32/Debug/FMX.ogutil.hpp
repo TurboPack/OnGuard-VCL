@@ -273,8 +273,6 @@ extern DELPHI_PACKAGE System::UnicodeString __fastcall BufferToHex(const void *B
 extern DELPHI_PACKAGE System::UnicodeString __fastcall BufferToHexBytes(const void *Buf, unsigned BufSize);
 extern DELPHI_PACKAGE bool __fastcall HexStringIsZero(const System::UnicodeString Hex);
 extern DELPHI_PACKAGE bool __fastcall HexToBuffer(const System::UnicodeString Hex, void *Buf, unsigned BufSize);
-extern DELPHI_PACKAGE int __fastcall Max(int A, int B);
-extern DELPHI_PACKAGE int __fastcall Min(int A, int B);
 extern DELPHI_PACKAGE void __fastcall XorMem(void *Mem1, const void *Mem2, unsigned Count);
 extern DELPHI_PACKAGE System::UnicodeString __fastcall OgFormatDate(System::TDateTime Value);
 }	/* namespace Ogutil */

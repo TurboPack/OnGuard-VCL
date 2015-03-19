@@ -2,7 +2,7 @@
 // Copyright (c) 1995, 2015 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'FMX.ogutil.pas' rev: 29.00 (Android)
+// (DO NOT EDIT: machine generated header) 'FMX.ogutil.pas' rev: 29.00 (iOSSIM)
 
 #ifndef Fmx_OgutilHPP
 #define Fmx_OgutilHPP
@@ -21,8 +21,7 @@
 #include <Posix.NetinetIn.hpp>
 #include <Posix.ArpaInet.hpp>
 #include <FMX.ogposix.hpp>
-#include <Androidapi.JNI.JavaTypes.hpp>
-#include <Androidapi.JNI.Os.hpp>
+#include <iOSapi.UIKit.hpp>
 
 //-- user supplied -----------------------------------------------------------
 

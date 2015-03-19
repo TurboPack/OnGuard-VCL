@@ -71,6 +71,7 @@
 {====General defines=================================================}
 
 {$Q-} {Overflow Checking}
+{$R-} {Range-Checking}
 
 {!!.10}
 {Activate the following define to prevent the TOgMakeCodes Form being

@@ -237,8 +237,6 @@ function BufferToHex(const Buf; BufSize : Cardinal) : string;
 function BufferToHexBytes(const Buf; BufSize : Cardinal) : string;
 function HexStringIsZero(const Hex : string) : Boolean;
 function HexToBuffer(const Hex : string; var Buf; BufSize : Cardinal) : Boolean;
-function Max(A, B : Integer): Integer;
-function Min(A, B : Integer) : Integer;
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
 function OgFormatDate(Value : TDateTime) : string;                     {!!.09}
 
@@ -254,7 +252,7 @@ uses
 {$IFDEF MACOS}
   Macapi.CoreFoundation,
 {$ENDIF}
-  System.Character;
+  System.Math, System.Character;
 
 {first 2048 bits of Pi in hexadecimal, low to high, without the leading "3"}
 const
@@ -340,14 +338,14 @@ begin
   Blocks[1] := Right;
 end;
 
-function HashElf(const Buf;  BufSize : Integer) : Integer;
+function HashElf(const Buf: TBytes) : Integer;
 var
-  Bytes : TByteArray absolute Buf;
   I, X  : Integer;
 begin
   Result := 0;
-  for I := 0 to BufSize - 1 do begin
-    Result := (Result shl 4) + Bytes[I];
+  for I := 0 to Length(Buf) - 1 do
+  begin
+    Result := (Result shl 4) + Buf[I];
     X := Result and $F0000000;
     if (X <> 0) then
       Result := Result xor (X shr 24);
@@ -360,7 +358,7 @@ var
   pBytes: TBytes;
 begin
   pBytes := TEncoding.ANSI.GetBytes(Str);
-  Result := HashElf(pBytes[0], Length(pBytes));
+  Result := HashElf(pBytes);
 end;
 
 {$REGION 'MD5 routines'}
@@ -1965,22 +1963,6 @@ begin
   end;
 
   Result := True;
-end;
-
-function Max(A, B : Integer) : Integer;
-begin
-  if A > B then
-    Result := A
-  else
-    Result := B;
-end;
-
-function Min(A, B : Integer) : Integer;
-begin
-  if A < B then
-    Result := A
-  else
-    Result := B;
 end;
 
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
