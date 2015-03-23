@@ -31,7 +31,7 @@ OnGuardFMXDR.bpl (Delphi, FMX, Runtime)
 OnGuardFMXDD.bpl (Delphi, FMX, Designtime)
 
 OnGuardFMXCR.bpl (CBuilder, FMX, Runtime)
-OnGuardDMXCD.bpl (CBuilder, FMX, Designtime)
+OnGuardFMXCD.bpl (CBuilder, FMX, Designtime)
 
 ==============================================
 
