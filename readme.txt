@@ -53,4 +53,18 @@ To install TurboPack OnGuard into your IDE, take the following steps:
   4. Open and install the designtime package specific to the IDE being
      used. The IDE should notify you the components have been
      installed.
+
+==============================================
+     
+4. Issue with C++Builder under Win64
+
+If you compile with C++Builder under Win64 and receive an error like:
+
+[ilink64 Error] Error: Unresolved external 'vtable for...
+
+you should add the following lines to your cpp file:
+
+#ifdef _WIN64
+#pragma comment(lib, "%packagename%")
+#endif     
   
