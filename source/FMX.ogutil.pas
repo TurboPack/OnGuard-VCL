@@ -1352,9 +1352,10 @@ end;
 {modifier routines}
 function GenerateStringModifierPrim(const S : string) : Integer;
 var
-  I   : Integer;                                                       {!!.06}
-  Sig : array [0..4] of Char;
-  S2  : string;                                                        {!!.06}
+  I     : Integer;                                                       {!!.06}
+  Sig   : array [0..3] of Byte;
+  S2    : string;                                                        {!!.06}
+  Buffer: TBytes;
 begin
   FillChar(Sig, SizeOf(Sig), 0);
 
@@ -1363,8 +1364,8 @@ begin
   for I := S2.Length - 1 downto 0 do                                   {!!.06}
     if Ord(S2.Chars[I]) > 127 then                                     {!!.06}
       S2.Remove(I, 1);                                                 {!!.06}
-
-  StrPLCopy(Sig, S2.ToUpper, Min(4, S2.Length));                       {!!.06}
+  Buffer := TEncoding.ANSI.GetBytes(S2);
+  Move(Buffer[0], Sig, Min(Length(Sig), Length(Buffer)));
   Result := PInteger(@Sig[0])^;
 end;
 
