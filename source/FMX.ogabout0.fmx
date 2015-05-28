@@ -56,11 +56,11 @@ object OgAboutForm: TOgAboutForm
     AutoSize = True
     Position.X = 161.000000000000000000
     Position.Y = 69.000000000000000000
-    Size.Width = 228.000000000000000000
+    Size.Width = 245.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.WordWrap = False
-    Text = 'http://sourceforge.net/projects/tponguard'
+    Text = 'https://github.com/TurboPack/OnGuard-FMX'
     OnClick = WebLblClick
     OnMouseMove = WebLblMouseMove
   end
