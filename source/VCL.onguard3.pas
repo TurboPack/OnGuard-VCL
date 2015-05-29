@@ -30,18 +30,15 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard3;
+unit Vcl.onguard3;
   {-Key selection and maintenance}
 
 interface
 
 uses
-  System.UITypes, FMX.ogutil, FMX.onguard, FMX.onguard1, FMX.onguard4,
-  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
-  System.SysUtils, System.Types, System.Classes, System.IniFiles,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
-  FMX.ExtCtrls, FMX.ListBox, FMX.Layouts, FMX.Edit, FMX.Platform,
-  Fmx.StdCtrls, FMX.Header, FMX.Graphics, FMX.Controls.Presentation;
+  System.UITypes, Winapi.Windows, System.SysUtils, Winapi.Messages, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Clipbrd, System.IniFiles, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Forms, Vcl.Dialogs, Vcl.ogutil, Vcl.onguard, Vcl.onguard1, Vcl.onguard4;
 
 type
   TKeyMaintFrm = class(TForm)
@@ -50,9 +47,9 @@ type
     AddBtn: TButton;
     DeleteBtn: TButton;
     EditBtn: TButton;
-    OKBtn: TButton;
-    CancelBtn: TButton;
-    OpenBtn: TButton;
+    OKBtn: TBitBtn;
+    CancelBtn: TBitBtn;
+    OpenBtn: TBitBtn;
     OpenDialog1: TOpenDialog;
     FileNameGb: TGroupBox;
     FileNameEd: TEdit;
@@ -102,7 +99,7 @@ type
 
 implementation
 
-{$R *.fmx}
+{$R *.dfm}
 
 const
   {name of section that stores application keys}
@@ -193,6 +190,7 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
+    F.ShowHint := ShowHint;
     if F.ShowModal = mrOK then begin
       IniFile := TIniFile.Create(KeyFileName);
       try
@@ -219,6 +217,7 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
+    F.ShowHint := ShowHint;
     IniFile := TIniFile.Create(KeyFileName);
     try
       F.ProductEd.Text := ProductsLb.Items[GetListBoxItemIndex];     {!!.07}
@@ -237,22 +236,18 @@ end;
 
 procedure TKeyMaintFrm.DeleteBtnClick(Sender: TObject);
 var
-{$IFDEF MSWINDOWS}
   IniFile : TIniFile;
-{$ENDIF}
   I       : Integer;
 begin
   I := GetListBoxItemIndex;                                          {!!.07}
   if (I > -1) then                                                   {!!.07}
-    if MessageDlg(SCDeleteQuery, TMsgDlgType.mtConfirmation, mbYesNo, 0) = mrYes then begin
-      {$IFDEF MSWINDOWS}
+    if MessageDlg(SCDeleteQuery, mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
       IniFile := TIniFile.Create(KeyFileName);
       try
         IniFile.DeleteKey(OgKeySection, ProductsLb.Items[I]);        {!!.07}
       finally
         IniFile.Free;
       end;
-      {$ENDIF}
       BlockKeyEd.Text := '';
       BytesKeyEd.Text := '';
 

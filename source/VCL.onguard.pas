@@ -34,13 +34,13 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard;
+unit Vcl.onguard;
   {-code and key classes and routines}
 
 interface
 
 uses
-  System.Classes, System.SysUtils, System.UITypes, FMX.ogutil;
+  System.Classes, System.SysUtils, System.UITypes, Winapi.Windows, Vcl.ogutil;
 
 {$REGION 'Component declarations'}
 type
@@ -439,14 +439,11 @@ type
 
 implementation
 
-{$IF not defined(NoMakeCodesSupport) or  not defined(NoMakeKeysSupport)}
 uses
-{$IFDEF MSWINDOWS}
-  Winapi.ActiveX,
-{$ENDIF}
-  {$IFNDEF NoMakeCodesSupport}FMX.onguard2{$IFNDEF NoMakeKeysSupport},FMX.onguard3{$ENDIF}{$ENDIF}
+  Winapi.ActiveX
+  {$IFNDEF NoMakeCodesSupport}, Vcl.onguard2{$ENDIF}
+  {$IFNDEF NoMakeKeysSupport}, Vcl.onguard3{$ENDIF}
   ;
-{$ENDIF}
 
 resourcestring
   SCNoOnCheck = '%s has no OnChecked event handler assigned';
@@ -737,6 +734,7 @@ begin
     F.SetKey(FKey);                                                  {!!.08}
     F.KeyType := FKeyType;
     F.KeyFileName := FKeyFileName;
+    F.ShowHint := FShowHints;
     Result := F.ShowModal = mrOK;// was mrOK but that pulls in a GUI framework
     if Result then begin
       FCode := F.Code;
@@ -805,6 +803,7 @@ begin
     F.SetKey(FKey);                                                  {!!.08}
     F.KeyType := FKeyType;
     F.KeyFileName := FKeyFileName;
+    F.ShowHint := FShowHints;
     Result := F.ShowModal = mrOK;// was mrOK but that pulls in a GUI framework
     if Result then begin
       F.GetKey(FKey);                                                {!!.08}

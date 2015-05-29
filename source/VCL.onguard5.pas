@@ -30,12 +30,12 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard5;
+unit Vcl.onguard5;
 
 interface
 
 uses
-  Fmx.Controls, Fmx.Forms, FMX.onguard, DesignIntf, DesignEditors;
+  Vcl.Controls, Vcl.Forms, Vcl.onguard, DesignIntf, DesignEditors;
 
 type
   {property editor for ranges}
@@ -52,7 +52,7 @@ type
 implementation
 
 uses
-  System.UITypes, FMX.ogutil, FMX.onguard2;
+  Vcl.ogutil, Vcl.onguard2;
 
 const
   {ini file name used to store application keys}
@@ -76,6 +76,7 @@ var
 begin
   with TCodeGenerateFrm.Create(Application) do
     try
+      ShowHint := True;
       KeyFileName := OgKeyFile;
       if ShowModal = mrOK then begin
         Work := Code;

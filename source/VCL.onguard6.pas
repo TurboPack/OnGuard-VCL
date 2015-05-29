@@ -30,28 +30,28 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard6;
+unit Vcl.onguard6;
   {-Code generation dialog}
 
 interface
 
 uses
-  FMX.OgUtil, FMX.OnGuard, DesignIntf, DesignEditors, FMX.ComboEdit, FMX.Edit, FMX.Types,
-  FMX.Controls.Presentation, FMX.Forms, FMX.StdCtrls, System.Classes, FMX.Controls,
-  FMX.DateTimeCtrls;
+  Winapi.Windows, Vcl.ComCtrls, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.ExtCtrls, Vcl.Tabnotbk, Vcl.StdCtrls, Vcl.Buttons,
+  Winapi.Messages, Vcl.OgUtil, Vcl.OnGuard, DesignIntf, DesignEditors;
 
 
 type
   TModifierFrm = class(TForm)
-    OKBtn: TButton;
-    CancelBtn: TButton;
+    OKBtn: TBitBtn;
+    CancelBtn: TBitBtn;
     GroupBox1: TGroupBox;
     UniqueModifierCb: TCheckBox;
     MachineModifierCb: TCheckBox;
     DateModifierCb: TCheckBox;
     NoModifierCb: TCheckBox;
     ModifierEd: TEdit;
-    ModDateEdit: TDateEdit;
+    ModDateEd: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure ModifierClick(Sender: TObject);
     procedure ModifierEdKeyPress(Sender: TObject; var Key: Char);
@@ -79,13 +79,12 @@ type
 
 implementation
 
-{$R *.fmx}
-
-uses
-  System.UITypes, System.SysUtils, Winapi.Windows;
+{$R *.dfm}
 
 procedure TModifierFrm.FormCreate(Sender: TObject);
 begin
+  NoModifierCb.Checked := True;
+  ModDateEd.Text := OgFormatDate(Date);                              {!!.09}
   InfoChanged(nil);
 end;
 
@@ -102,19 +101,19 @@ begin
   try
     L := 0;
 
-    if (Sender = NoModifierCb) and NoModifierCb.IsChecked then begin
-      UniqueModifierCb.IsChecked := False;
-      MachineModifierCb.IsChecked := False;
-      DateModifierCb.IsChecked := False;
+    if (Sender = NoModifierCb) and NoModifierCb.Checked then begin
+      UniqueModifierCb.Checked := False;
+      MachineModifierCb.Checked := False;
+      DateModifierCb.Checked := False;
     end else
-      NoModifierCb.IsChecked := False;
+      NoModifierCb.Checked := False;
 
-    if not UniqueModifierCb.IsChecked and
-       not MachineModifierCb.IsChecked and
-       not DateModifierCb.IsChecked then
-      NoModifierCb.IsChecked := True;
+    if not UniqueModifierCb.Checked and
+       not MachineModifierCb.Checked and
+       not DateModifierCb.Checked then
+      NoModifierCb.Checked := True;
 
-    if MachineModifierCb.IsChecked then begin
+    if MachineModifierCb.Checked then begin
       if L = 0 then
         L := GenerateMachineModifierPrim
       else
@@ -122,10 +121,15 @@ begin
     end;
 
     {set status of date field}
-    ModDateEdit.Enabled := DateModifierCb.IsChecked;
-    if DateModifierCb.IsChecked then begin
+    ModDateEd.Enabled := DateModifierCb.Checked;
+    if ModDateEd.Enabled then
+      ModDateEd.Color := clWindow
+    else
+      ModDateEd.Color := clBtnFace;
+
+    if DateModifierCb.Checked then begin
       try
-        D := StrToDate(ModDateEdit.Text);
+        D := StrToDate(ModDateEd.Text);
       except
         {ignore errors and don't generate modifier}
         D := 0;
@@ -139,7 +143,7 @@ begin
       end;
     end;
 
-    if UniqueModifierCb.IsChecked then begin
+    if UniqueModifierCb.Checked then begin
       if L = 0 then
         L := GenerateUniqueModifierPrim
       else

@@ -30,17 +30,14 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard1;
+unit Vcl.onguard1;
   {-Key generation dialog}
 
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects, FMX.ExtCtrls,
-  FMX.Memo, FMX.Edit, FMX.Platform, Fmx.StdCtrls, FMX.Header, FMX.Graphics,
-  FMX.ListBox, FMX.Controls.Presentation, FMX.Layouts, FMX.ogutil, FMX.onguard,
-  FMX.ScrollBox;
+  Winapi.Windows, System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Graphics, Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ogutil, Vcl.onguard;
 
 type
   TKeyGenerateFrm = class(TForm)
@@ -55,8 +52,8 @@ type
     GenerateBtn: TButton;
     KeyTypeCb: TComboBox;
     ByteKeyEd: TEdit;
-    CancelBtn: TButton;
-    OKBtn: TButton;
+    CancelBtn: TBitBtn;
+    OKBtn: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure KeyStringMeChange(Sender: TObject);
     procedure KeyTypeCbChange(Sender: TObject);
@@ -66,15 +63,11 @@ type
     procedure CopyByteKeySbClick(Sender: TObject);
     procedure GenerateBtnClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-  private
-    { Private declarations }
+  strict private
     FKey     : TKey;
     FKeyType : TKeyType;
-
     procedure SetKeyType(Value : TKeyType);
-
   public
-    { Public declarations }                                          
     procedure SetKey(Value : TKey);                                  {!!.08}
     procedure GetKey(var Value : TKey);                              {!!.08}
 
@@ -84,10 +77,9 @@ type
 
   end;
 
-
 implementation
 
-{$R *.fmx}
+{$R *.dfm}
 
 procedure TKeyGenerateFrm.FormCreate(Sender: TObject);
 begin
@@ -95,6 +87,10 @@ begin
 
   {set state of memo and generate button}
   KeyStringMe.Enabled := (KeyTypeCb.ItemIndex <> 0);
+  case KeyStringMe.Enabled of
+    True  : KeyStringMe.Color := clWindow;
+    False : KeyStringMe.Color := clBtnFace;
+  end;
   GenerateBtn.Enabled := (KeyTypeCb.ItemIndex = 0) or
     (KeyStringMe.Lines.Count > 0);
 end;
@@ -116,6 +112,10 @@ begin
 
   {set state of memo and generate button}
   KeyStringMe.Enabled := (KeyTypeCb.ItemIndex <> 0);
+  case KeyStringMe.Enabled of
+    True  : KeyStringMe.Color := clWindow;
+    False : KeyStringMe.Color := clBtnFace;
+  end;
   GenerateBtn.Enabled := (KeyTypeCb.ItemIndex = 0) or
     (KeyStringMe.Lines.Count > 0);
 
@@ -170,9 +170,14 @@ begin
   case KeyTypeCb.ItemIndex of
     0:
       begin
-        GenerateRandomKeyPrim(FKey, SizeOf(FKey));
-        BlockKeyEd.Text := BufferToHex(FKey, SizeOf(FKey));
-        ByteKeyEd.Text := BufferToHexBytes(FKey, SizeOf(FKey));
+        Screen.Cursor := crHourGlass;
+        try
+          GenerateRandomKeyPrim(FKey, SizeOf(FKey));
+          BlockKeyEd.Text := BufferToHex(FKey, SizeOf(FKey));
+          ByteKeyEd.Text := BufferToHexBytes(FKey, SizeOf(FKey));
+        finally
+          Screen.Cursor := crDefault;
+        end;
       end;
     1:
       begin
@@ -214,4 +219,5 @@ begin
 end;
 
 end.
+
 

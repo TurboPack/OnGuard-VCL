@@ -34,15 +34,13 @@
 
 {$I onguard.inc}
 
-unit FMX.ognetwrk;
+unit Vcl.ognetwrk;
   {-network file routines}
 
 interface
 
 uses
-  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
-  {$IFDEF MACOS}Posix.Unistd, {$ENDIF}
-  System.Classes, System.SysUtils, FMX.ogutil, FMX.onguard;
+  Winapi.Windows, System.Classes, System.SysUtils, Vcl.ogutil, Vcl.onguard;
 
 type
   TNetAccess = packed record
@@ -156,28 +154,8 @@ function UnlockNetAccessFile(var NetAccess : TNetAccess) : Boolean;
 
 implementation
 
-uses
-{$IFDEF ANDROID}
-  Posix.Unistd,
-{$ENDIF}
-  FMX.ogfile;
-
 resourcestring
   SCNoOnGetFileName = 'FileName is empty and OnGetFileName is not assigned';
-
-{$IFDEF MACOS}
-function HiWord(L: DWORD): Word;
-begin
-  Result := L shr 16;
-end;
-{$ENDIF}
-
-{$IFDEF ANDROID}
-function HiWord(L: DWORD): Word;
-begin
-  Result := L shr 16;
-end;
-{$ENDIF}
 
 {*** TOgNetCode ***}
 
@@ -375,7 +353,7 @@ begin
     end;
 
 	  FlushFileBuffers(Fh);
-    Result := GetFileSize(Fh) = (Count * SizeOf(Code));
+    Result := Winapi.Windows.GetFileSize(Fh, nil) = (Count * SizeOf(Code));
     FileClose(Fh);
   end;
 end;
@@ -420,9 +398,9 @@ var
 begin
   Result := False;
 
-  Fh := FileOpen(FileName, {$IFDEF MSWINDOWS}fmOpenRead{$ELSE}fmOpenReadWrite{$ENDIF} or fmShareDenyNone);
+  Fh := FileOpen(FileName, fmOpenRead or fmShareDenyNone);
   if (Fh > -1) then begin
-    NetAccessInfo.Total := GetFileSize(Fh) div SizeOf(Code);
+    NetAccessInfo.Total := Winapi.Windows.GetFileSize(Fh, nil) div SizeOf(Code);
     NetAccessInfo.Locked := 0;
     NetAccessInfo.Invalid := 0;
 
@@ -445,27 +423,9 @@ begin
 end;
 
 function IsAppOnNetwork(const ExePath : string) : Boolean;
-{$IFDEF Win32}
-begin
-  // fix for ticket #10 - use ExpandUNCFilename
-  Result := (GetDriveType(PChar(ExtractFileDrive(ExpandUNCFilename(ExePath)) + '\')) = DRIVE_REMOTE);
-end;
-{$ENDIF}
-{$IFDEF Win64}
 begin
   Result := (GetDriveType(PChar(ExtractFileDrive(ExpandUNCFilename(ExePath)) + '\')) = DRIVE_REMOTE);
 end;
-{$ENDIF}
-{$IFDEF UNIX}
-begin
-  Result := False;
-end;
-{$ENDIF}
-{$IFDEF POSIX}
-begin
-  Result := False;
-end;
-{$ENDIF}
 
 function LockNetAccessFile(const FileName : string; const Key : TKey;
                            var NetAccess : TNetAccess) : Boolean;
@@ -482,7 +442,7 @@ begin
 
   Fh := FileOpen(FileName, fmOpenReadWrite or fmShareDenyNone);
   if (Fh > -1) then begin
-    Count := GetFileSize(Fh) div SizeOf(Code);
+    Count := Winapi.Windows.GetFileSize(Fh, nil) div SizeOf(Code);
     {find an unused record to use}
     for I := 0 to Count - 1 do begin
       if LockFile(Fh, I * SizeOf(Code), 0, SizeOf(Code), 0) then begin
@@ -524,7 +484,7 @@ begin
 
   Fh := FileOpen(FileName, fmOpenReadWrite or fmShareDenyNone);
   if (Fh > -1) then begin
-    Count := GetFileSize(Fh) div SizeOf(Code);
+    Count := Winapi.Windows.GetFileSize(Fh, nil) div SizeOf(Code);
     for I := 0 to Count - 1 do
       {attempt to lock this record. skip records that are locked}
       if LockFile(Fh, I * SizeOf(Code), 0, SizeOf(Code), 0) then begin

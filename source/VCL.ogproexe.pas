@@ -40,13 +40,12 @@
 
 {$I onguard.inc}
 
-unit FMX.ogproexe;
+unit Vcl.ogproexe;
 
 interface
 
 uses
-  Winapi.Windows, System.Classes, WinApi.MMSystem, System.SysUtils,
-  FMX.ogutil;
+  Winapi.Windows, System.Classes, Winapi.MMSystem, System.SysUtils, Vcl.ogutil;
 
 type
   {exe signature record}
@@ -241,6 +240,7 @@ begin
   Result := UnprotectExe(FileName);
 end;
 
+
 function IsExeTampered(CheckSize : Boolean) : TExeStatus;
   {-return one of the possible TExeResult states}
 var
@@ -287,7 +287,6 @@ begin
       Result := exeAccessDenied;                                       {!!.05}
   end;                                                                 {!!.05}
 end;
-
 function ProtectExe(const FileName : string;  EraseMarker : Boolean) : Boolean;
   {-stamp exe with crc and file size. optionally erase search markers}
 var
@@ -406,7 +405,6 @@ begin
     Sum := Sum + Bytes[I];
 end;
 
-{$IFDEF Win32}
 function FileCRC32(const FileName : string) : DWord;                 {!!.07}
 var
   Fh      : THandle;
@@ -434,33 +432,6 @@ begin
     CloseHandle(Fh);
   end;
 end;
-{$ELSE}
-function FileCRC32(const FileName : string) : Integer;
-const
-  BufSize = 4096;
-var
-  Fh        : Integer;
-  BytesRead : Integer;
-  Buf       : PAnsiChar;
-begin
-  Buf := StrAlloc(BufSize);
-  try
-    StrPLCopy(Buf, FileName, BufSize-1);
-    Fh := FileOpen(StrPas(Buf), fmOpenRead or fmShareDenyWrite);
-    if (Fh >= 0 {HFILE_ERROR}) then begin
-      Result := $FFF00FFF;  {special CRC init}
-      repeat
-        BytesRead := FileRead(Fh, Buf^, BufSize);
-        UpdateCRC32(Result, Buf^, BytesRead);
-      until (BytesRead < BufSize);
-      FileClose(Fh);
-    end;
-  finally
-    StrDispose(Buf);
-  end;
-end;
-{$ENDIF}
-
 procedure UpdateCRC32(var CRC : DWord;  const Buf;  BufSize : Integer); {!!.07}
 var
   Bytes : TByteArray absolute Buf;

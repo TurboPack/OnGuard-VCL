@@ -30,17 +30,13 @@
 
 {$I onguard.inc}
 
-unit FMX.ogutil;
+unit Vcl.ogutil;
   {-general constants, types, and utility routines}
 
 interface
 
 uses
-  System.SysUtils
-  {$IFDEF MSWINDOWS}, Winapi.Windows {$ENDIF}
-  {$IFDEF POSIX}, Posix.Base, Posix.SysSocket, Posix.NetIf, Posix.NetinetIn, Posix.ArpaInet, FMX.ogposix{$ENDIF}
-  {$IFDEF IOS}, iOSApi.UIKit{$ENDIF}
-  {$IFDEF ANDROID}, androidapi.JNI.JavaTypes, androidapi.JNI.Os{$ENDIF};
+  System.SysUtils, Winapi.Windows;
 
 const
   DefAutoCheck      = True;
@@ -60,11 +56,6 @@ const
   MaxStructSize = 1024 * 2000000; {2G}
 
 type
-  {$IFDEF POSIX}
-  DWord      = Cardinal;
-  PDWord     = ^DWord;
-  {$ENDIF}
-
   PByte         = ^Byte;
   PByteArray    = ^TByteArray;
   TByteArray    = array [0..MaxStructSize div SizeOf(Byte) - 1] of Byte;
@@ -237,22 +228,15 @@ function BufferToHex(const Buf; BufSize : Cardinal) : string;
 function BufferToHexBytes(const Buf; BufSize : Cardinal) : string;
 function HexStringIsZero(const Hex : string) : Boolean;
 function HexToBuffer(const Hex : string; var Buf; BufSize : Cardinal) : Boolean;
+function Max(A, B : Integer): Integer;
+function Min(A, B : Integer) : Integer;
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
 function OgFormatDate(Value : TDateTime) : string;                     {!!.09}
 
 implementation
 
 uses
-{$IFDEF MSWINDOWS}
-  Winapi.ActiveX,
-{$ENDIF}
-{$IFDEF ANDROID}
-  Androidapi.Helpers,
-{$ENDIF}
-{$IFDEF MACOS}
-  Macapi.CoreFoundation,
-{$ENDIF}
-  System.Math, System.Character;
+  Winapi.ActiveX, System.Character;
 
 {first 2048 bits of Pi in hexadecimal, low to high, without the leading "3"}
 const
@@ -273,7 +257,6 @@ const
     $78, $AF, $2F, $DA, $55, $60, $5C, $60, $E6, $55, $25, $F3, $AA, $55, $AB, $94,
     $57, $48, $98, $62, $63, $E8, $14, $40, $55, $CA, $39, $6A, $2A, $AB, $10, $B6,
     $B4, $CC, $5C, $34, $11, $41, $E8, $CE, $A1, $54, $86, $AF, $7C, $72, $E9, $93);
-
 
 {mixing routines}
 procedure Mix128(var X : T128Bit);
@@ -338,14 +321,14 @@ begin
   Blocks[1] := Right;
 end;
 
-function HashElf(const Buf: TBytes) : Integer;
+function HashElf(const Buf;  BufSize : Integer) : Integer;
 var
+  Bytes : TByteArray absolute Buf;
   I, X  : Integer;
 begin
   Result := 0;
-  for I := 0 to Length(Buf) - 1 do
-  begin
-    Result := (Result shl 4) + Buf[I];
+  for I := 0 to BufSize - 1 do begin
+    Result := (Result shl 4) + Bytes[I];
     X := Result and $F0000000;
     if (X <> 0) then
       Result := Result xor (X shr 24);
@@ -358,7 +341,7 @@ var
   pBytes: TBytes;
 begin
   pBytes := TEncoding.ANSI.GetBytes(Str);
-  Result := HashElf(pBytes);
+  Result := HashElf(pBytes[0], Length(pBytes));
 end;
 
 {$REGION 'MD5 routines'}
@@ -734,7 +717,6 @@ end;
 {$REGION 'CreateMachineID'}
 
 {$REGION 'Win32 + Win64'}
-{$IFDEF MSWINDOWS}
 {!!.05} {added}
 function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : Integer;
 { Obtains information from:
@@ -1141,164 +1123,6 @@ begin
 
   FinalizeTMD(Context, Result, SizeOf(Result));
 end;
-{$ENDIF MSWINDOWS}
-{$ENDREGION}
-
-{$REGION 'Delphi-POSIX: MACOS IOS ANDROID'}
-{$IFDEF POSIX}
-function CreateMachineID(MachineInfo : TEsMachineInfoSet; Ansi: Boolean = True) : Integer;
-var
-  Context : TTMDContext;
-  Buf     : array [0..2047] of Byte;
-
-  {$IF defined(MACOS)}
-  ifap, Next : pifaddrs;
-  sdp : sockaddr_dl;
-  {$ENDIF}
-
-  {$IFDEF IOS}
-  Device : UIDevice;
-  ID : string absolute Buf;
-  {$ENDIF}
-
-  {$IFDEF ANDROID}
-  ID: string absolute Buf;
-  {$ENDIF}
-
-
-begin
-  InitTMD(Context);
-
-  {$IFDEF IOS}
-  Device := TUIDevice.Wrap(TUIDevice.OCClass.currentDevice);
-  {$ENDIF}
-
-  if midUser in MachineInfo then
-  begin
-    //UpdateTMD(Context, Buf, I);
-
-    {$IFDEF ANDROID}
-    ID := JStringToString(TJBuild.JavaClass.USER);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    {$ENDIF}
-  end;
-
-  if midSystem in MachineInfo then
-  begin
-    {$IFDEF IOS}
-    // see https://developer.apple.com/library/ios/documentation/uikit/reference/UIDevice_Class/Reference/UIDevice.html
-    ID := PChar(Device.identifierForVendor.UUIDString.UTF8String);
-    UpdateTMD(Context, Buf, Length(ID));
-    {$ENDIF}
-
-    {$IFDEF ANDROID}
-    ID := JStringToString(TJBuild.JavaClass.BOARD);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.BOOTLOADER);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.BRAND);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.DEVICE);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.DISPLAY);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.HARDWARE);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.HOST);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.ID);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.MANUFACTURER);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.MODEL);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.PRODUCT);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.RADIO);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.MODEL);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.SERIAL);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    ID := JStringToString(TJBuild.JavaClass.TAGS);
-    UpdateTMD(Context, Buf, (Length(ID)*SizeOf(Char)));
-    {$ENDIF}
-  end;
-
-  if midNetwork in MachineInfo then
-  begin
-  end;
-
-  if midDrives in MachineInfo then
-  begin
-  end;
-
-  if midCPUID in MachineInfo then
-  begin
-  end;
-
-  if midCPUIDJCL in MachineInfo then
-  begin
-  end;
-
-  if midBIOS in MachineInfo then
-  begin
-  end;
-
-  if midWinProd in MachineInfo then
-  begin
-  end;
-
-  if midCryptoID in MachineInfo then
-  begin
-  end;
-
-  if midNetMAC in MachineInfo then
-  begin
-    // not available in IOS 7 and later
-    {$IF defined(MACOS)}
-
-    if getifaddrs(ifap)=0 then
-    begin
-      try
-        Next := ifap;
-        while Next <> nil do
-        begin
-          case Next.ifa_addr.sa_family of
-            AF_LINK:
-              begin
-                sdp := psockaddr_dl(Next.ifa_addr)^;
-                if sdp.sdl_type = IFT_ETHER then
-                begin
-                  Move(Pointer(Byte(@sdp.sdl_data[0]) + sdp.sdl_nlen)^, Buf, 6);
-                  UpdateTMD(Context, Buf, 6);
-                end;
-              end;
-            AF_INET,
-            AF_INET6:
-              begin
-              end;
-          end;
-          Next := Next.ifa_next;
-        end;
-      finally
-        freeifaddrs(ifap);
-      end;
-    end;
-
-    {$ENDIF}
-  end;
-
-  if midDomain in MachineInfo then
-  begin
-  end;
-
-  FinalizeTMD(Context, Result, SizeOf(Result));
-end;
-{$ENDIF POSIX}
-{$ENDREGION}
-
-
 {$ENDREGION}
 
 {$REGION 'key generation routines'}
@@ -1966,6 +1790,22 @@ begin
   Result := True;
 end;
 
+function Max(A, B : Integer) : Integer;
+begin
+  if A > B then
+    Result := A
+  else
+    Result := B;
+end;
+
+function Min(A, B : Integer) : Integer;
+begin
+  if A < B then
+    Result := A
+  else
+    Result := B;
+end;
+
 procedure XorMem(var Mem1; const Mem2; Count : Cardinal);
 var
   pB1,pB2 : PByte;
@@ -2002,3 +1842,4 @@ begin
 end;
 
 end.
+

@@ -20,18 +20,18 @@ certain number of concurrent network users.
 
 This is a source-only release of TurboPack OnGuard. It includes
 designtime and runtime packages for Delphi and C++Builder.
-It supports Win32, Win64, OSX, iOS32, iOS64 and Android.
+It supports Win32 and Win64.
 
 ==============================================
 
 2. Package names
 
 TurboPack OnGuard package names have the following form:
-OnGuardFMXDR.bpl (Delphi, FMX, Runtime)
-OnGuardFMXDD.bpl (Delphi, FMX, Designtime)
+OnGuardDR.bpl (Delphi, VCL, Runtime)
+OnGuardDD.bpl (Delphi, VCL, Designtime)
 
-OnGuardFMXCR.bpl (CBuilder, FMX, Runtime)
-OnGuardFMXCD.bpl (CBuilder, FMX, Designtime)
+OnGuardCR.bpl (CBuilder, VCL, Runtime)
+OnGuardCD.bpl (CBuilder, VCL, Designtime)
 
 ==============================================
 
@@ -53,7 +53,7 @@ To install TurboPack OnGuard into your IDE, take the following steps:
   4. Open and install the designtime package specific to the IDE being
      used. The IDE should notify you the components have been
      installed.
-
+ 
 ==============================================
      
 4. Issue with C++Builder under Win64
@@ -66,5 +66,4 @@ you should add the following lines to your cpp file:
 
 #ifdef _WIN64
 #pragma comment(lib, "%packagename%")
-#endif     
-  
+#endif      

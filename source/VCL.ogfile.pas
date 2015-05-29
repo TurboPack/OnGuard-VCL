@@ -34,7 +34,7 @@
 
 {$I onguard.inc}
 
-unit FMX.ogfile;
+unit Vcl.ogfile;
 
 
 interface
@@ -42,8 +42,7 @@ interface
 uses
   {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
   {$IFDEF MACOS}Posix.Base, Posix.SysStat, Posix.Fcntl, Posix.Stdio, {$ENDIF}
-  System.SysUtils,
-  FMX.OgUtil;
+  System.SysUtils, Vcl.OgUtil;
 
 
 function GetFileSize(Handle : THandle) : Cardinal;

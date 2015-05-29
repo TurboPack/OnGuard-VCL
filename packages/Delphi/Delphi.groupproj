@@ -3,10 +3,10 @@
         <ProjectGuid>{793FE4EF-8248-4BDA-AF6D-00608A0255CB}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="OnGuardFMXDR.dproj">
+        <Projects Include="OnGuardDR.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="OnGuardFMXDD.dproj">
+        <Projects Include="OnGuardDD.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -17,32 +17,32 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="OnGuardFMXDR">
-        <MSBuild Projects="OnGuardFMXDR.dproj"/>
+    <Target Name="OnGuardDR">
+        <MSBuild Projects="OnGuardDR.dproj"/>
     </Target>
-    <Target Name="OnGuardFMXDR:Clean">
-        <MSBuild Projects="OnGuardFMXDR.dproj" Targets="Clean"/>
+    <Target Name="OnGuardDR:Clean">
+        <MSBuild Projects="OnGuardDR.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="OnGuardFMXDR:Make">
-        <MSBuild Projects="OnGuardFMXDR.dproj" Targets="Make"/>
+    <Target Name="OnGuardDR:Make">
+        <MSBuild Projects="OnGuardDR.dproj" Targets="Make"/>
     </Target>
-    <Target Name="OnGuardFMXDD">
-        <MSBuild Projects="OnGuardFMXDD.dproj"/>
+    <Target Name="OnGuardDD">
+        <MSBuild Projects="OnGuardDD.dproj"/>
     </Target>
-    <Target Name="OnGuardFMXDD:Clean">
-        <MSBuild Projects="OnGuardFMXDD.dproj" Targets="Clean"/>
+    <Target Name="OnGuardDD:Clean">
+        <MSBuild Projects="OnGuardDD.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="OnGuardFMXDD:Make">
-        <MSBuild Projects="OnGuardFMXDD.dproj" Targets="Make"/>
+    <Target Name="OnGuardDD:Make">
+        <MSBuild Projects="OnGuardDD.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="OnGuardFMXDR;OnGuardFMXDD"/>
+        <CallTarget Targets="OnGuardDR;OnGuardDD"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="OnGuardFMXDR:Clean;OnGuardFMXDD:Clean"/>
+        <CallTarget Targets="OnGuardDR:Clean;OnGuardDD:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="OnGuardFMXDR:Make;OnGuardFMXDD:Make"/>
+        <CallTarget Targets="OnGuardDR:Make;OnGuardDD:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

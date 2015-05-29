@@ -30,7 +30,7 @@
 
 {$I onguard.inc}
 
-unit FMX.ogreg;
+unit Vcl.ogreg;
 
 {$R ogreg.r32}
 
@@ -41,16 +41,16 @@ procedure Register;
 implementation
 
 uses
-  System.Classes, Fmx.Types, FMX.Controls, Fmx.Forms, FMX.ogabout0, FMX.ogfile, FMX.ognetwrk,
-  FMX.ogproexe, FMX.ogfirst, FMX.onguard, FMX.OnGuard2, FMX.OnGuard3, FMX.OnGuard5,
-  FMX.OnGuard6, FMX.OnGuard7, FMX.ogutil, DesignIntf, DesignEditors;
+  System.Classes, Vcl.Forms, Vcl.ogabout0, Vcl.ognetwrk, Vcl.ogproexe, Vcl.ogfirst,
+  Vcl.onguard, Vcl.OnGuard2, Vcl.OnGuard3, Vcl.OnGuard5, Vcl.OnGuard6, Vcl.OnGuard7,
+  Vcl.ogutil, DesignIntf, DesignEditors;
 
 const
   {ini file name used to store application keys}
   OgKeyFile    = 'ONGUARD.INI';
 
 type
-  {component editor for TOgCodeBase components}
+  {component editor for TogCodeBase components}
   TOgCodeGenEditor = class(TDefaultEditor)
   public
     procedure ExecuteVerb(Index : Integer);
@@ -69,6 +69,7 @@ begin
   if Index = 0 then begin
     with TCodeGenerateFrm.Create(Application) do
       try
+        ShowHint := True;
         KeyFileName := OgKeyFile;
         if Component is TOgDateCode then
           CodeType := ctDate
@@ -91,6 +92,7 @@ begin
   end else if Index = 1 then begin
     with TKeyMaintFrm.Create(Application) do
       try
+        ShowHint := True;
         KeyFileName := 'ONGUARD.INI';
         KeyType := ktRandom;
         ShowModal;
@@ -119,26 +121,14 @@ end;
 {component registration}
 procedure Register;
 begin
-  GroupDescendentsWith(TOgCodeBase, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgMakeKeys, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgMakeCodes, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgDateCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgDaysCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgNetCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgRegistrationCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgSerialNumberCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgSpecialCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgUsageCode, FMX.Controls.TControl);
-  GroupDescendentsWith(TOgProtectExe, FMX.Controls.TControl);
-
-  RegisterFmxClasses([TOgCodeBase, TOgMakeKeys, TOgMakeCodes, TOgDateCode,
-    TOgDaysCode, TOgNetCode, TOgRegistrationCode, TOgSerialNumberCode,
-    TOgSpecialCode, TOgUsageCode, TOgProtectExe]);
+//  RegisterClasses([TOgCodeBase, TOgMakeKeys, TOgMakeCodes, TOgDateCode, TOgDaysCode,
+//  TOgNetCode, TOgRegistrationCode, TOgSerialNumberCode, TOgSpecialCode, TOgUsageCode,
+//  TOgProtectExe]);
 
   RegisterComponentEditor(TOgCodeBase, TOgCodeGenEditor);
 
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeKeys, 'KeyFileName', TOgFileNameProperty);
+    TypeInfo(string), TOgMakeCodes, 'KeyFileName', TOgFileNameProperty);
   RegisterPropertyEditor(
     TypeInfo(string), TOgMakeCodes, 'KeyFileName', TOgFileNameProperty);
 {  RegisterPropertyEditor( }                                          {!!.09}
@@ -154,19 +144,19 @@ begin
   RegisterPropertyEditor(
     TypeInfo(string), TOgMakeCodes, 'About', TOgAboutProperty);      {!!.08}
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeKeys, 'About', TOgAboutProperty);       {!!.08}
+    TypeInfo(string), TOgMakeCodes, 'About', TOgAboutProperty);       {!!.08}
 
-  RegisterComponents('OnGuard FMX', [
-    FMX.onguard.TOgMakeKeys,
-    FMX.onguard.TOgMakeCodes,
-    FMX.onguard.TOgDateCode,
-    FMX.onguard.TOgDaysCode,
-    FMX.ognetwrk.TOgNetCode,
-    FMX.onguard.TOgRegistrationCode,
-    FMX.onguard.TOgSerialNumberCode,
-    FMX.onguard.TOgSpecialCode,
-    FMX.onguard.TOgUsageCode,
-    FMX.ogproexe.TOgProtectExe]);
+  RegisterComponents('OnGuard', [
+    TOgMakeCodes,
+    TOgMakeCodes,
+    TOgDateCode,
+    TOgDaysCode,
+    TOgNetCode,
+    TOgRegistrationCode,
+    TOgSerialNumberCode,
+    TOgSpecialCode,
+    TOgUsageCode,
+    TOgProtectExe]);
 end;
 
 end.

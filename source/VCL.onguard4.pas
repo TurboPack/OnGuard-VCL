@@ -30,16 +30,14 @@
 
 {$I onguard.inc}
 
-unit FMX.onguard4;
+unit Vcl.onguard4;
   {-Product description dialog}
 
 interface
 
 uses
-  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}  FMX.ogutil,FMX. onguard, System.SysUtils,
-  System.Types, System.UITypes, System.Classes, FMX.Types, FMX.Controls, FMX.Forms,
-  FMX.Objects, FMX.ExtCtrls, FMX.Layouts, FMX.Edit, FMX.Platform,  Fmx.StdCtrls,
-  FMX.Header, FMX.Graphics, FMX.Controls.Presentation;
+  Winapi.Windows, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Controls, System.Classes,
+  Vcl.Forms, Vcl.ogutil, Vcl.onguard, Vcl.onguard1;
 
 type
   TEditProductFrm = class(TForm)
@@ -81,10 +79,7 @@ type
 
 implementation
 
-{$R *.fmx}
-
-uses
-  FMX.onguard1;
+{$R *.dfm}
 
 { TEditProductFrm }
 
@@ -114,6 +109,7 @@ begin
   try
     F.SetKey(FKey);
     F.KeyType := FKeyType;
+    F.ShowHint := GetShowHints;
     if F.ShowModal = mrOK then begin
       F.GetKey(FKey);
       FKeyType := F.KeyType;
@@ -132,11 +128,12 @@ end;
 
 function TEditProductFrm.GetShowHints : Boolean;
 begin
-  Result := False;
+  Result := ShowHint;
 end;
 
 procedure TEditProductFrm.SetShowHints(Value : Boolean);
 begin
+  ShowHint := Value;
 end;
 
 procedure TEditProductFrm.GetKey(var Value : TKey);

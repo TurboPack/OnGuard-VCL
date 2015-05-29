@@ -30,13 +30,14 @@
 
 {$I onguard.inc}
 
-unit FMX.ogabout0;
+unit Vcl.ogabout0;
 
 interface
 
 uses
-  FMX.ogutil, DesignIntf, DesignEditors, FMX.Objects, FMX.Types, FMX.Controls.Presentation,
-  FMX.StdCtrls, System.Classes, FMX.Controls, FMX.Forms;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Winapi.ShellAPI,
+  Vcl.OgUtil, DesignIntf, DesignEditors;
 
 
 type
@@ -50,14 +51,15 @@ type
     procedure btnOKClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure WebLblMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
+      Y: Integer);
     procedure NewsLblMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
+      Y: Integer);
     procedure Panel2MouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
+      Y: Integer);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
     procedure WebLblClick(Sender: TObject);
     procedure NewsLblClick(Sender: TObject);
-    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
   end;
 
   TOgAboutProperty = class(TStringProperty)                          {!!.08}
@@ -70,10 +72,7 @@ type
 
 implementation
 
-{$R *.fmx}
-
-uses
-  System.UITypes, Winapi.Windows, Winapi.ShellAPI, Fmx.Dialogs;
+{$R *.dfm}
 
 {*** TOgVersionProperty ***}
 
@@ -105,39 +104,40 @@ procedure TOgAboutForm.FormCreate(Sender: TObject);
 begin
   Top := (Screen.Height - Height) div 3;
   Left := (Screen.Width - Width) div 2;
-  lblVersion.Text := 'Version ' + OgVersionStr;
+  lblVersion.Caption := 'Version ' + OgVersionStr;
 end;
 
 procedure TOgAboutForm.WebLblMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Single);
+  X, Y: Integer);
 begin
-  WebLbl.FontColor := TColorRec.Red;
+  WebLbl.Font.Color := clRed;
 end;
 
 procedure TOgAboutForm.NewsLblMouseMove(Sender: TObject;
-  Shift: TShiftState; X, Y: Single);
+  Shift: TShiftState; X, Y: Integer);
 begin
-  NewsLbl.FontColor := TColorRec.Red;
+  NewsLbl.Font.Color := clRed;
 end;
 
 procedure TOgAboutForm.Panel2MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Single);
+  X, Y: Integer);
 begin
-  NewsLbl.FontColor := TColorRec.Navy;
+  NewsLbl.Font.Color := clNavy;
 end;
 
-procedure TOgAboutForm.FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
+procedure TOgAboutForm.FormMouseMove(Sender: TObject; Shift: TShiftState;
+  X, Y: Integer);
 begin
-  WebLbl.FontColor := TColorRec.Navy;
-  NewsLbl.FontColor := TColorRec.Navy;
+  WebLbl.Font.Color := clNavy;
+  NewsLbl.Font.Color := clNavy;
 end;
 
 procedure TOgAboutForm.WebLblClick(Sender: TObject);
 begin
-  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard-FMX',
+  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard',
                   '', '', SW_SHOWNORMAL) <= 32 then
     ShowMessage('Unable to start web browser');
-  WebLbl.FontColor := TColorRec.Navy;
+  WebLbl.Font.Color := clNavy;
 end;
 
 procedure TOgAboutForm.NewsLblClick(Sender: TObject);
@@ -145,7 +145,7 @@ begin
   if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard',
                   '', '', SW_SHOWNORMAL) <= 32 then
     ShowMessage('Unable to start news reader');
-  NewsLbl.FontColor := TColorRec.Navy;
+  NewsLbl.Font.Color := clNavy;
 end;
 
 end.
