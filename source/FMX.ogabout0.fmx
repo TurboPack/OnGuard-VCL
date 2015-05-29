@@ -128,11 +128,11 @@ object OgAboutForm: TOgAboutForm
     AutoSize = True
     Position.X = 161.000000000000000000
     Position.Y = 147.000000000000000000
-    Size.Width = 260.000000000000000000
+    Size.Width = 245.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.WordWrap = False
-    Text = 'https://sourceforge.net/forum/?group_id=71010'
+    Text = 'https://github.com/TurboPack/OnGuard-FMX'
     OnClick = NewsLblClick
     OnMouseMove = NewsLblMouseMove
   end

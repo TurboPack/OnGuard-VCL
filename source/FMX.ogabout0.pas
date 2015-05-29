@@ -142,7 +142,7 @@ end;
 
 procedure TOgAboutForm.NewsLblClick(Sender: TObject);
 begin
-  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard',
+  if ShellExecute(0, 'open', 'https://github.com/TurboPack/OnGuard-FMX',
                   '', '', SW_SHOWNORMAL) <= 32 then
     ShowMessage('Unable to start news reader');
   NewsLbl.FontColor := TColorRec.Navy;
