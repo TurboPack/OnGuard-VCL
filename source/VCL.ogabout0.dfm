@@ -65,13 +65,13 @@ object OgAboutForm: TOgAboutForm
   object WebLbl: TLabel
     Left = 201
     Top = 86
-    Width = 233
+    Width = 262
     Height = 16
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
     Margins.Bottom = 4
-    Caption = 'https://github.com/TurboPack/OnGuard'
+    Caption = 'https://github.com/TurboPack/OnGuard-VCL'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -14
@@ -117,13 +117,13 @@ object OgAboutForm: TOgAboutForm
   object NewsLbl: TLabel
     Left = 201
     Top = 184
-    Width = 233
+    Width = 262
     Height = 16
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
     Margins.Bottom = 4
-    Caption = 'https://github.com/TurboPack/OnGuard'
+    Caption = 'https://github.com/TurboPack/OnGuard-VCL'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
     Font.Height = -14
