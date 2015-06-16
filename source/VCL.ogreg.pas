@@ -130,7 +130,7 @@ begin
   RegisterPropertyEditor(
     TypeInfo(string), TOgMakeCodes, 'KeyFileName', TOgFileNameProperty);
   RegisterPropertyEditor(
-    TypeInfo(string), TOgMakeCodes, 'KeyFileName', TOgFileNameProperty);
+    TypeInfo(string), TogMakeKeys, 'KeyFileName', TOgFileNameProperty);
 {  RegisterPropertyEditor( }                                          {!!.09}
 {    TypeInfo(string), TOgCodeBase, 'Expires', TOgExpiresProperty);}  {!!.09}
   RegisterPropertyEditor(
@@ -148,7 +148,7 @@ begin
 
   RegisterComponents('OnGuard', [
     TOgMakeCodes,
-    TOgMakeCodes,
+    TogMakeKeys,
     TOgDateCode,
     TOgDaysCode,
     TOgNetCode,
