@@ -50,7 +50,7 @@ package OnGuardDR;
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'TurboPack OnGuard Delphi Runtime package'}
-{$LIBSUFFIX '220'}
+{$LIBSUFFIX '230'}
 {$RUNONLY}
 {$IMPLICITBUILD OFF}
 

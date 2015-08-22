@@ -2,7 +2,7 @@
 // Copyright (c) 1995, 2015 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'Vcl.ogabout0.pas' rev: 29.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'Vcl.ogabout0.pas' rev: 30.00 (Windows)
 
 #ifndef Vcl_Ogabout0HPP
 #define Vcl_Ogabout0HPP

@@ -2,7 +2,7 @@
 // Copyright (c) 1995, 2015 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'Vcl.ogutil.pas' rev: 29.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'Vcl.ogutil.pas' rev: 30.00 (Windows)
 
 #ifndef Vcl_OgutilHPP
 #define Vcl_OgutilHPP
@@ -44,6 +44,8 @@ typedef TIntegerArray *PIntegerArray;
 
 struct DECLSPEC_DRECORD TIntegerRec
 {
+	
+public:
 	union
 	{
 		struct 
@@ -71,6 +73,8 @@ struct DECLSPEC_DRECORD TCode
 public:
 	System::Word CheckValue;
 	System::Word Expiration;
+	
+public:
 	union
 	{
 		struct 
