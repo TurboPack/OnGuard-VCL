@@ -1,0 +1,5 @@
+*.~dsk
+*.dsk
+*.local
+*.stat
+__history

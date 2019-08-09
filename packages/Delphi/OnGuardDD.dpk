@@ -50,7 +50,7 @@ package OnGuardDD;
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'TurboPack OnGuard Delphi Designtime package'}
-{$LIBSUFFIX '240'}
+{$LIBSUFFIX '260'}
 {$DESIGNONLY}
 {$IMPLICITBUILD OFF}
 
