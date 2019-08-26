@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{793FE4EF-8248-4BDA-AF6D-00608A0255CB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="OnGuardDR.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OnGuardDD.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="OnGuardDR">
+        <MSBuild Projects="OnGuardDR.dproj"/>
+    </Target>
+    <Target Name="OnGuardDR:Clean">
+        <MSBuild Projects="OnGuardDR.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OnGuardDR:Make">
+        <MSBuild Projects="OnGuardDR.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OnGuardDD">
+        <MSBuild Projects="OnGuardDD.dproj"/>
+    </Target>
+    <Target Name="OnGuardDD:Clean">
+        <MSBuild Projects="OnGuardDD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OnGuardDD:Make">
+        <MSBuild Projects="OnGuardDD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="OnGuardDR;OnGuardDD"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="OnGuardDR:Clean;OnGuardDD:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="OnGuardDR:Make;OnGuardDD:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
