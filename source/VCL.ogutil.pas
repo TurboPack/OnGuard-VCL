@@ -1494,7 +1494,7 @@ begin
   for I := S.Length - 1 downto 0 do                                    {!!.06}
     if Ord(S.Chars[I]) > 127 then                                      {!!.06}
       S.Remove(I, 1);                                                  {!!.06}
-  v := StringHashElf(UpperCase(S.ToUpper));
+  v := StringHashElf(UpperCase(S));
   Result := v = Work.RegString;
 end;
 {$ENDREGION}
